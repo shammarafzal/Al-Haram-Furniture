@@ -51,115 +51,125 @@ class _PinVerifyState extends State<PinVerify> {
     return Scaffold(
       body: Container(
         color: Color(getColorHexFromStr('#FEDF62')),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'HEY AL-Haram!',
-              style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
-                  fontWeight: FontWeight.bold),
-            ),
-            Image(
-              image: AssetImage('assets/images/sofa-logo.png'),
-              width: SizeConfig.blockSizeHorizontal * 50,
-            ),
-            Center(
-              child: Container(
-                height: 100.0,
-                child: PinCodeTextField(
-                  autofocus: true,
-                  controller: controller,
-                  hideCharacter: true,
-                  highlight: true,
-                  //highlightColor: Colors.blue,
-                  defaultBorderColor: Colors.black,
-                 // hasTextBorderColor: Colors.green,
-                  // highlightPinBoxColor: Colors.orange,
-                  maxLength: pinLength,
-                  hasError: hasError,
-                  onTextChanged: (text) {
-                    setState(() {
-                      hasError = false;
-                    });
-                  },
-                  onDone: (text) {
-                    print("DONE $text");
-                    print("DONE CONTROLLER ${controller.text}");
-                  },
-                  pinBoxWidth: 50,
-                  pinBoxHeight: 64,
-                  hasUnderline: true,
-                  wrapAlignment: WrapAlignment.spaceAround,
-                  pinBoxDecoration:
-                  ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                  pinTextStyle: TextStyle(fontSize: 22.0),
-                  pinTextAnimatedSwitcherTransition:
-                  ProvidedPinBoxTextAnimation.scalingTransition,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 40),
+          child: ListView(
+            children: [
+              Center(
+                child: Text(
+                  'HEY AL-Haram!',
+                  style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Image(
+                  image: AssetImage('assets/images/sofa-logo.png'),
+                  width: SizeConfig.blockSizeHorizontal * 30,
+                  height: SizeConfig.blockSizeVertical * 15,
+                ),
+              ),
+              Center(
+                child: Container(
+                  height: 100.0,
+                  child: PinCodeTextField(
+                    autofocus: true,
+                    controller: controller,
+                    hideCharacter: true,
+                    highlight: true,
+                    //highlightColor: Colors.blue,
+                    defaultBorderColor: Colors.black,
+                   // hasTextBorderColor: Colors.green,
+                    // highlightPinBoxColor: Colors.orange,
+                    maxLength: pinLength,
+                    hasError: hasError,
+                    onTextChanged: (text) {
+                      setState(() {
+                        hasError = false;
+                      });
+                    },
+                    onDone: (text) {
+                      print("DONE $text");
+                      print("DONE CONTROLLER ${controller.text}");
+                    },
+                    pinBoxWidth: 50,
+                    pinBoxHeight: 64,
+                    hasUnderline: true,
+                    wrapAlignment: WrapAlignment.spaceAround,
+                    pinBoxDecoration:
+                    ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                    pinTextStyle: TextStyle(fontSize: 22.0),
+                    pinTextAnimatedSwitcherTransition:
+                    ProvidedPinBoxTextAnimation.scalingTransition,
 //                    pinBoxColor: Colors.green[100],
-                  pinTextAnimatedSwitcherDuration:
-                  Duration(milliseconds: 300),
+                    pinTextAnimatedSwitcherDuration:
+                    Duration(milliseconds: 300),
 //                    highlightAnimation: true,
-                  highlightAnimationBeginColor: Colors.black,
-                  highlightAnimationEndColor: Colors.white12,
-                  keyboardType: TextInputType.number,
+                    highlightAnimationBeginColor: Colors.black,
+                    highlightAnimationEndColor: Colors.white12,
+                    keyboardType: TextInputType.number,
+                  ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 15.0),
-            Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Container(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                        builder: (context) => new NewPassword(),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Verify Pin',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: SizeConfig.safeBlockHorizontal * 5,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                    MaterialStateProperty.all(Colors.black),
-                    shape: MaterialStateProperty.all<
-                        RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                        side: BorderSide(color: Colors.black),
+              SizedBox(height: 15.0),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                          builder: (context) => new NewPassword(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Verify Pin',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5,
                       ),
                     ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all(Colors.black),
+                      shape: MaterialStateProperty.all<
+                          RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                          side: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                    ),
                   ),
+                  width: SizeConfig.screenWidth * 0.9,
+                  height: SizeConfig.screenHeight * 0.07,
                 ),
-                width: SizeConfig.screenWidth * 0.9,
-                height: SizeConfig.screenHeight * 0.07,
               ),
-            ),
-            SizedBox(height: 15.0),
-            RichText(
-              text: TextSpan(
-                  style: new TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
-                  children:[
-                    TextSpan(text: 'Remember Password? ',style: TextStyle(color: Colors.black45)),
-                    TextSpan(text: 'SIGN IN',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                        builder: (context) => new Signin(),
+              SizedBox(height: 15.0),
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                      style: new TextStyle(
+                        fontSize: SizeConfig.safeBlockHorizontal * 4,
+                        color: Colors.black,
                       ),
-                    )),
-                  ]),
-            ),
-          ],
+                      children:[
+                        TextSpan(text: 'Remember Password? ',style: TextStyle(color: Colors.black45)),
+                        TextSpan(text: 'SIGN IN',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                            builder: (context) => new Signin(),
+                          ),
+                        )),
+                      ]),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

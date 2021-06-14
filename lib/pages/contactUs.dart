@@ -38,6 +38,15 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+            onTap: (){
+              Navigator.of(context).pop();
+            },
+            child: Icon(Icons.arrow_back, color: Colors.black,)),
+        backgroundColor: Color(getColorHexFromStr('#FEDF62')),
+        elevation: 0,
+      ),
       body: Container(
         color: Color(getColorHexFromStr('#FEDF62')),
         child: ListView(
@@ -45,7 +54,7 @@ class _ContactUsState extends State<ContactUs> {
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(60.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Text(
                   'Contact Us',
                   style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
@@ -62,6 +71,7 @@ class _ContactUsState extends State<ContactUs> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   onChanged: (text) {
                     setState(() {
                       isEmptyName = false;
@@ -69,6 +79,10 @@ class _ContactUsState extends State<ContactUs> {
                   },
                   controller: _name,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -76,12 +90,15 @@ class _ContactUsState extends State<ContactUs> {
 
                     ),
                     labelText: 'Name',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptyName
                         ? null
                         :IconButton(
                       onPressed: () => _name.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                 ),
@@ -96,6 +113,7 @@ class _ContactUsState extends State<ContactUs> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   onChanged: (text) {
                     setState(() {
                       isEmptyEmail = false;
@@ -103,6 +121,10 @@ class _ContactUsState extends State<ContactUs> {
                   },
                   controller: _email,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -110,12 +132,15 @@ class _ContactUsState extends State<ContactUs> {
 
                     ),
                     labelText: 'Email',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptyEmail
                         ? null
                         :IconButton(
                       onPressed: () => _email.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -131,6 +156,7 @@ class _ContactUsState extends State<ContactUs> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   maxLines: 5,
                   onChanged: (text) {
                     setState(() {
@@ -139,6 +165,10 @@ class _ContactUsState extends State<ContactUs> {
                   },
                   controller: _message,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -146,12 +176,15 @@ class _ContactUsState extends State<ContactUs> {
 
                     ),
                     labelText: 'Message',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptyMessage
                         ? null
                         :IconButton(
                       onPressed: () => _message.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                 ),

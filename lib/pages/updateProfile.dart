@@ -55,11 +55,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
       body: Container(
         color: Color(getColorHexFromStr('#FEDF62')),
         child: ListView(
-
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(60.0,10,60,60),
+                padding: const EdgeInsets.all(10),
                 child: Text(
                   'Update Profile',
                   style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
@@ -67,7 +66,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 ),
               ),
             ),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
@@ -76,6 +74,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   onChanged: (text) {
                     setState(() {
                       isEmptyfirstName = false;
@@ -83,6 +82,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   },
                   controller: _fitstName,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -90,12 +93,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                     ),
                     labelText: 'First Name',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptyfirstName
                         ? null
                         :IconButton(
                       onPressed: () => _fitstName.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                 ),
@@ -110,6 +116,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   onChanged: (text) {
                     setState(() {
                       isEmptylastName = false;
@@ -117,6 +124,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   },
                   controller: _lastName,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -124,12 +136,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                     ),
                     labelText: 'Last Name',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptylastName
                         ? null
                         :IconButton(
                       onPressed: () => _lastName.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                 ),
@@ -144,6 +159,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   onChanged: (text) {
                     setState(() {
                       isEmptyEmail = false;
@@ -152,6 +168,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   enabled: false,
                   controller: _email,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -159,12 +179,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                     ),
                     labelText: 'Email',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptyEmail
                         ? null
                         :IconButton(
                       onPressed: () => _email.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -180,9 +203,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   controller: _password,
                   obscureText: _obscureText,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -190,14 +218,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                     ),
                     labelText: 'Password',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon: IconButton(
                       onPressed: (){
                         setState(() {
                           _obscureText = !_obscureText;
                         });
                       },
-                      icon: Icon(Icons.remove_red_eye_rounded),
+                      icon: Icon(Icons.remove_red_eye_rounded,color: Colors.black,),
                     ),
                   ),
                 ),
@@ -212,9 +243,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   controller: _confirmPassword,
                   obscureText: _obscureText,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -222,14 +258,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                     ),
                     labelText: 'Confirm Password',
-                    // / hintText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon: IconButton(
                       onPressed: (){
                         setState(() {
                           _obscureText = !_obscureText;
                         });
                       },
-                      icon: Icon(Icons.remove_red_eye_rounded),
+                      icon: Icon(Icons.remove_red_eye_rounded,color: Colors.black,),
                     ),
                   ),
                 ),
@@ -244,6 +283,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   primaryColorDark: Colors.black,
                 ),
                 child: TextField(
+                  cursorColor: Colors.black,
                   onChanged: (text) {
                     setState(() {
                       isEmptyPhone = false;
@@ -251,6 +291,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   },
                   controller: _phone,
                   decoration: InputDecoration(
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(25.0),
@@ -258,11 +302,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                     ),
                     labelText: 'Phone',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.safeBlockHorizontal * 5
+                    ),
                     suffixIcon:  isEmptyPhone
                         ? null
                         :IconButton(
                       onPressed: () => _phone.clear(),
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.clear,color: Colors.black,),
                     ),
                   ),
                   keyboardType: TextInputType.number,

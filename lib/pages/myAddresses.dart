@@ -45,14 +45,22 @@ class _MyAddressesState extends State<MyAddresses> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+            onTap: (){
+              Navigator.of(context).pop();
+            },
+            child: Icon(Icons.arrow_back, color: Colors.black,)),
+        backgroundColor: Color(getColorHexFromStr('#FEDF62')),
+        elevation: 0,
+      ),
       body: Container(
         color: Color(getColorHexFromStr('#FEDF62')),
         child: ListView(
-
           children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(60.0),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
                 child: Text(
                   'Address',
                   style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,

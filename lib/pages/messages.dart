@@ -30,7 +30,6 @@ class _InboxState extends State<Inbox> {
               'Messages',
               style: TextStyle(
                   fontFamily: 'Montserrat',
-                  fontSize: 30.0,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),

@@ -1,12 +1,13 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-
+import 'package:device_preview/device_preview.dart';
+import 'layout/customColors.dart';
 import 'pages/forgotpassword.dart';
 import 'pages/signin.dart';
 import 'pages/signup.dart';
-
 void main() {
-  runApp(MyApp());
+  runApp(DevicePreview(
+      builder: (context)=>MyApp(),));
+  //runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -19,6 +20,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: 'loginroute',
+       theme: MyTheme.defaultTheme,
         routes: {
           'loginroute': (context)=> Signin(),
           'signup_screen': (context)=>Signup(),

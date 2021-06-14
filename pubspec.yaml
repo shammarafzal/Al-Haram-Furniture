@@ -32,6 +32,7 @@ dependencies:
   material_floating_search_bar: ^0.3.4
   shared_preferences: ^2.0.5
   http: ^0.13.3
+  device_preview: ^0.7.1
 
 dev_dependencies:
   flutter_test:

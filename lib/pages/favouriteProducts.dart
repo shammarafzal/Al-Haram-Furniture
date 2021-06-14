@@ -1,4 +1,5 @@
 import 'package:al_haram_furnitures/components/cart_products.dart';
+import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteProducts extends StatefulWidget {
@@ -27,7 +28,6 @@ class _FavouriteProductsState extends State<FavouriteProducts> {
           'Favourite Products',
           style: TextStyle(
               fontFamily: 'Montserrat',
-              fontSize: 30.0,
               color: Colors.black,
               fontWeight: FontWeight.bold),
         ),

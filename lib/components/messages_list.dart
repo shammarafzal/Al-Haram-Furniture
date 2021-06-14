@@ -4,7 +4,7 @@ class MessagesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-       height: 230.0,
+      height: SizeConfig.screenHeight * 0.35,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
