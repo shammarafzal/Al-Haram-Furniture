@@ -7,7 +7,7 @@ class HorizontalList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth * 1,
-      height: SizeConfig.screenHeight * 0.15,
+      height: SizeConfig.screenHeight * 0.11,
 
       child: Card(
         elevation: 2,
