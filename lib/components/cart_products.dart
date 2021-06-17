@@ -4,7 +4,6 @@ class CartProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 180.0,
       child: Card(
         elevation: 0,
         child: ListView(
@@ -65,7 +64,7 @@ class CartProducts extends StatelessWidget {
 
       },
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(5.0),
         child: Material(
           borderRadius: BorderRadius.circular(10.0),
           elevation: 3.0,
@@ -77,34 +76,7 @@ class CartProducts extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: Row(
               children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // Container(
-                    //     height: 25.0,
-                    //     width: 25.0,
-                    //     // decoration: BoxDecoration(
-                    //     //   color: available
-                    //     //       ? Colors.grey.withOpacity(0.4)
-                    //     //       : Colors.red.withOpacity(0.4),
-                    //     //   borderRadius: BorderRadius.circular(12.5),
-                    //     // ),
-                    //     child: Center(
-                    //         child: available
-                    //             ? Container(
-                    //           height: 12.0,
-                    //           width: 12.0,
-                    //           decoration: BoxDecoration(
-                    //               color: picked[i]
-                    //                   ? Colors.yellow
-                    //                   : Colors.grey.withOpacity(0.4),
-                    //               borderRadius:
-                    //               BorderRadius.circular(6.0)),
-                    //         )
-                    //             : Container()))
-                  ],
-                ),
-                SizedBox(width: 10.0),
+
                 Container(
                   height: 150.0,
                   width: SizeConfig.screenWidth * 0.2,
@@ -126,7 +98,6 @@ class CartProducts extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0),
                         ),
-                        SizedBox(width: 7.0),
                         Text(
                           'x $quantity',
                           style: TextStyle(

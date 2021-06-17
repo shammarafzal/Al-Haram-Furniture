@@ -6,7 +6,6 @@ class ProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     // height: 180.0,
       child: Card(
         elevation: 0,
         child: ListView(
@@ -72,151 +71,143 @@ class Product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Padding(
-      padding: EdgeInsets.only(left: 15.0, right: 1.0, top: 15.0),
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => ProductDetails(
-                product_detail_name: productName,
-                product_detail_new_price: price,
-                product_detail_old_price: price,
-                product_detail_picture: image_location,
-              )));
-        },
-        child: Container(
-          //height: 150.0,
-          width: SizeConfig.screenWidth * 1,
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: SizeConfig.screenWidth * 0.2,
-                height: 150.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(image_location), fit: BoxFit.contain,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ProductDetails(
+              product_detail_name: productName,
+              product_detail_new_price: price,
+              product_detail_old_price: price,
+              product_detail_picture: image_location,
+            )));
+      },
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: SizeConfig.screenWidth * 0.2,
+            height: 150.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(image_location), fit: BoxFit.contain,
 
-                  ),
-                ),
               ),
-              SizedBox(width: 4.0),
-              Container(
-                width: SizeConfig.screenWidth * 0.7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+            ),
+          ),
+          // SizedBox(width: 4.0),
+          Container(
+            color: Colors.yellow,
+           width: SizeConfig.screenWidth * 0.53,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          productName,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontFamily: 'Quicksand',
-                              color: Colors.black,
-                              fontSize: SizeConfig.safeBlockHorizontal * 3.5,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 5.0),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: InkWell(
-                            onTap: (){
-                            if(isFavorite == false){
-                              isFavorite = true;
-                              print(isFavorite);
-                            }
-                            else{
-                              isFavorite = false;
-                              print(isFavorite);
-                            }
-                            },
-                            child: Material(
-                              elevation: isFavorite ? 0.0 : 2.0,
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Container(
-                                height: 40.0,
-                                width: 40.0,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: isFavorite
-                                        ? Colors.grey.withOpacity(0.2)
-                                        : Colors.white),
-                                child: Center(
-                                  child: isFavorite
-                                      ? Icon(Icons.favorite_border)
-                                      : Icon(Icons.favorite, color: Colors.red),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                    Text(
+                      productName,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontFamily: 'Quicksand',
+                          color: Colors.black,
+                          fontSize: SizeConfig.safeBlockHorizontal * 3.5,
+                          fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 15.0),
-                    Container(
-                      width: SizeConfig.screenWidth * 1,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 15),
-                        child: Text(
-                          description,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontFamily: 'Quicksand',
-                              color: Colors.grey,
-                            fontSize: SizeConfig.safeBlockHorizontal * 4),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        SizedBox(width: 35.0),
-                        Container(
-                          height: 40.0,
-                          width: 50.0,
-                          color: Color(getColorHexFromStr('#F9C335')),
-                          child: Center(
-                            child: Text(
-                              '\$ $price',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Quicksand',
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: (){
-                            print('d');
-                          },
+                    SizedBox(width: 5.0),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: InkWell(
+                        onTap: (){
+                        if(isFavorite == false){
+                          isFavorite = true;
+                          print(isFavorite);
+                        }
+                        else{
+                          isFavorite = false;
+                          print(isFavorite);
+                        }
+                        },
+                        child: Material(
+                          elevation: isFavorite ? 0.0 : 2.0,
+                          borderRadius: BorderRadius.circular(20.0),
                           child: Container(
                             height: 40.0,
-                            width: 100.0,
-                            color: Color(getColorHexFromStr('#FEDD59')),
+                            width: 40.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: isFavorite
+                                    ? Colors.grey.withOpacity(0.2)
+                                    : Colors.white),
                             child: Center(
-                              child: Text(
-                                'Add to cart',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Quicksand',
-                                    fontWeight: FontWeight.bold),
-                              ),
+                              child: isFavorite
+                                  ? Icon(Icons.favorite_border)
+                                  : Icon(Icons.favorite, color: Colors.red),
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     )
                   ],
                 ),
-              )
-            ],
-          ),
-        )
-      ),
+                SizedBox(height: 15.0),
+                Container(
+                  width: SizeConfig.screenWidth * 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 0),
+                    child: Text(
+                      description,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontFamily: 'Quicksand',
+                          color: Colors.grey,
+                        fontSize: SizeConfig.safeBlockHorizontal * 4),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Container(
+                      height: 40.0,
+                      width: 50.0,
+                      color: Color(getColorHexFromStr('#F9C335')),
+                      child: Center(
+                        child: Text(
+                          '\$ $price',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Quicksand',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){
+                        print('d');
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 100.0,
+                        color: Color(getColorHexFromStr('#FEDD59')),
+                        child: Center(
+                          child: Text(
+                            'Add to cart',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Quicksand',
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      )
     );
   }
 }

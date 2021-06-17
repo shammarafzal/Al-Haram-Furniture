@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'contactUs.dart';
@@ -54,8 +55,7 @@ class _UserPageState extends State<UserPage>
               width: 400.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(200.0),
-                  color:
-                      Color(getColorHexFromStr('#FEE16D')).withOpacity(0.4)),
+                  color: Color(getColorHexFromStr('#FEE16D')).withOpacity(0.4)),
             ),
           ),
           Positioned(
@@ -66,63 +66,104 @@ class _UserPageState extends State<UserPage>
                 width: 300.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(150.0),
-                    color: Color(getColorHexFromStr('#FEE16D'))
-                        .withOpacity(0.5))),
+                    color:
+                        Color(getColorHexFromStr('#FEE16D')).withOpacity(0.5))),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-             /// SizedBox(height: 15.0),
-              Row(
-                children: <Widget>[
-                  SizedBox(width: 5.0),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    height: 75.0,
-                    width: 75.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(37.5),
-                        border: Border.all(
-                            color: Colors.white,
-                            style: BorderStyle.solid,
-                            width: 3.0),
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/chair.jpg'))),
-                  ),
-                  SizedBox(width: 10.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'ARUM',
-                        style: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
+              ListTile(
+                leading: Container(
+                  alignment: Alignment.topLeft,
+                  height: 50.0,
+                  width: 50.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25.0),
+                      border: Border.all(
+                          color: Colors.white,
+                          style: BorderStyle.solid,
+                          width: 3.0),
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/chair.jpg'))),
+                ),
+                title: Text(
+                  'ARUM',
+                  style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.settings),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                        builder: (context) => new UpdateProfile(),
                       ),
-
-                    ],
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width - 225.0),
-                  Container(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: Icon(Icons.settings),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                            builder: (context) => new UpdateProfile(),
-                          ),
-                        );
-                      },
-                      color: Colors.white,
-                      iconSize: 30.0,
-                    ),
-                  ),
-                  SizedBox(height: 15.0)
-                ],
+                    );
+                  },
+                  color: Colors.white,
+                  iconSize: 30.0,
+                ),
               ),
+              //           Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //
+              //             children: <Widget>[
+              //              Row(
+              //
+              //                children: [
+              //               SizedBox(width: 5.0),
+              //               Container(
+              //                 alignment: Alignment.topLeft,
+              //                 height: 75.0,
+              //                 width: 75.0,
+              //                 decoration: BoxDecoration(
+              //                     borderRadius: BorderRadius.circular(37.5),
+              //                     border: Border.all(
+              //                         color: Colors.white,
+              //                         style: BorderStyle.solid,
+              //                         width: 3.0),
+              //                     image: DecorationImage(
+              //                         image: AssetImage('assets/images/chair.jpg'))),
+              //               ),
+              //               SizedBox(width: 10.0),
+              //               Column(
+              //                 crossAxisAlignment: CrossAxisAlignment.start,
+              //                 children: <Widget>[
+              //                   Text(
+              //                     'ARUM',
+              //                     style: TextStyle(
+              //                         fontFamily: 'Quicksand',
+              //                         fontSize: 25.0,
+              //                         fontWeight: FontWeight.bold),
+              //                   ),
+              //
+              //                 ],
+              //               ),
+              //   ]
+              // ),
+              //              // SizedBox(width: SizeConfig.screenWidth * 0.2,),
+              //               Container(
+              //                 alignment: Alignment.topRight,
+              //                 child: IconButton(
+              //                   icon: Icon(Icons.settings),
+              //                   onPressed: () {
+              //                     Navigator.push(
+              //                       context,
+              //                       new MaterialPageRoute(
+              //                         builder: (context) => new UpdateProfile(),
+              //                       ),
+              //                     );
+              //                   },
+              //                   color: Colors.white,
+              //                   iconSize: 30.0,
+              //                 ),
+              //               ),
+              //               SizedBox(height: 15.0)
+              //             ],
+              //           ),
               SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -181,7 +222,6 @@ class _UserPageState extends State<UserPage>
                       ],
                     ),
                   ),
-
                 ],
               ),
               SizedBox(height: 25.0),
@@ -191,7 +231,7 @@ class _UserPageState extends State<UserPage>
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                             context,
                             new MaterialPageRoute(
@@ -202,12 +242,10 @@ class _UserPageState extends State<UserPage>
                         child: cardDetails(
                             'Add Address', 'assets/images/card.png', '1'),
                       ),
-                      cardDetails(
-                          'My Orders', 'assets/images/box.png', '1'),
+                      cardDetails('My Orders', 'assets/images/box.png', '1'),
                     ],
                   ),
                   SizedBox(height: 10.0),
-
                   SizedBox(height: 5.0)
                 ],
               ),
@@ -216,7 +254,7 @@ class _UserPageState extends State<UserPage>
         ]),
         SizedBox(height: 15.0),
         InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.push(
                 context,
                 new MaterialPageRoute(
@@ -226,7 +264,7 @@ class _UserPageState extends State<UserPage>
             },
             child: listItem('About Us', Colors.red, Icons.account_box)),
         InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.push(
                 context,
                 new MaterialPageRoute(
@@ -237,7 +275,8 @@ class _UserPageState extends State<UserPage>
             child: listItem('Contact Us', Colors.red, Icons.contact_support)),
         InkWell(
           onTap: () async {
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
             prefs.remove("isLoggedIn");
             Navigator.push(
               context,
@@ -246,8 +285,8 @@ class _UserPageState extends State<UserPage>
               ),
             );
           },
-          child: listItem('Logout', Color(getColorHexFromStr('#E89300')),
-              Icons.logout),
+          child: listItem(
+              'Logout', Color(getColorHexFromStr('#E89300')), Icons.logout),
         )
       ]),
     );
@@ -256,35 +295,18 @@ class _UserPageState extends State<UserPage>
   Widget listItem(String title, Color buttonColor, iconButton) {
     return Padding(
       padding: EdgeInsets.all(10.0),
-      child: Row(
-        children: <Widget>[
-          Container(
-            height: 50.0,
-            width: 50.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0),
-                color: buttonColor.withOpacity(0.3)),
-            child: Icon(iconButton, color: buttonColor, size: 25.0),
-          ),
-          SizedBox(width: 25.0),
-          Container(
-            width: MediaQuery.of(context).size.width - 100.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 15.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.arrow_forward_ios, color: Colors.black, size: 20.0),
-              ],
-            ),
-          ),
-        ],
+      child: ListTile(
+        leading: Icon(iconButton, color: buttonColor, size: 25.0),
+        title: Text(
+          title,
+          style: TextStyle(
+              color: Color.fromRGBO(216, 56, 48, 1),
+              fontSize: SizeConfig.safeBlockHorizontal * 5),
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          color: Color.fromRGBO(216, 56, 48, 1),
+        ),
       ),
     );
   }
@@ -295,7 +317,7 @@ class _UserPageState extends State<UserPage>
       borderRadius: BorderRadius.circular(7.0),
       child: Container(
         height: 125.0,
-        width: (MediaQuery.of(context).size.width / 2) - 20.0,
+        width: SizeConfig.screenWidth * 0.37,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7.0), color: Colors.white),
         child: Column(
