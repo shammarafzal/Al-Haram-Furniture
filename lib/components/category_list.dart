@@ -7,8 +7,8 @@ class HorizontalList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth * 1,
-      height: SizeConfig.screenHeight * 0.15,
-    color: Colors.green,
+      height:
+      MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.12 : SizeConfig.screenHeight * 0.23,
       child: Card(
         elevation: 2,
         child: ListView(
