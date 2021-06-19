@@ -7,8 +7,8 @@ class HorizontalList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth * 1,
-      height: SizeConfig.screenHeight * 0.11,
-
+      height: SizeConfig.screenHeight * 0.15,
+    color: Colors.green,
       child: Card(
         elevation: 2,
         child: ListView(
@@ -72,7 +72,7 @@ class Category extends StatelessWidget {
           );
         },
         child: Container(
-          width: 80.0,
+          width: SizeConfig.screenWidth * 0.3,
           child: ListTile(
             title: Image.asset(
               image_location,

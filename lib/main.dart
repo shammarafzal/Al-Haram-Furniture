@@ -5,9 +5,9 @@ import 'pages/forgotpassword.dart';
 import 'pages/signin.dart';
 import 'pages/signup.dart';
 void main() {
-  runApp(DevicePreview(
-      builder: (context)=>MyApp(),));
-  //runApp(MyApp());
+  // runApp(DevicePreview(
+  //     builder: (context)=>MyApp(),));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {

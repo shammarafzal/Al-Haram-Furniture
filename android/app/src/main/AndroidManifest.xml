@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.ammarafzal.al_haram_furnitures">
    <application
-        android:label="al_haram_furnitures"
+        android:label="Al-Haram Furnitures"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

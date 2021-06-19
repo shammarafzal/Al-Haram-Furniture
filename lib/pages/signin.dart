@@ -6,7 +6,7 @@ import 'alertDialog.dart';
 import 'bottonNavBar.dart';
 import 'forgotpassword.dart';
 import 'signup.dart';
-
+import 'package:flutter/services.dart';
 class Signin extends StatefulWidget {
   @override
   _SigninState createState() => _SigninState();
@@ -243,7 +243,9 @@ class _SigninState extends State<Signin> {
                     ),
                   ),
                   width: SizeConfig.screenWidth * 0.9,
-                  height: SizeConfig.screenHeight * 0.07,
+
+                  height:
+                  MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.07 : SizeConfig.screenHeight * 0.16
                 ),
               ),
 
@@ -279,7 +281,8 @@ class _SigninState extends State<Signin> {
                     ),
                   ),
                   width: SizeConfig.screenWidth * 0.9,
-                  height: SizeConfig.screenHeight * 0.07,
+                    height:
+                    MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.07 : SizeConfig.screenHeight * 0.16
                 ),
               ),
               SizedBox(height: 15.0),

@@ -4,22 +4,23 @@ class MessagesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight * 0.35,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Card(
-          color: Color.fromRGBO(45, 47, 51, 1),
-          elevation: 5,
-          child: Column(
-            children: <Widget>[
-              Messages(
-                messageTitle: 'BOSS Revolution Chair',
-                receivedDate: '12-12-2021',
-                description: 'A chair is a piece of furniture. It is used for sitting on and it can also be used for standing.',
+        child: ListView(
+          children: <Widget>[
+            Messages(
+              messageTitle: 'BOSS Revolution Chair',
+              receivedDate: '12-12-2021',
+              description: 'A chair is a piece of furniture. It is used for sitting on and it can also be used for standing.',
 
-              ),
-            ],
-          ),
+            ),
+            Messages(
+              messageTitle: 'BOSS Revolution Chair',
+              receivedDate: '12-12-2021',
+              description: 'A chair is a piece of furniture. It is used for sitting on and it can also be used for standing.',
+
+            ),
+          ],
         ),
       ),
     );
@@ -60,54 +61,57 @@ class Messages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Padding(
-      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-      child: InkWell(
-          onTap: () {
-            print(messageTitle);
-          },
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  messageTitle,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize:
-                      SizeConfig.safeBlockHorizontal * 6,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: Align(
+    return Card(
+      color: Color.fromRGBO(45, 47, 51, 1),
+      child: Padding(
+        padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+        child: InkWell(
+            onTap: () {
+              print(messageTitle);
+            },
+            child: Column(
+              children: [
+                Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                   'Received $receivedDate',
+                    messageTitle,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize:
-                        SizeConfig.safeBlockHorizontal * 5),
+                        SizeConfig.safeBlockHorizontal * 6,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    description,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize:
-                        SizeConfig.safeBlockHorizontal * 5),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                     'Received $receivedDate',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize:
+                          SizeConfig.safeBlockHorizontal * 5),
+                    ),
                   ),
                 ),
-              ),
-            ],
-           )
+                Padding(
+                  padding:
+                  const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      description,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize:
+                          SizeConfig.safeBlockHorizontal * 5),
+                    ),
+                  ),
+                ),
+              ],
+             )
+        ),
       ),
     );
   }

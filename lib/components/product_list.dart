@@ -95,22 +95,24 @@ class Product extends StatelessWidget {
           ),
           // SizedBox(width: 4.0),
           Container(
-            color: Colors.yellow,
-           width: SizeConfig.screenWidth * 0.53,
+           width: SizeConfig.screenWidth * 0.7,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                      productName,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          color: Colors.black,
-                          fontSize: SizeConfig.safeBlockHorizontal * 3.5,
-                          fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        productName,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            color: Colors.black,
+                            fontSize: SizeConfig.safeBlockHorizontal * 3.5,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                     SizedBox(width: 5.0),
                     Align(
@@ -152,7 +154,7 @@ class Product extends StatelessWidget {
                 Container(
                   width: SizeConfig.screenWidth * 1,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 0),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       description,
                       textAlign: TextAlign.left,

@@ -353,7 +353,8 @@ class _MyAddressesState extends State<MyAddresses> {
                   ),
                 ),
                 width: SizeConfig.screenWidth * 0.9,
-                height: SizeConfig.screenHeight * 0.07,
+                  height:
+                  MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.07 : SizeConfig.screenHeight * 0.16
               ),
             ),
             SizedBox(height: 15.0),
