@@ -7,12 +7,10 @@ class ProductDetails extends StatefulWidget {
   final product_detail_picture;
 
   ProductDetails(
-      {
-        this.product_detail_name,
-        this.product_detail_new_price,
-        this.product_detail_old_price,
-        this.product_detail_picture
-      });
+      {this.product_detail_name,
+      this.product_detail_new_price,
+      this.product_detail_old_price,
+      this.product_detail_picture});
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
@@ -40,6 +38,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     }
     return val;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +49,8 @@ class _ProductDetailsState extends State<ProductDetails> {
         title: Text('Al-Haram Furniture'),
         actions: <Widget>[
           new IconButton(
-              icon: Icon(Icons.shopping_cart, color: Colors.white), onPressed: () {}),
-
-
+              icon: Icon(Icons.shopping_cart, color: Colors.white),
+              onPressed: () {}),
         ],
       ),
       body: new ListView(
@@ -74,19 +72,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                     children: <Widget>[
                       Expanded(
                           child: new Text(
-                            "\$${widget.product_detail_old_price}",
-                            style: TextStyle(
-                                color: Colors.grey,
-                                decoration: TextDecoration.lineThrough),
-                          )),
+                        "\$${widget.product_detail_old_price}",
+                        style: TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough),
+                      )),
                       Expanded(
                           child: new Text(
-                            "\$${widget.product_detail_new_price}",
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.lineThrough),
-                          ))
+                        "\$${widget.product_detail_new_price}",
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.lineThrough),
+                      ))
                     ],
                   ),
                 ),
@@ -98,19 +96,20 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                   onPressed: () {
-                    showDialog(context: context,
-                        builder: (context){
+                    showDialog(
+                        context: context,
+                        builder: (context) {
                           return new AlertDialog(
                               title: new Text('Size'),
                               content: new Text('Choose the size'),
                               actions: <Widget>[
-                                new MaterialButton(onPressed: (){
-                                  Navigator.of(context).pop(context);
-                                },
+                                new MaterialButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(context);
+                                  },
                                   child: new Text('Close'),
                                 )
-                              ]
-                          );
+                              ]);
                         });
                   },
                   color: Colors.white,
@@ -127,18 +126,33 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                   onPressed: () {
-                    showDialog(context: context,
-                        builder: (context){
-                          return new AlertDialog(
-                              title: new Text('Color'),
-                              content: new Text('Choose the Color'),
-                              actions: <Widget>[
-                                new MaterialButton(onPressed: (){
-                                  Navigator.of(context).pop(context);
-                                },
-                                  child: new Text('Close'),
-                                )
-                              ]
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Positioned(
+                            child: AlertDialog(
+                              insetPadding: EdgeInsets.all(50),
+                              scrollable: true,
+                              content: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: 50,
+                                    color: Colors.amber[600],
+                                    child: const Center(child: Text('Entry A')),
+                                  ),
+                                  Container(
+                                    height: 50,
+                                    color: Colors.amber[500],
+                                    child: const Center(child: Text('Entry B')),
+                                  ),
+                                  Container(
+                                    height: 50,
+                                    color: Colors.amber[100],
+                                    child: const Center(child: Text('Entry C')),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         });
                   },
@@ -156,19 +170,20 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                   onPressed: () {
-                    showDialog(context: context,
-                        builder: (context){
+                    showDialog(
+                        context: context,
+                        builder: (context) {
                           return new AlertDialog(
                               title: new Text('Quantity'),
                               content: new Text('Choose the Quantity'),
                               actions: <Widget>[
-                                new MaterialButton(onPressed: (){
-                                  Navigator.of(context).pop(context);
-                                },
+                                new MaterialButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(context);
+                                  },
                                   child: new Text('Close'),
                                 )
-                              ]
-                          );
+                              ]);
                         });
                   },
                   color: Colors.white,
@@ -192,11 +207,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                     color: Colors.red,
                     textColor: Colors.white,
                     elevation: 0.2,
-                    child: new Text("Buy Now")
-                ),
+                    child: new Text("Buy Now")),
               ),
-              new IconButton(icon: Icon(Icons.add_shopping_cart,color:Colors.red),onPressed:(){}),
-              new IconButton(icon: Icon(Icons.favorite_border,color:Colors.red),onPressed:(){}),
+              new IconButton(
+                  icon: Icon(Icons.add_shopping_cart, color: Colors.red),
+                  onPressed: () {}),
+              new IconButton(
+                  icon: Icon(Icons.favorite_border, color: Colors.red),
+                  onPressed: () {}),
             ],
           ),
           Divider(),
@@ -207,30 +225,44 @@ class _ProductDetailsState extends State<ProductDetails> {
           Divider(),
           Row(
             children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Name', style: TextStyle(color: Colors.grey)),),
-              Padding(padding: EdgeInsets.all(5.0),
-                child: new Text(widget.product_detail_name), )
-
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: new Text('Product Name',
+                    style: TextStyle(color: Colors.grey)),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: new Text(widget.product_detail_name),
+              )
             ],
           ),
           Row(
             children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Brand', style: TextStyle(color: Colors.grey)),),
-              Padding(padding: EdgeInsets.all(5.0),
-                child: new Text("Boss"), )
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: new Text('Product Brand',
+                    style: TextStyle(color: Colors.grey)),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: new Text("Boss"),
+              )
             ],
           ),
           Row(
             children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Condition', style: TextStyle(color: Colors.grey)),),
-              Padding(padding: EdgeInsets.all(5.0),
-                child: new Text("Brand New"), )
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: new Text('Product Condition',
+                    style: TextStyle(color: Colors.grey)),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: new Text("Brand New"),
+              )
             ],
           ),
-         // Divider(),
+          // Divider(),
           // Padding(
           //     padding: const EdgeInsets.all(8.0),
           //     child: new Text('Similar Products')),
