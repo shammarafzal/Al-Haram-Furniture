@@ -1,4 +1,5 @@
 import 'package:al_haram_furnitures/components/category_list.dart';
+import 'package:al_haram_furnitures/components/deals_list.dart';
 import 'package:al_haram_furnitures/components/product_list.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -20,20 +21,21 @@ class _HomePageState extends State<HomePage> {
           Container(
             width: SizeConfig.screenWidth * 1,
             height: SizeConfig.screenHeight * 0.25,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-            Image(
-            image: AssetImage('assets/images/chair.jpg'),
-            fit: BoxFit.contain,
-            width:  SizeConfig.screenWidth * 1,
-            ),
-            Image(image: AssetImage('assets/images/box.png'),
-              fit: BoxFit.contain,
-              width:  SizeConfig.screenWidth * 1,
-            )
-              ],
-            ),
+            child: DealsList(),
+            // child: ListView(
+            //   scrollDirection: Axis.horizontal,
+            //   children: [
+            // Image(
+            // image: AssetImage('assets/images/chair.jpg'),
+            // fit: BoxFit.contain,
+            // width:  SizeConfig.screenWidth * 1,
+            // ),
+            // Image(image: AssetImage('assets/images/box.png'),
+            //   fit: BoxFit.contain,
+            //   width:  SizeConfig.screenWidth * 1,
+            // )
+            //   ],
+            // ),
           ),
            HorizontalList(),
           Expanded(child: ProductListView()),

@@ -1,5 +1,8 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
+
+import 'alertDialog.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class _ContactUsState extends State<ContactUs> {
   bool isEmptyName = true;
   bool isEmptyEmail = true;
   bool isEmptyMessage = true;
+  bool isLoading = false;
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _message = TextEditingController();
@@ -195,8 +199,21 @@ class _ContactUsState extends State<ContactUs> {
               padding: const EdgeInsets.all(15.0),
               child: Container(
                 child: TextButton(
-                  onPressed: () {
-
+                  onPressed: () async {
+                    isLoading = true;
+                    var response = await Utils().contactUs(_name.text, _email.text, _message.text);
+                    if(response['status'] == false){
+                      setState(() {
+                        isLoading = false;
+                      });
+                      alertScreen().showAlertDialog(context, response['message']);
+                    }
+                    else{
+                      setState(() {
+                        isLoading = false;
+                      });
+                      alertScreen().showAlertDialog(context, response['message']);
+                    }
                   },
                   child: Text(
                     'Send',

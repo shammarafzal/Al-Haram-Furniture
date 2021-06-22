@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -196,27 +197,23 @@ class _SigninState extends State<Signin> {
                         alertScreen().showAlertDialog(
                             context, "Please Length Must Greater than 8");
                       } else {
-                        Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                            builder: (context) => new BottomBar(),
-                          ),
-                        );
-                        // isLoading = true;
-                        // var response = await Utils().login(_email.text, _password.text);
-                        // if(response['status'] == false && response['message'] == 'Invalid Password'){
-                        //   setState(() {
-                        //     isLoading = false;
-                        //   });
-                        //   alertScreen().showAlertDialog(context, response['message']);
-                        // }
-                        // else{
-                        //   setState(() {
-                        //     isLoading = false;
-                        //   });
-                        //   prefs.setBool('isLoggedIn', true);
-                        //   await alertScreen().showSigninAlertDialog(context, "Login Successfully");
-                        // }
+                        isLoading = true;
+                        var response = await Utils().login(_email.text, _password.text);
+                        if(response['status'] == false && response['message'] == 'Invalid Password'){
+                          setState(() {
+                            isLoading = false;
+                          });
+                          alertScreen().showAlertDialog(context, response['message']);
+                        }
+                        else{
+                          setState(() {
+                            isLoading = false;
+                          });
+                          prefs.setBool('isLoggedIn', true);
+                          prefs.setString('token', response['token']);
+                          prefs.setInt('id', response['user']['id']);
+                          await alertScreen().showSigninAlertDialog(context, "Login Successfully");
+                        }
                       }
                     },
                     child: isLoading

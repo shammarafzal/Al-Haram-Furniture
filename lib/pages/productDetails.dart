@@ -62,7 +62,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: GridTile(
               child: Container(
                 color: Colors.white,
-                child: Image.asset(widget.product_detail_picture),
+                child: Image.network(widget.product_detail_picture),
               ),
               footer: new Container(
                 color: Colors.white70,

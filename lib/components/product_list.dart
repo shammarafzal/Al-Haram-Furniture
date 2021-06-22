@@ -1,34 +1,44 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/productDetails.dart';
 import 'package:flutter/material.dart';
 
 class ProductListView extends StatelessWidget {
+  var products;
+  var image_base_url = 'http://alharam.codingoverflow.com/storage/';
+  getProducts() async {
+    products = await Utils().getProducts();
+    return products;
+  }
   @override
   Widget build(BuildContext context) {
+    getProducts();
     return Container(
       child: Card(
         elevation: 0,
-        child: ListView(
-          children: <Widget>[
-            Product(
-              productName: 'BOSS Revolution Chair',
-              description: 'A chair is a piece ofs',
-              price: '12',
-              image_location: 'assets/images/ottoman.jpg',
-            ),
-            Product(
-              productName: 'DEF',
-              description: 'dscdssdcsdcsdcsdcsd esdf',
-              price: '12',
-              image_location: 'assets/images/anotherchair.jpg',
-            ),
-            Product(
-              productName: 'LPM',
-              description: 'dscdssdcsdcsdcsdcsd esd',
-              price: '12',
-              image_location: 'assets/images/chair.jpg',
-            ),
-          ],
+        child: FutureBuilder(
+          future: getProducts(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: products.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, index) {
+                      return Product(
+                        productName:  products[index]['model_name'],
+                        description: products[index]['description'],
+                        price:  products[index]['sale_price'],
+                        image_location: image_base_url+products[index]['product_galleries'][0]['product_image'],
+                      );
+                },
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(Color.fromRGBO(216, 56, 48, 1)),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -86,12 +96,7 @@ class Product extends StatelessWidget {
           Container(
             width: SizeConfig.screenWidth * 0.2,
             height: 150.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(image_location), fit: BoxFit.contain,
-
-              ),
-            ),
+                   child: Image.network(image_location),
           ),
           // SizedBox(width: 4.0),
           Container(
