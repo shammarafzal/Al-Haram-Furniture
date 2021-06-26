@@ -1,4 +1,5 @@
 import 'package:al_haram_furnitures/components/cart_products.dart';
+import 'package:al_haram_furnitures/components/favourite_products.dart';
 import 'package:al_haram_furnitures/components/product_list.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _FavouriteProductsState extends State<FavouriteProducts> {
       ),
       body: Column(
         children: [
-          Flexible(child: ProductListView()),
+          Expanded(child: FavoutiteProductListView()),
         ],
       ),
     );

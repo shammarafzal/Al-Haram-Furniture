@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
             height: SizeConfig.screenHeight * 0.25,
             child: DealsList(),
           ),
-           SizedBox(height: 15,),
-           HorizontalList(),
-          Expanded(child: ProductListView()),
+          SizedBox(height: 15,),
+          HorizontalList(),
+          ProductListView()
         ],
       ),
     );

@@ -1,32 +1,27 @@
 import 'package:al_haram_furnitures/API/utils.dart';
+import 'package:al_haram_furnitures/Models/getDeals.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class DealsList extends StatelessWidget {
-  var deals;
   var image_base_url = 'http://alharam.codingoverflow.com/storage/';
-  getDeals() async {
-    deals = await Utils().getDeals();
-    return deals;
-  }
   @override
   Widget build(BuildContext context) {
-    getDeals();
     return Container(
      width: SizeConfig.screenWidth * 1,
       height:
       MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.12 : SizeConfig.screenHeight * 0.23,
-      child:  FutureBuilder(
-        future: getDeals(),
+      child:  FutureBuilder<GetDeals>(
+        future: Utils().fetchDeals(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: deals.length,
+              itemCount: snapshot.data?.data?.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, index) {
                 return Category(
-                  image_location: image_base_url+deals[index]['image'],
+                  image_location: image_base_url+'${snapshot.data?.data?[index].image}',
                 );
               },
             );

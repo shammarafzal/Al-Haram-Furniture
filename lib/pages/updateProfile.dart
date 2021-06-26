@@ -253,88 +253,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         ),
                       ),
                       SizedBox(height: 15.0),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Theme(
-                          data: new ThemeData(
-                            primaryColor: Colors.black,
-                            primaryColorDark: Colors.black,
-                          ),
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            controller: _password,
-                            obscureText: _obscureText,
-                            decoration: InputDecoration(
-                              focusedBorder:OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.black),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(
-                                  const Radius.circular(25.0),
-                                ),
 
-                              ),
-                              labelText: 'Password',
-                              enabled: enabled,
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: SizeConfig.safeBlockHorizontal * 5
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: (){
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                icon: Icon(Icons.remove_red_eye_rounded,color: Colors.black,),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15.0),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Theme(
-                          data: new ThemeData(
-                            primaryColor: Colors.black,
-                            primaryColorDark: Colors.black,
-                          ),
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            controller: _confirmPassword,
-                            obscureText: _obscureText,
-                            decoration: InputDecoration(
-                              focusedBorder:OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.black),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(
-                                  const Radius.circular(25.0),
-                                ),
-
-                              ),
-                              labelText: 'Confirm Password',
-                              enabled: enabled,
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: SizeConfig.safeBlockHorizontal * 5
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: (){
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                icon: Icon(Icons.remove_red_eye_rounded,color: Colors.black,),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15.0),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Theme(
@@ -389,21 +308,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                 onPressed: () async {
                                   if(_fitstName.text == ""){
                                     alertScreen().showAlertDialog(context, "Please Enter First Name");
-                                  }
-                                  else if(_password.text == ""){
-                                    alertScreen().showAlertDialog(context, "Please Enter Password");
-                                  }
-                                  else if(_password.text.length <= 7 ){
-                                    alertScreen().showAlertDialog(context, "Please Length Must Greater than 8");
-                                  }
-                                  else if(_confirmPassword.text == ""){
-                                    alertScreen().showAlertDialog(context, "Please Enter Confirm Password");
-                                  }
-                                  else if(_confirmPassword.text.length <= 7 ){
-                                    alertScreen().showAlertDialog(context, "Confirm Password Length Must Greater than 8");
-                                  }
-                                  else if(_password.text  !=  _confirmPassword.text){
-                                    alertScreen().showAlertDialog(context, "Password Does Not Match");
                                   }
                                   else{
                                     isLoading = true;

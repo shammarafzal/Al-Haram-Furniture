@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:al_haram_furnitures/Models/getCategories.dart';
+import 'package:al_haram_furnitures/Models/getDeals.dart';
+import 'package:al_haram_furnitures/Models/getProducts.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -99,32 +102,30 @@ class Utils{
       return jsonDecode(responseString);
     }
   }
-  getProducts() async {
-    var url = Uri.http(baseUrl,
-        '/api/products', {"q": "dart"});
+
+  Future<GetProducts> fetchProducts() async {
+    var url = Uri.http(baseUrl, '/api/products', {"q": "dart"});
     final response = await http.get(url);
-    if (response.statusCode == 200) {
-      final String responseString = response.body;
-      return (jsonDecode(responseString)['data']);
-    }
+    return GetProducts.fromJson(jsonDecode(response.body));
   }
-  getCategories() async {
-    var url = Uri.http(baseUrl,
-        '/api/categories', {"q": "dart"});
+  Future<GetCategories> fetchCategories() async {
+    var url = Uri.http(baseUrl, '/api/categories', {"q": "dart"});
     final response = await http.get(url);
-    if (response.statusCode == 200) {
-      final String responseString = response.body;
-      return (jsonDecode(responseString)['data']);
-    }
+    return GetCategories.fromJson(jsonDecode(response.body));
   }
-  getDeals() async {
-    var url = Uri.http(baseUrl,
-        '/api/deals', {"q": "dart"});
+  Future<GetDeals> fetchDeals() async {
+    var url = Uri.http(baseUrl, '/api/deals', {"q": "dart"});
     final response = await http.get(url);
-    if (response.statusCode == 200) {
-      final String responseString = response.body;
-      return (jsonDecode(responseString)['data']);
-    }
+    return GetDeals.fromJson(jsonDecode(response.body));
+  }
+  Future<GetProducts> fetchisFavourite() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var url = Uri.http(baseUrl, '/api/getFavourite', {"q": "dart"});
+    final response = await http.get(url,headers: {
+      'Authorization': 'Bearer $token',
+    });
+    return GetProducts.fromJson(jsonDecode(response.body));
   }
   getMe() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -145,7 +146,6 @@ class Utils{
     var token = prefs.getString('token');
     var url = Uri.http(baseUrl,
         '/api/update/$id', {"q": "dart"});
-    print(url);
     final response = await http.post(url, body: {
       "first_name": first_name,
       "last_name": last_name,
@@ -173,7 +173,6 @@ class Utils{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     print(token);
-    print(postalcode);
     var url = Uri.http(baseUrl,
         '/api/address', {"q": "dart"});
     final response = await http.post(url, body: {
@@ -182,6 +181,58 @@ class Utils{
       "city": city,
       "province": state,
       "postal_code": postalcode,
+    },headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      final String responseString = response.body;
+      print(responseString);
+      return jsonDecode(responseString);
+    }
+    else if (response.statusCode == 500) {
+      final String responseString = response.body;
+      print(responseString);
+      return jsonDecode(responseString);
+    }
+    else{
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+  }
+  addToFavourite(int prodId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    print(prodId.toString());
+    var url = Uri.http(baseUrl,
+        '/api/addToFavourite', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "product_id": prodId.toString(),
+    },headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      final String responseString = response.body;
+      print(responseString);
+      return jsonDecode(responseString);
+    }
+    else if (response.statusCode == 500) {
+      final String responseString = response.body;
+      print(responseString);
+      return jsonDecode(responseString);
+    }
+    else{
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+  }
+  removeFromFavourite(int prodId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    print(prodId.toString());
+    var url = Uri.http(baseUrl,
+        '/api/removeFromFavourite', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "product_id": prodId.toString(),
     },headers: {
       'Authorization': 'Bearer $token',
     });

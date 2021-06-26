@@ -1,41 +1,38 @@
 import 'package:al_haram_furnitures/API/utils.dart';
+import 'package:al_haram_furnitures/Models/getProducts.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
+import 'package:al_haram_furnitures/pages/alertDialog.dart';
 import 'package:al_haram_furnitures/pages/productDetails.dart';
 import 'package:flutter/material.dart';
 
 class ProductListView extends StatelessWidget {
-  var products;
   var image_base_url = 'http://alharam.codingoverflow.com/storage/';
-  getProducts() async {
-    products = await Utils().getProducts();
-    return products;
-  }
   @override
   Widget build(BuildContext context) {
-    getProducts();
     return Container(
       child: Card(
         elevation: 0,
-        child: FutureBuilder(
-          future: getProducts(),
+        child: FutureBuilder<GetProducts>(
+          future: Utils().fetchProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
-                itemCount: products.length,
+                itemCount: snapshot.data?.data?.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
                       return Product(
-                        productName:  products[index]['model_name'],
-                        description: products[index]['description'],
-                        price:  products[index]['sale_price'],
-                        image_location: image_base_url+products[index]['product_galleries'][0]['product_image'],
+                        productId:  snapshot.data?.data?[index].id ?? 1,
+                        productName: snapshot.data?.data?[index].modelName ?? "",
+                        description: snapshot.data?.data?[index].description ?? "",
+                        price:  snapshot.data?.data?[index].salePrice ?? "",
+                        image_location: image_base_url+'${snapshot.data?.data?[index].productGalleries[0].productImage}',
                       );
                 },
               );
             }
             return Center(
               child: CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(Color.fromRGBO(216, 56, 48, 1)),
+               valueColor: new AlwaysStoppedAnimation(Colors.red),
               ),
             );
           },
@@ -46,11 +43,13 @@ class ProductListView extends StatelessWidget {
 }
 
 class Product extends StatefulWidget {
+  final int productId;
   final String productName;
   final String description;
   final String price;
   final String image_location;
   Product({
+    required this.productId,
     required this.productName,
     required this.description,
     required this.price,
@@ -131,16 +130,30 @@ class _ProductState extends State<Product> {
                     Align(
                       alignment: Alignment.topRight,
                       child: InkWell(
-                        onTap: (){
+                        onTap: () async {
                         if(isFavorite == false){
                           setState(() {
                             isFavorite = true;
                           });
+                          var response = await Utils().addToFavourite(widget.productId);
+                          if(response['status'] == false){
+                            alertScreen().showAlertDialog(context, 'Error');
+                          }
+                          else{
+                            alertScreen().showAlertDialog(context, response['message']);
+                          }
                         }
                         else{
                           setState(() {
                             isFavorite = false;
                           });
+                          var response = await Utils().removeFromFavourite(widget.productId);
+                          if(response['status'] == false){
+                            alertScreen().showAlertDialog(context, 'Error');
+                          }
+                          else{
+                            alertScreen().showAlertDialog(context, response['message']);
+                          }
                         }
                         },
                         child: Material(
@@ -186,7 +199,7 @@ class _ProductState extends State<Product> {
                     Container(
                       height: 40.0,
                       width: 50.0,
-                      color: Color(getColorHexFromStr('#F9C335')),
+                      //color: Color(getColorHexFromStr('#F9C335')),
                       child: Center(
                         child: Text(
                           '\$ ${widget.price}',
@@ -204,7 +217,7 @@ class _ProductState extends State<Product> {
                       child: Container(
                         height: 40.0,
                         width: 100.0,
-                        color: Color(getColorHexFromStr('#FEDD59')),
+                      //  color: Color(getColorHexFromStr('#FEDD59')),
                         child: Center(
                           child: Text(
                             'Add to cart',
