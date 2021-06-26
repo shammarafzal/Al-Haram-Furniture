@@ -13,7 +13,7 @@ class DealsList extends StatelessWidget {
   Widget build(BuildContext context) {
     getDeals();
     return Container(
-      width: SizeConfig.screenWidth * 1,
+     width: SizeConfig.screenWidth * 1,
       height:
       MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.12 : SizeConfig.screenHeight * 0.23,
       child:  FutureBuilder(
@@ -52,7 +52,7 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(0),
       child: InkWell(
         onTap: () {
           // Navigator.push(
@@ -67,6 +67,7 @@ class Category extends StatelessWidget {
           child: ListTile(
             title: Image.network(
               image_location,
+              fit: BoxFit.fill,
             ),
           ),
         ),

@@ -1,5 +1,8 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
+
+import 'alertDialog.dart';
 
 class MyAddresses extends StatefulWidget {
   @override
@@ -13,6 +16,7 @@ class _MyAddressesState extends State<MyAddresses> {
   bool isEmptyState = true;
   bool isEmptyPostalCode = true;
   bool isEmptyCountry = true;
+  bool isLoading = false;
   final _street1 = TextEditingController();
   final _street2 = TextEditingController();
   final _city = TextEditingController();
@@ -283,58 +287,47 @@ class _MyAddressesState extends State<MyAddresses> {
                 ),
               ),
             ),
-            SizedBox(height: 15.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
-                ),
-                child: TextField(
-                  cursorColor: Colors.black,
-                  onChanged: (text) {
-                    setState(() {
-                      isEmptyCountry = false;
-                    });
-                  },
-                  controller: _country,
-                  decoration: InputDecoration(
-                    focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(25.0),
-                      ),
 
-                    ),
-                    labelText: 'Country',
-                    labelStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: SizeConfig.safeBlockHorizontal * 5
-                    ),
-                    suffixIcon:  isEmptyCountry
-                        ? null
-                        :IconButton(
-                      onPressed: () => _country.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
-                    ),
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: 15.0),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Container(
                 child: TextButton(
-                  onPressed: () {
-
+                  onPressed: () async {
+                    if(_street1.text == ""){
+                      alertScreen().showAlertDialog(context, "Please Enter Street 1");
+                    }
+                    else if(_street2.text == ""){
+                      alertScreen().showAlertDialog(context, "Please Enter Street 2");
+                    }
+                    else if(_city.text == ""){
+                      alertScreen().showAlertDialog(context, "Please Enter City");
+                    }
+                    else if(_state.text == ""){
+                      alertScreen().showAlertDialog(context, "Please Enter State");
+                    }
+                    else if(_postalCode.text == ""){
+                      alertScreen().showAlertDialog(context, "Please Enter Postal Code");
+                    }
+                    else{
+                      isLoading = true;
+                      var response = await Utils().address(_street1.text, _street2.text, _city.text, _state.text, _postalCode.text);
+                      if(response['status'] == false){
+                        setState(() {
+                          isLoading = false;
+                        });
+                        alertScreen().showAlertDialog(context, 'Error');
+                      }
+                      else{
+                        setState(() {
+                          isLoading = false;
+                        });
+                        alertScreen().showAlertDialog(context, 'Address Saved Successfuly');
+                      }
+                    }
                   },
                   child: Text(
-                    'Send',
+                    'Save',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: SizeConfig.safeBlockHorizontal * 5,

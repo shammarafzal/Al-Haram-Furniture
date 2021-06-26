@@ -143,7 +143,6 @@ class Utils{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var id = prefs.getInt('id');
     var token = prefs.getString('token');
-    print(id);
     var url = Uri.http(baseUrl,
         '/api/update/$id', {"q": "dart"});
     print(url);
@@ -163,6 +162,37 @@ class Utils{
     }
     else if (response.statusCode == 500) {
       final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else{
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+  }
+  address(String street1, String street2, String city,String state, String postalcode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    print(token);
+    print(postalcode);
+    var url = Uri.http(baseUrl,
+        '/api/address', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "address": street1,
+      "area": street2,
+      "city": city,
+      "province": state,
+      "postal_code": postalcode,
+    },headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      final String responseString = response.body;
+      print(responseString);
+      return jsonDecode(responseString);
+    }
+    else if (response.statusCode == 500) {
+      final String responseString = response.body;
+      print(responseString);
       return jsonDecode(responseString);
     }
     else{

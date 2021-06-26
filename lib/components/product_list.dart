@@ -45,7 +45,7 @@ class ProductListView extends StatelessWidget {
   }
 }
 
-class Product extends StatelessWidget {
+class Product extends StatefulWidget {
   final String productName;
   final String description;
   final String price;
@@ -56,7 +56,14 @@ class Product extends StatelessWidget {
     required this.price,
     required this.image_location,
   });
+
+  @override
+  _ProductState createState() => _ProductState();
+}
+
+class _ProductState extends State<Product> {
   bool isFavorite = false;
+
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
     colorStr = colorStr.replaceAll("#", "");
@@ -78,6 +85,7 @@ class Product extends StatelessWidget {
     }
     return val;
   }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -85,10 +93,10 @@ class Product extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ProductDetails(
-              product_detail_name: productName,
-              product_detail_new_price: price,
-              product_detail_old_price: price,
-              product_detail_picture: image_location,
+              product_detail_name: widget.productName,
+              product_detail_new_price: widget.price,
+              product_detail_old_price: widget.price,
+              product_detail_picture: widget.image_location,
             )));
       },
       child: Row(
@@ -96,7 +104,7 @@ class Product extends StatelessWidget {
           Container(
             width: SizeConfig.screenWidth * 0.2,
             height: 150.0,
-                   child: Image.network(image_location),
+                   child: Image.network(widget.image_location),
           ),
           // SizedBox(width: 4.0),
           Container(
@@ -110,7 +118,7 @@ class Product extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        productName,
+                        widget.productName,
                         textAlign: TextAlign.right,
                         style: TextStyle(
                             fontFamily: 'Quicksand',
@@ -125,12 +133,14 @@ class Product extends StatelessWidget {
                       child: InkWell(
                         onTap: (){
                         if(isFavorite == false){
-                          isFavorite = true;
-                          print(isFavorite);
+                          setState(() {
+                            isFavorite = true;
+                          });
                         }
                         else{
-                          isFavorite = false;
-                          print(isFavorite);
+                          setState(() {
+                            isFavorite = false;
+                          });
                         }
                         },
                         child: Material(
@@ -145,9 +155,7 @@ class Product extends StatelessWidget {
                                     ? Colors.grey.withOpacity(0.2)
                                     : Colors.white),
                             child: Center(
-                              child: isFavorite
-                                  ? Icon(Icons.favorite_border)
-                                  : Icon(Icons.favorite, color: Colors.red),
+                              child: isFavorite == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: Colors.red),
                             ),
                           ),
                         ),
@@ -161,7 +169,7 @@ class Product extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      description,
+                      widget.description,
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontFamily: 'Quicksand',
@@ -181,7 +189,7 @@ class Product extends StatelessWidget {
                       color: Color(getColorHexFromStr('#F9C335')),
                       child: Center(
                         child: Text(
-                          '\$ $price',
+                          '\$ ${widget.price}',
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Quicksand',
