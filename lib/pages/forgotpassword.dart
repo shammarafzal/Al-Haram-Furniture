@@ -116,27 +116,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         alertScreen().showAlertDialog(context, "Please Enter Valid Email");
                       }
                       else{
-                        // isLoading = true;
-                        // var response = await Utils().forgot(_email.text);
-                        // if(response['status'] == false && response['message'] == 'User doen\'t exists'){
-                        //   setState(() {
-                        //     isLoading = false;
-                        //   });
-                        //   alertScreen().showAlertDialog(context, response['message']);
-                        // }
-                        // else if(response['status'] == false && response['message'] == 'Connection could not be established with host mailhog :stream_socket_client(): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known'){
-                        //   setState(() {
-                        //     isLoading = false;
-                        //   });
-                        //   alertScreen().showAlertDialog(context, 'Error in sending Email');
-                        // }
-                        // else{
-                        //   setState(() {
-                        //     isLoading = false;
-                        //   });
-                        //   await alertScreen().showForgotAlertDialog(context, "Please check your email!!!");
-                        // }
-                        await alertScreen().showForgotAlertDialog(context, "Please check your email!!!");
+                        isLoading = true;
+                        var response = await Utils().forgot(_email.text);
+                        if(response['status'] == false && response['message'] == 'User doen\'t exists'){
+                          setState(() {
+                            isLoading = false;
+                          });
+                          alertScreen().showAlertDialog(context, response['message']);
+                        }
+                        else if(response['status'] == false && response['message'] == 'Connection could not be established with host mailhog :stream_socket_client(): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known'){
+                          setState(() {
+                            isLoading = false;
+                          });
+                          alertScreen().showAlertDialog(context, 'Error in sending Email');
+                        }
+                        else{
+                          setState(() {
+                            isLoading = false;
+                          });
+                          await alertScreen().showForgotAlertDialog(context, "Please check your email!!!");
+                        }
                       }
                     },
                     child: isLoading

@@ -1,11 +1,11 @@
 import 'package:al_haram_furnitures/components/product_list.dart';
+import 'package:al_haram_furnitures/components/productsByCategories.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class SelectedCategoryProducts extends StatefulWidget {
   final selectedCategory;
-  final selectedCategoryId;
-  SelectedCategoryProducts({this.selectedCategory, this.selectedCategoryId});
+  SelectedCategoryProducts({this.selectedCategory});
   @override
   _SelectedCategoryProductsState createState() => _SelectedCategoryProductsState();
 }
@@ -64,7 +64,7 @@ class _SelectedCategoryProductsState extends State<SelectedCategoryProducts> {
                   ],
                 )),
           ),
-          Expanded(child: ProductListView()),
+          Expanded(child: ProductsByCategories()),
 
         ],
       ),

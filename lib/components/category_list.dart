@@ -2,6 +2,7 @@ import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Models/getCategories.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/CategorySelection.dart';
+import 'package:al_haram_furnitures/pages/alertDialog.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalList extends StatelessWidget {
@@ -36,18 +37,6 @@ class HorizontalList extends StatelessWidget {
         );
       },
     ),
-      // child: Card(
-      //   elevation: 2,
-      //   child: ListView(
-      //     scrollDirection: Axis.horizontal,
-      //     children: <Widget>[
-      //       Category(
-      //         image_location: 'assets/images/anotherchair.jpg',
-      //         image_caption: 'Chair',
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
@@ -66,11 +55,11 @@ class Category extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           Navigator.push(
             context,
             new MaterialPageRoute(
-              builder: (context) => new SelectedCategoryProducts(selectedCategory: image_caption, selectedCategoryId: 1,),
+              builder: (context) => new SelectedCategoryProducts(selectedCategory: image_caption),
             ),
           );
         },

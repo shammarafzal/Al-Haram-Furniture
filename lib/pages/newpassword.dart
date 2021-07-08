@@ -1,7 +1,11 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
+import 'package:al_haram_furnitures/pages/signin.dart';
 import 'package:flutter/material.dart';
 import 'alertDialog.dart';
 class NewPassword extends StatefulWidget {
+  final token;
+  NewPassword({this.token});
   @override
   _NewPasswordState createState() => _NewPasswordState();
 }
@@ -10,6 +14,7 @@ class _NewPasswordState extends State<NewPassword> {
   bool _obscureText = true;
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
+  bool isLoading = false;
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
     colorStr = colorStr.replaceAll("#", "");
@@ -140,7 +145,7 @@ class _NewPasswordState extends State<NewPassword> {
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
                   child: TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if(_password.text == ""){
                       alertScreen().showAlertDialog(context, "Please Enter Password");
                       }
@@ -157,7 +162,27 @@ class _NewPasswordState extends State<NewPassword> {
                         alertScreen().showAlertDialog(context, "Password Doesn't Match");
                       }
                       else{
+                        isLoading = true;
+                        var response = await Utils().resetPassword(widget.token, _password.text, _confirmPassword.text);
+                        if(response['status'] == false){
+                          setState(() {
+                            isLoading = false;
+                          });
+                          alertScreen().showAlertDialog(context, response['message']);
+                        }
+                        else{
+                          setState(() {
+                            isLoading = false;
+                          });
+                          alertScreen().showAlertDialog(context, response['message']);
+                          Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                              builder: (context) => new Signin(),
+                            ),
+                          );
 
+                        }
                       }
                     },
                     child: Text(

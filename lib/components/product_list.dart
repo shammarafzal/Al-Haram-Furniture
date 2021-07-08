@@ -4,6 +4,7 @@ import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/alertDialog.dart';
 import 'package:al_haram_furnitures/pages/productDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductListView extends StatelessWidget {
   var image_base_url = 'http://alharam.codingoverflow.com/storage/';
@@ -131,28 +132,33 @@ class _ProductState extends State<Product> {
                       alignment: Alignment.topRight,
                       child: InkWell(
                         onTap: () async {
+                          final SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
                         if(isFavorite == false){
-                          setState(() {
-                            isFavorite = true;
-                          });
+                          prefs.setBool('isFav', true);
                           var response = await Utils().addToFavourite(widget.productId);
                           if(response['status'] == false){
                             alertScreen().showAlertDialog(context, 'Error');
                           }
                           else{
                             alertScreen().showAlertDialog(context, response['message']);
+                            setState(() {
+                              isFavorite = prefs.getBool('isFav')!;
+                            });
                           }
                         }
                         else{
-                          setState(() {
-                            isFavorite = false;
-                          });
+                          prefs.setBool('isFav', false);
+
                           var response = await Utils().removeFromFavourite(widget.productId);
                           if(response['status'] == false){
                             alertScreen().showAlertDialog(context, 'Error');
                           }
                           else{
                             alertScreen().showAlertDialog(context, response['message']);
+                            setState(() {
+                              isFavorite =  prefs.getBool('isFav')!;
+                            });
                           }
                         }
                         },

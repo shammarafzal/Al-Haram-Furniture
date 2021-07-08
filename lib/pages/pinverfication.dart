@@ -1,7 +1,9 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
+import 'alertDialog.dart';
 import 'newpassword.dart';
 import 'signin.dart';
 class PinVerify extends StatefulWidget {
@@ -15,15 +17,13 @@ class _PinVerifyState extends State<PinVerify> {
   int pinLength = 4;
   bool hasError = false;
   late String errorMessage;
-
+  bool isLoading = false;
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
   }
 
-  bool isEmptyEmail = true;
-  final _email = TextEditingController();
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
     colorStr = colorStr.replaceAll("#", "");
@@ -78,28 +78,29 @@ class _PinVerifyState extends State<PinVerify> {
                     controller: controller,
                     hideCharacter: true,
                     highlight: true,
-                    //highlightColor: Colors.blue,
+                    highlightColor: Colors.black,
                     defaultBorderColor: Colors.black,
-                   // hasTextBorderColor: Colors.green,
+                    hasTextBorderColor: Colors.black,
                     // highlightPinBoxColor: Colors.orange,
                     maxLength: pinLength,
                     hasError: hasError,
+                    maskCharacter: "*",
                     onTextChanged: (text) {
                       setState(() {
                         hasError = false;
                       });
                     },
-                    onDone: (text) {
-                      print("DONE $text");
-                      print("DONE CONTROLLER ${controller.text}");
-                    },
+                    // onDone: (text) {
+                    //   print("DONE $text");
+                    //   print("DONE CONTROLLER ${controller.text}");
+                    // },
                     pinBoxWidth: 50,
                     pinBoxHeight: 64,
                     hasUnderline: true,
                     wrapAlignment: WrapAlignment.spaceAround,
                     pinBoxDecoration:
                     ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                    pinTextStyle: TextStyle(fontSize: 22.0),
+                    pinTextStyle: TextStyle(fontSize: 22.0, color: Colors.black),
                     pinTextAnimatedSwitcherTransition:
                     ProvidedPinBoxTextAnimation.scalingTransition,
 //                    pinBoxColor: Colors.green[100],
@@ -107,7 +108,7 @@ class _PinVerifyState extends State<PinVerify> {
                     Duration(milliseconds: 300),
 //                    highlightAnimation: true,
                     highlightAnimationBeginColor: Colors.black,
-                    highlightAnimationEndColor: Colors.white12,
+                    highlightAnimationEndColor: Colors.black,
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -118,13 +119,31 @@ class _PinVerifyState extends State<PinVerify> {
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
                   child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                          builder: (context) => new NewPassword(),
-                        ),
-                      );
+                    onPressed: () async {
+                      if(controller.text == ""){
+                        alertScreen().showAlertDialog(context, "Please Enter Pin");
+                      }
+                      else{
+                        isLoading = true;
+                        var response = await Utils().checkForgotToken(controller.text);
+                        if(response['status'] == false){
+                          setState(() {
+                            isLoading = false;
+                          });
+                          alertScreen().showAlertDialog(context, response['message']);
+                        }
+                        else{
+                          setState(() {
+                            isLoading = false;
+                          });
+                          Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                              builder: (context) => new NewPassword(token: controller.text,),
+                            ),
+                          );
+                        }
+                      }
                     },
                     child: Text(
                       'Verify Pin',

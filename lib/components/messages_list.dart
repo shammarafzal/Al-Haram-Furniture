@@ -1,3 +1,5 @@
+import 'package:al_haram_furnitures/API/utils.dart';
+import 'package:al_haram_furnitures/Models/getMessages.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 class MessagesListView extends StatelessWidget {
@@ -6,21 +8,28 @@ class MessagesListView extends StatelessWidget {
     return Container(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
-            Messages(
-              messageTitle: 'BOSS Revolution Chair',
-              receivedDate: '12-12-2021',
-              description: 'A chair is a piece of furniture. It is used for sitting on and it can also be used for standing.',
-
-            ),
-            Messages(
-              messageTitle: 'BOSS Revolution Chair',
-              receivedDate: '12-12-2021',
-              description: 'A chair is a piece of furniture. It is used for sitting on and it can also be used for standing.',
-
-            ),
-          ],
+        child: FutureBuilder<GetMessages>(
+          future: Utils().fetchMessages(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data?.data?.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, index) {
+                  return Messages(
+                    messageTitle:  snapshot.data?.data?[index].message ?? "",
+                    receivedDate: snapshot.data!.data![index].createdAt ,
+                    description: snapshot.data?.data?[index].message ?? "",
+                      );
+                },
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation(Colors.red),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -29,7 +38,7 @@ class MessagesListView extends StatelessWidget {
 
 class Messages extends StatelessWidget {
   final String messageTitle;
-  final String receivedDate;
+  final DateTime receivedDate;
   final String description;
   Messages({
     required this.messageTitle,
