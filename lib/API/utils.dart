@@ -10,11 +10,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils{
   final String baseUrl = 'alharam.codingoverflow.com';
-  register(String name, String email, String password,String confirm_password) async {
+  register(String first_name, String last_name, String email, String password,String confirm_password) async {
     var url = Uri.http(baseUrl,
         '/api/register', {"q": "dart"});
     final response = await http.post(url, body: {
-      "name": name,
+      "first_name": first_name,
+      "last_name": last_name,
       "email": email,
       "password": password,
       "password_confirmation": confirm_password,
@@ -343,16 +344,38 @@ class Utils{
     });
     return GetproductsByCategories.fromJson(jsonDecode(response.body));
   }
-  Future<GetProducts> searchProduct() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var response = prefs.getString('response')!;
-    return GetProducts.fromJson(jsonDecode(response));
-  }
   search(String searchItem) async {
     var url = Uri.http(baseUrl,
         '/api/filterProducts', {"q": "dart"});
     final response = await http.post(url, body: {
       "search": searchItem,
+    });
+
+    if (response.statusCode == 200) {
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else if (response.statusCode == 500) {
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else{
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+  }
+  addToCart(String user_id, String product_id, String qty) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var url = Uri.http(baseUrl,
+        '/api/orders', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "user_id": user_id,
+      "payment_method": 'Cash on delivery',
+      "product_id": product_id,
+      "qty": qty,
+    },headers: {
+      'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;

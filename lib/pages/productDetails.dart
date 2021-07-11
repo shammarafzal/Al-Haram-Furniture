@@ -1,17 +1,25 @@
+import 'package:al_haram_furnitures/API/utils.dart';
+import 'package:al_haram_furnitures/pages/shoppingcart.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'alertDialog.dart';
 
 class ProductDetails extends StatefulWidget {
   final product_detail_name;
   final product_detail_new_price;
   final product_detail_old_price;
   final product_detail_picture;
-
+  final productBrand;
+  final productId;
   ProductDetails(
       {
         this.product_detail_name,
         this.product_detail_new_price,
         this.product_detail_old_price,
-        this.product_detail_picture
+        this.product_detail_picture,
+        this.productBrand,
+        this.productId,
       });
 
   @override
@@ -19,6 +27,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  bool isFavorite = false;
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
     colorStr = colorStr.replaceAll("#", "");
@@ -50,7 +59,14 @@ class _ProductDetailsState extends State<ProductDetails> {
         title: Text('Al-Haram Furniture'),
         actions: <Widget>[
           new IconButton(
-              icon: Icon(Icons.shopping_cart, color: Colors.white), onPressed: () {}),
+              icon: Icon(Icons.shopping_cart, color: Colors.white), onPressed: () {
+            Navigator.push(
+              context,
+              new MaterialPageRoute(
+                builder: (context) => new ShoppingCart(),
+              ),
+            );
+          }),
 
 
         ],
@@ -70,24 +86,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                   leading: new Text(widget.product_detail_name,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 16.0)),
-                  title: new Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: new Text(
-                            "\$${widget.product_detail_old_price}",
-                            style: TextStyle(
-                                color: Colors.grey,
-                                decoration: TextDecoration.lineThrough),
-                          )),
-                      Expanded(
-                          child: new Text(
-                            "\$${widget.product_detail_new_price}",
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.lineThrough),
-                          ))
-                    ],
+                  trailing: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: new Text(
+                      "\$${widget.product_detail_new_price}",
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
                 ),
               ),
@@ -188,15 +196,53 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Expanded(
                 child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      var response = await Utils().addToCart("2",widget.productId.toString(), "2");
+                      if(response['status'] == false && response['message'] == 'Invalid Password'){
+                        alertScreen().showAlertDialog(context, response['message']);
+                      }
+                      else{
+                        await alertScreen().showAlertDialog(context, response['message']);
+                      }
+                    },
                     color: Colors.red,
                     textColor: Colors.white,
                     elevation: 0.2,
-                    child: new Text("Buy Now")
+                    child: new Text("Add to Cart")
                 ),
               ),
-              new IconButton(icon: Icon(Icons.add_shopping_cart,color:Colors.red),onPressed:(){}),
-              new IconButton(icon: Icon(Icons.favorite_border,color:Colors.red),onPressed:(){}),
+
+              new IconButton(icon: Icon(Icons.favorite_border,color:Colors.red),onPressed:() async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                if(isFavorite == false){
+                  prefs.setBool('isFav', true);
+                  var response = await Utils().addToFavourite(widget.productId);
+                  if(response['status'] == false){
+                    alertScreen().showAlertDialog(context, 'Error');
+                  }
+                  else{
+                    alertScreen().showAlertDialog(context, response['message']);
+                    setState(() {
+                      isFavorite = prefs.getBool('isFav')!;
+                    });
+                  }
+                }
+                else{
+                  prefs.setBool('isFav', false);
+
+                  var response = await Utils().removeFromFavourite(widget.productId);
+                  if(response['status'] == false){
+                    alertScreen().showAlertDialog(context, 'Error');
+                  }
+                  else{
+                    alertScreen().showAlertDialog(context, response['message']);
+                    setState(() {
+                      isFavorite =  prefs.getBool('isFav')!;
+                    });
+                  }
+                }
+              }),
             ],
           ),
           Divider(),
@@ -210,7 +256,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text('Product Name', style: TextStyle(color: Colors.grey)),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: new Text(widget.product_detail_name), )
+                child: new Text(widget.product_detail_name, style: TextStyle(color: Colors.black),), )
 
             ],
           ),
@@ -219,15 +265,15 @@ class _ProductDetailsState extends State<ProductDetails> {
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text('Product Brand', style: TextStyle(color: Colors.grey)),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: new Text("Boss"), )
+                child: new Text(widget.productBrand, style: TextStyle(color: Colors.black),), )
             ],
           ),
           Row(
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Condition', style: TextStyle(color: Colors.grey)),),
+                child: new Text('Product Condition:', style: TextStyle(color: Colors.grey)),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: new Text("Brand New"), )
+                child: new Text("Brand New", style: TextStyle(color: Colors.black),), )
             ],
           ),
          // Divider(),

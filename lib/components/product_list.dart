@@ -27,6 +27,7 @@ class ProductListView extends StatelessWidget {
                         description: snapshot.data?.data?[index].description ?? "",
                         price:  snapshot.data?.data?[index].salePrice ?? "",
                         image_location: image_base_url+'${snapshot.data?.data?[index].productGalleries[0].productImage}',
+                        productBrand: snapshot.data?.data?[index].company.companyName ?? "",
                       );
                 },
               );
@@ -49,12 +50,14 @@ class Product extends StatefulWidget {
   final String description;
   final String price;
   final String image_location;
+  final String productBrand;
   Product({
     required this.productId,
     required this.productName,
     required this.description,
     required this.price,
     required this.image_location,
+    required this.productBrand,
   });
 
   @override
@@ -97,6 +100,8 @@ class _ProductState extends State<Product> {
               product_detail_new_price: widget.price,
               product_detail_old_price: widget.price,
               product_detail_picture: widget.image_location,
+              productBrand: widget.productBrand,
+              productId: widget.productId,
             )));
       },
       child: Row(

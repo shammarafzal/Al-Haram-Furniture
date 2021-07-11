@@ -11,10 +11,12 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool _obscureText = true;
-  bool isEmptyName = true;
+  bool isEmptyFirstName = true;
+  bool isEmptyLastName = true;
   bool isEmptyEmail = true;
   bool isLoading = false;
-  final _name = TextEditingController();
+  final _firstname = TextEditingController();
+  final _lastname = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
@@ -75,10 +77,10 @@ class _SignupState extends State<Signup> {
                     cursorColor: Colors.black,
                     onChanged: (text) {
                       setState(() {
-                        isEmptyName = false;
+                        isEmptyFirstName = false;
                       });
                     },
-                    controller: _name,
+                    controller: _firstname,
                     decoration: InputDecoration(
                       fillColor: Colors.black,
                       focusedBorder:OutlineInputBorder(
@@ -91,15 +93,58 @@ class _SignupState extends State<Signup> {
                         ),
 
                       ),
-                      labelText: 'Name',
+                      labelText: 'First Name',
                         labelStyle: TextStyle(
                             color: Colors.black,
                             fontSize: SizeConfig.safeBlockHorizontal * 5
                         ),
-                      suffixIcon:  isEmptyName
+                      suffixIcon:  isEmptyFirstName
                           ? null
                           :IconButton(
-                        onPressed: () => _name.clear(),
+                        onPressed: () => _firstname.clear(),
+                        icon: Icon(Icons.clear,color: Colors.black,),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Theme(
+                  data: new ThemeData(
+                    primaryColor: Colors.black,
+                    primaryColorDark: Colors.black,
+                  ),
+                  child: TextField(
+                    cursorColor: Colors.black,
+                    onChanged: (text) {
+                      setState(() {
+                        isEmptyLastName = false;
+                      });
+                    },
+                    controller: _lastname,
+                    decoration: InputDecoration(
+                      fillColor: Colors.black,
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(25.0),
+                        ),
+
+                      ),
+                      labelText: 'Last Name',
+                      labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: SizeConfig.safeBlockHorizontal * 5
+                      ),
+                      suffixIcon:  isEmptyLastName
+                          ? null
+                          :IconButton(
+                        onPressed: () => _lastname.clear(),
                         icon: Icon(Icons.clear,color: Colors.black,),
                       ),
                     ),
@@ -238,8 +283,11 @@ class _SignupState extends State<Signup> {
                   child: TextButton(
                     onPressed: () async{
                       bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text);
-                      if(_name.text == ""){
-                        alertScreen().showAlertDialog(context, "Please Enter Name");
+                      if(_firstname.text == ""){
+                        alertScreen().showAlertDialog(context, "Please Enter First Name");
+                      }
+                      else if(_lastname.text == ""){
+                        alertScreen().showAlertDialog(context, "Please Enter Last Name");
                       }
                      else if(_email.text == ""){
                         alertScreen().showAlertDialog(context, "Please Enter Email");
@@ -264,7 +312,7 @@ class _SignupState extends State<Signup> {
                       }
                       else{
                         isLoading = true;
-                        var response = await Utils().register(_name.text, _email.text, _password.text, _confirmPassword.text);
+                        var response = await Utils().register(_firstname.text, _lastname.text, _email.text, _password.text, _confirmPassword.text);
                         if(response['message'] == 'The email has already been taken.'){
                           setState(() {
                             isLoading = false;

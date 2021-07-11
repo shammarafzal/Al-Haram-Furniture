@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
-import 'productsView.dart';
+import 'searchProducts.dart';
 import 'shoppingcart.dart';
 import 'user.dart';
 

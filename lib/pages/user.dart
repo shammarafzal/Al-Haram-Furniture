@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,6 +16,9 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage>
     with SingleTickerProviderStateMixin {
+
+  var user;
+
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
     colorStr = colorStr.replaceAll("#", "");
@@ -36,9 +40,13 @@ class _UserPageState extends State<UserPage>
     }
     return val;
   }
-
+  getMe() async {
+    user = await Utils().getMe();
+    return user;
+  }
   @override
   Widget build(BuildContext context) {
+    getMe();
     return Scaffold(
       body: ListView(children: <Widget>[
         Stack(children: <Widget>[
@@ -86,13 +94,28 @@ class _UserPageState extends State<UserPage>
                       image: DecorationImage(
                           image: AssetImage('assets/images/chair.jpg'))),
                 ),
-                title: Text(
-                  'ARUM',
-                  style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold),
-                ),
+                title: FutureBuilder(
+                    future: getMe(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Text(
+                          user['first_name'],
+                          style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold),
+                        );
+                      }
+                      return Center(
+                        child: Text(
+                          'ARUM',
+                          style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    }),
                 trailing: IconButton(
                   icon: Icon(Icons.settings),
                   onPressed: () {
@@ -240,9 +263,9 @@ class _UserPageState extends State<UserPage>
                           );
                         },
                         child: cardDetails(
-                            'Add Address', 'assets/images/card.png', '1'),
+                            'Add Address', 'assets/images/card.png'),
                       ),
-                      cardDetails('My Orders', 'assets/images/box.png', '1'),
+                      cardDetails('My Orders', 'assets/images/box.png'),
                     ],
                   ),
                   SizedBox(height: 10.0),
@@ -253,16 +276,16 @@ class _UserPageState extends State<UserPage>
           )
         ]),
         SizedBox(height: 15.0),
-        InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                new MaterialPageRoute(
-                  builder: (context) => new ContactUs(),
-                ),
-              );
-            },
-            child: listItem('About Us', Colors.red, Icons.account_box)),
+        // InkWell(
+        //     onTap: () {
+        //       Navigator.push(
+        //         context,
+        //         new MaterialPageRoute(
+        //           builder: (context) => new ContactUs(),
+        //         ),
+        //       );
+        //     },
+        //     child: listItem('About Us', Colors.red, Icons.account_box)),
         InkWell(
             onTap: () {
               Navigator.push(
@@ -311,7 +334,7 @@ class _UserPageState extends State<UserPage>
     );
   }
 
-  Widget cardDetails(String title, String imgPath, String valueCount) {
+  Widget cardDetails(String title, String imgPath) {
     return Material(
       elevation: 4.0,
       borderRadius: BorderRadius.circular(7.0),
@@ -345,18 +368,18 @@ class _UserPageState extends State<UserPage>
                 ),
               ),
             ),
-            SizedBox(height: 3.0),
-            Padding(
-              padding: EdgeInsets.only(left: 15.0),
-              child: Text(
-                valueCount,
-                style: TextStyle(
-                    fontFamily: 'Quicksand',
-                    fontSize: 15.0,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // SizedBox(height: 3.0),
+            // Padding(
+            //   padding: EdgeInsets.only(left: 15.0),
+            //   child: Text(
+            //     valueCount,
+            //     style: TextStyle(
+            //         fontFamily: 'Quicksand',
+            //         fontSize: 15.0,
+            //         color: Colors.red,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
           ],
         ),
       ),
