@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductsByCategories extends StatelessWidget {
+  final selectedCategory;
+  ProductsByCategories({this.selectedCategory});
   var image_base_url = 'http://alharam.codingoverflow.com/storage/';
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class ProductsByCategories extends StatelessWidget {
       child: Card(
         elevation: 0,
         child: FutureBuilder<GetproductsByCategories>(
-          future: Utils().fetchProductsByCategory('chair'),
+          future: Utils().fetchProductsByCategory(selectedCategory),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(

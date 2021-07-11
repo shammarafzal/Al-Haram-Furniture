@@ -343,4 +343,28 @@ class Utils{
     });
     return GetproductsByCategories.fromJson(jsonDecode(response.body));
   }
+  Future<GetProducts> searchProduct() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var response = prefs.getString('response')!;
+    return GetProducts.fromJson(jsonDecode(response));
+  }
+  search(String searchItem) async {
+    var url = Uri.http(baseUrl,
+        '/api/filterProducts', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "search": searchItem,
+    });
+    if (response.statusCode == 200) {
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else if (response.statusCode == 500) {
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else{
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+  }
 }

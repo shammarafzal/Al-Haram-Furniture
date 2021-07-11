@@ -66,7 +66,7 @@ class _BottomBarState extends State<BottomBar> {
         index: _selectedIndex,
         children: <Widget>[
           new HomePage(),
-          new ProductsPage(),
+          new ProductSearch(),
           new ShoppingCart(),
           new UserPage(),
         ],

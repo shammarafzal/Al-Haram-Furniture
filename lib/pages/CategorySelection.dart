@@ -64,7 +64,7 @@ class _SelectedCategoryProductsState extends State<SelectedCategoryProducts> {
                   ],
                 )),
           ),
-          Expanded(child: ProductsByCategories()),
+          Expanded(child: ProductsByCategories(selectedCategory: widget.selectedCategory,)),
 
         ],
       ),
