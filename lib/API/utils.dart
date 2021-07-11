@@ -364,13 +364,14 @@ class Utils{
       return jsonDecode(responseString);
     }
   }
-  addToCart(String user_id, String product_id, String qty) async {
+  addToCart(String product_id, String qty) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    var id = prefs.getInt('id');
     var token = prefs.getString('token');
     var url = Uri.http(baseUrl,
         '/api/orders', {"q": "dart"});
     final response = await http.post(url, body: {
-      "user_id": user_id,
+      "user_id": id.toString(),
       "payment_method": 'Cash on delivery',
       "product_id": product_id,
       "qty": qty,

@@ -27,6 +27,9 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  String dropdownvalue = '1';
+  var items =  ['1','2','3','4','5'];
+
   bool isFavorite = false;
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
@@ -161,35 +164,51 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                 ),
               ),
-              Expanded(
-                child: MaterialButton(
-                  onPressed: () {
-                    showDialog(context: context,
-                        builder: (context){
-                          return new AlertDialog(
-                              title: new Text('Quantity'),
-                              content: new Text('Choose the Quantity'),
-                              actions: <Widget>[
-                                new MaterialButton(onPressed: (){
-                                  Navigator.of(context).pop(context);
-                                },
-                                  child: new Text('Close'),
-                                )
-                              ]
-                          );
-                        });
-                  },
-                  color: Colors.white,
-                  textColor: Colors.grey,
-                  elevation: 0.2,
-                  child: Row(
-                    children: [
-                      Expanded(child: new Text("Qty")),
-                      Expanded(child: new Icon(Icons.arrow_drop_down)),
-                    ],
-                  ),
-                ),
+              DropdownButton(
+                value: dropdownvalue,
+                icon: Icon(Icons.keyboard_arrow_down),
+                items:items.map((String items) {
+                  return DropdownMenuItem(
+                      value: items,
+                      child: Text(items)
+                  );
+                }
+                ).toList(),
+                onChanged: (String? newValue){
+                  setState(() {
+                    dropdownvalue = newValue!;
+                  });
+                },
               ),
+              // Expanded(
+              //   child: MaterialButton(
+              //     onPressed: () {
+              //       showDialog(context: context,
+              //           builder: (context){
+              //             return new AlertDialog(
+              //                 title: new Text('Quantity'),
+              //                 content: new Text('Choose the Quantity'),
+              //                 actions: <Widget>[
+              //                   new MaterialButton(onPressed: (){
+              //                     Navigator.of(context).pop(context);
+              //                   },
+              //                     child: new Text('Close'),
+              //                   )
+              //                 ]
+              //             );
+              //           });
+              //     },
+              //     color: Colors.white,
+              //     textColor: Colors.grey,
+              //     elevation: 0.2,
+              //     child: Row(
+              //       children: [
+              //         Expanded(child: new Text("Qty")),
+              //         Expanded(child: new Icon(Icons.arrow_drop_down)),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           Row(
@@ -197,7 +216,8 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                     onPressed: () async {
-                      var response = await Utils().addToCart("2",widget.productId.toString(), "2");
+                      print("$dropdownvalue");
+                      var response = await Utils().addToCart(widget.productId.toString(), dropdownvalue);
                       if(response['status'] == false && response['message'] == 'Invalid Password'){
                         alertScreen().showAlertDialog(context, response['message']);
                       }
