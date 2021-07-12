@@ -344,6 +344,13 @@ class Utils{
     });
     return GetproductsByCategories.fromJson(jsonDecode(response.body));
   }
+  Future<GetProducts> fetchProductsBySearch(String searchItem) async {
+    var url = Uri.http(baseUrl, '/api/filterProducts', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "search": searchItem,
+    });
+    return GetProducts.fromJson(jsonDecode(response.body));
+  }
   search(String searchItem) async {
     var url = Uri.http(baseUrl,
         '/api/filterProducts', {"q": "dart"});
