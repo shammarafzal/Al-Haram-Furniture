@@ -313,7 +313,7 @@ class _SignupState extends State<Signup> {
                       else{
                         isLoading = true;
                         var response = await Utils().register(_firstname.text, _lastname.text, _email.text, _password.text, _confirmPassword.text);
-                        if(response['message'] == 'The email has already been taken.'){
+                        if(response['status'] == false){
                           setState(() {
                             isLoading = false;
                           });
