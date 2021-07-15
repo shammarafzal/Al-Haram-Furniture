@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'searchProducts.dart';
@@ -37,27 +38,7 @@ class _BottomBarState extends State<BottomBar> {
       _selectedIndex = index;
     });
   }
-  int getColorHexFromStr(String colorStr) {
-    colorStr = "FF" + colorStr;
-    colorStr = colorStr.replaceAll("#", "");
-    int val = 0;
-    int len = colorStr.length;
-    for (int i = 0; i < len; i++) {
-      int hexDigit = colorStr.codeUnitAt(i);
-      if (hexDigit >= 48 && hexDigit <= 57) {
-        val += (hexDigit - 48) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 65 && hexDigit <= 70) {
-        // A..F
-        val += (hexDigit - 55) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 97 && hexDigit <= 102) {
-        // a..f
-        val += (hexDigit - 87) * (1 << (4 * (len - 1 - i)));
-      } else {
-        throw new FormatException("An error occurred when converting a color");
-      }
-    }
-    return val;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +80,7 @@ class _BottomBarState extends State<BottomBar> {
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
           unselectedItemColor: Colors.black,
-          selectedItemColor: Color(getColorHexFromStr('#F9C335')),
+          selectedItemColor: Color(CustomColors().getColorHexFromStr('#F9C335')),
 
         ),
       ),
