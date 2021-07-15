@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/cart_products.dart';
 import 'package:flutter/material.dart';
 
@@ -21,14 +22,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
             },
             child: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
             )),
         title: Text(
           'Shopping Cart',
           style: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 30.0,
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
               fontWeight: FontWeight.bold),
         ),
 
@@ -39,7 +40,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
           Container(
             height: 50.0,
             width: double.infinity,
-            color: Colors.white,
+            color: CustomColors().buttonTextColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
@@ -50,13 +51,13 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   child: RaisedButton(
                     onPressed: () {},
                     elevation: 0.5,
-                    color: Colors.red,
+                    color: CustomColors().redicon,
                     child: Center(
                       child: Text(
                         'Pay Now',
                       ),
                     ),
-                    textColor: Colors.white,
+                    textColor: CustomColors().buttonTextColor,
                   ),
                 )
               ],

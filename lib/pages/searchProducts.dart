@@ -1,11 +1,9 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Models/getProducts.dart';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/product_list.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
-import 'package:al_haram_furnitures/pages/productDetails.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'alertDialog.dart';
 
 class ProductSearch extends StatefulWidget {
   @override
@@ -27,7 +25,7 @@ class _ProductSearchState extends State<ProductSearch> {
       appBar: AppBar(
         title: Text(
           'Search Products',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: CustomColors().secondaryColor),
         ),
         leading: InkWell(
             onTap: () {
@@ -35,7 +33,7 @@ class _ProductSearchState extends State<ProductSearch> {
             },
             child: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
             )),
         backgroundColor: Colors.yellow,
         elevation: 0,
@@ -51,11 +49,11 @@ class _ProductSearchState extends State<ProductSearch> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Theme(
                   data: new ThemeData(
-                    primaryColor: Colors.black,
-                    primaryColorDark: Colors.black,
+                    primaryColor: CustomColors().secondaryColor,
+                    primaryColorDark: CustomColors().secondaryColor,
                   ),
                   child: TextField(
-                    cursorColor: Colors.black,
+                    cursorColor: CustomColors().secondaryColor,
                     onChanged: (text) async {
                       setState(() {
                         isSearchProduct = false;
@@ -71,7 +69,7 @@ class _ProductSearchState extends State<ProductSearch> {
                       },
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide:  BorderSide(color: CustomColors().secondaryColor),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       border: OutlineInputBorder(
@@ -81,13 +79,13 @@ class _ProductSearchState extends State<ProductSearch> {
                       ),
                       labelText: 'Search',
                       labelStyle: TextStyle(
-                          color: Colors.black,
+                          color: CustomColors().secondaryColor,
                           fontSize: SizeConfig.safeBlockHorizontal * 5),
                       suffixIcon: IconButton(
                               onPressed: () => _searchProduct.clear(),
                               icon: Icon(
                                 Icons.search,
-                                color: Colors.black,
+                                color: CustomColors().secondaryColor,
                               ),
                             ),
                     ),

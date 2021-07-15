@@ -28,7 +28,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Center(
                 child: Text(
                   'HEY AL-Haram!',
-                  style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                  style: TextStyle(color: CustomColors().secondaryColor, fontSize: SizeConfig.safeBlockHorizontal * 8,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -44,11 +44,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Theme(
                   data: new ThemeData(
-                    primaryColor: Colors.black,
-                    primaryColorDark: Colors.black,
+                    primaryColor: CustomColors().secondaryColor,
+                    primaryColorDark: CustomColors().secondaryColor,
                   ),
                   child: TextField(
-                    cursorColor: Colors.black,
+                    cursorColor: CustomColors().secondaryColor,
                     onChanged: (text) {
                       setState(() {
                         isEmptyEmail = false;
@@ -57,7 +57,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     controller: _email,
                     decoration: InputDecoration(
                       focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: BorderSide(color: CustomColors().secondaryColor),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       border: OutlineInputBorder(
@@ -68,14 +68,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                       labelText: 'Email',
                       labelStyle: TextStyle(
-                          color: Colors.black,
+                          color: CustomColors().secondaryColor,
                           fontSize: SizeConfig.safeBlockHorizontal * 5
                       ),
                       suffixIcon:  isEmptyEmail
                           ? null
                           :IconButton(
                         onPressed: () => _email.clear(),
-                        icon: Icon(Icons.clear,color: Colors.black),
+                        icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                       ),
                     ),
                   ),
@@ -125,18 +125,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         :Text(
                       'Forgot Password',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors().buttonTextColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5,
                       ),
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all(Colors.black),
+                      MaterialStateProperty.all(CustomColors().secondaryColor),
                       shape: MaterialStateProperty.all<
                           RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
-                          side: BorderSide(color: Colors.black),
+                          side: BorderSide(color: CustomColors().secondaryColor),
                         ),
                       ),
                     ),
@@ -152,11 +152,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   text: TextSpan(
                       style: new TextStyle(
                         fontSize: SizeConfig.safeBlockHorizontal * 4,
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                       ),
                       children:[
-                        TextSpan(text: 'Remember Password? ',style: TextStyle(color: Colors.black45)),
-                        TextSpan(text: 'SIGN IN',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
+                        TextSpan(text: 'Remember Password? ',style: TextStyle(color: CustomColors().black45)),
+                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
                           context,
                           new MaterialPageRoute(
                             builder: (context) => new Signin(),

@@ -14,30 +14,7 @@ class CartProductsList extends StatelessWidget {
               price: '12',
               image_location: 'assets/images/ottoman.jpg',
             ),
-            CartProducts(
-              productName: 'BOSS Revolution Chair',
-              color: 'Red',
-              price: '12',
-              image_location: 'assets/images/ottoman.jpg',
-            ),
-            CartProducts(
-              productName: 'BOSS Revolution Chair',
-              color: 'Red',
-              price: '12',
-              image_location: 'assets/images/ottoman.jpg',
-            ),
-            CartProducts(
-              productName: 'BOSS Revolution Chair',
-              color: 'Red',
-              price: '12',
-              image_location: 'assets/images/ottoman.jpg',
-            ),
-            CartProducts(
-              productName: 'BOSS Revolution Chair',
-              color: 'Red',
-              price: '12',
-              image_location: 'assets/images/ottoman.jpg',
-            ),
+
           ],
         ),
       ),

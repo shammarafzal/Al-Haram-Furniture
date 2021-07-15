@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/cart_products.dart';
 import 'package:al_haram_furnitures/components/favourite_products.dart';
 import 'package:al_haram_furnitures/components/product_list.dart';
@@ -24,13 +25,13 @@ class _FavouriteProductsState extends State<FavouriteProducts> {
             },
             child: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
             )),
         title: Text(
           'Favourite Products',
           style: TextStyle(
               fontFamily: 'Montserrat',
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
               fontWeight: FontWeight.bold),
         ),
 

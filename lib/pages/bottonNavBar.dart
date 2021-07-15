@@ -54,8 +54,8 @@ class _BottomBarState extends State<BottomBar> {
       ),
       bottomNavigationBar: new Theme(
         data: Theme.of(context).copyWith(
-          shadowColor: Colors.white,
-          canvasColor:  Colors.white),
+          shadowColor: CustomColors().buttonTextColor,
+          canvasColor:  CustomColors().buttonTextColor),
         child:  BottomNavigationBar(
           elevation: 0,
           items: const <BottomNavigationBarItem>[
@@ -79,7 +79,7 @@ class _BottomBarState extends State<BottomBar> {
           showUnselectedLabels: true,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          unselectedItemColor: Colors.black,
+          unselectedItemColor: CustomColors().secondaryColor,
           selectedItemColor: Color(CustomColors().getColorHexFromStr('#F9C335')),
 
         ),

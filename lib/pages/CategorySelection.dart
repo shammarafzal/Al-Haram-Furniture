@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/product_list.dart';
 import 'package:al_haram_furnitures/components/productsByCategories.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
@@ -25,14 +26,14 @@ class _SelectedCategoryProductsState extends State<SelectedCategoryProducts> {
             },
             child: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
             )),
         title: Text(
           'Categories',
           style: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 30.0,
-              color: Colors.black,
+              color: CustomColors().secondaryColor,
               fontWeight: FontWeight.bold),
         ),
 
@@ -41,7 +42,7 @@ class _SelectedCategoryProductsState extends State<SelectedCategoryProducts> {
         children: [
           Container(
             width: double.infinity,
-            color: Color.fromRGBO(216, 56, 48, 1),
+            color: CustomColors().redicon,
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -49,7 +50,7 @@ class _SelectedCategoryProductsState extends State<SelectedCategoryProducts> {
                     Text(
                       '${widget.selectedCategory}',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: CustomColors().secondaryColor,
                           fontWeight: FontWeight.bold,
                           fontSize: SizeConfig.safeBlockHorizontal * 4),
                       textAlign: TextAlign.center,
@@ -57,7 +58,7 @@ class _SelectedCategoryProductsState extends State<SelectedCategoryProducts> {
                     Text(
                       'Select product below to purchase',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: CustomColors().buttonTextColor,
                           fontSize: SizeConfig.safeBlockHorizontal * 4),
                       textAlign: TextAlign.center,
                     ),

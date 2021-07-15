@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CustomColors{
    int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
@@ -20,4 +22,10 @@ class CustomColors{
     }
     return val;
   }
+  var secondaryColor = Colors.black;
+   var black45 = Colors.black45;
+   var buttonTextColor = Colors.white;
+   var redicon = Color.fromRGBO(216, 56, 48, 1);
+   var grey = Colors.grey;
+   var offwhite = Colors.white70;
 }

@@ -28,7 +28,7 @@ class _ContactUsState extends State<ContactUs> {
             onTap: (){
               Navigator.of(context).pop();
             },
-            child: Icon(Icons.arrow_back, color: Colors.black,)),
+            child: Icon(Icons.arrow_back, color: CustomColors().secondaryColor)),
         backgroundColor: Color(CustomColors().getColorHexFromStr('#FEDF62')),
         elevation: 0,
       ),
@@ -42,7 +42,7 @@ class _ContactUsState extends State<ContactUs> {
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
                   'Contact Us',
-                  style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                  style: TextStyle(color: CustomColors().secondaryColor, fontSize: SizeConfig.safeBlockHorizontal * 8,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -52,11 +52,11 @@ class _ContactUsState extends State<ContactUs> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyName = false;
@@ -65,7 +65,7 @@ class _ContactUsState extends State<ContactUs> {
                   controller: _name,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide:  BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -76,14 +76,14 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                     labelText: 'Name',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyName
                         ? null
                         :IconButton(
                       onPressed: () => _name.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
                     ),
                   ),
                 ),
@@ -94,11 +94,11 @@ class _ContactUsState extends State<ContactUs> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyEmail = false;
@@ -107,7 +107,7 @@ class _ContactUsState extends State<ContactUs> {
                   controller: _email,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -118,14 +118,14 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                     labelText: 'Email',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyEmail
                         ? null
                         :IconButton(
                       onPressed: () => _email.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
                     ),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -137,11 +137,11 @@ class _ContactUsState extends State<ContactUs> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   maxLines: 5,
                   onChanged: (text) {
                     setState(() {
@@ -151,7 +151,7 @@ class _ContactUsState extends State<ContactUs> {
                   controller: _message,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide:  BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -162,14 +162,14 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                     labelText: 'Message',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyMessage
                         ? null
                         :IconButton(
                       onPressed: () => _message.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                     ),
                   ),
                 ),
@@ -199,18 +199,18 @@ class _ContactUsState extends State<ContactUs> {
                   child: Text(
                     'Send',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: CustomColors().buttonTextColor,
                       fontSize: SizeConfig.safeBlockHorizontal * 5,
                     ),
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all(Colors.black),
+                    MaterialStateProperty.all(CustomColors().secondaryColor),
                     shape: MaterialStateProperty.all<
                         RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16.0),
-                        side: BorderSide(color: Colors.black),
+                        side: BorderSide(color: CustomColors().secondaryColor),
                       ),
                     ),
                   ),

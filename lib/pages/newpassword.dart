@@ -30,7 +30,7 @@ class _NewPasswordState extends State<NewPassword> {
               Center(
                 child: Text(
                   'HEY AL-Haram!',
-                  style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                  style: TextStyle(color: CustomColors().secondaryColor, fontSize: SizeConfig.safeBlockHorizontal * 8,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -46,16 +46,16 @@ class _NewPasswordState extends State<NewPassword> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Theme(
                   data: new ThemeData(
-                    primaryColor: Colors.black,
-                    primaryColorDark: Colors.black,
+                    primaryColor: CustomColors().secondaryColor,
+                    primaryColorDark: CustomColors().secondaryColor,
                   ),
                   child: TextField(
-                    cursorColor: Colors.black,
+                    cursorColor: CustomColors().secondaryColor,
                     controller: _password,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: BorderSide(color: CustomColors().secondaryColor),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       border: OutlineInputBorder(
@@ -66,7 +66,7 @@ class _NewPasswordState extends State<NewPassword> {
                       ),
                       labelText: 'Password',
                       labelStyle: TextStyle(
-                          color: Colors.black,
+                          color: CustomColors().secondaryColor,
                           fontSize: SizeConfig.safeBlockHorizontal * 5
                       ),
                       suffixIcon: IconButton(
@@ -75,7 +75,7 @@ class _NewPasswordState extends State<NewPassword> {
                             _obscureText = !_obscureText;
                           });
                         },
-                        icon: Icon(Icons.remove_red_eye_rounded, color: Colors.black),
+                        icon: Icon(Icons.remove_red_eye_rounded, color: CustomColors().secondaryColor),
                       ),
                     ),
                   ),
@@ -86,16 +86,16 @@ class _NewPasswordState extends State<NewPassword> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Theme(
                   data: new ThemeData(
-                    primaryColor: Colors.black,
-                    primaryColorDark: Colors.black,
+                    primaryColor: CustomColors().secondaryColor,
+                    primaryColorDark: CustomColors().secondaryColor,
                   ),
                   child: TextField(
-                    cursorColor: Colors.black,
+                    cursorColor: CustomColors().secondaryColor,
                     controller: _confirmPassword,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: BorderSide(color: CustomColors().secondaryColor),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       border: OutlineInputBorder(
@@ -106,7 +106,7 @@ class _NewPasswordState extends State<NewPassword> {
                       ),
                       labelText: 'Confirm Password',
                       labelStyle: TextStyle(
-                          color: Colors.black,
+                          color: CustomColors().secondaryColor,
                           fontSize: SizeConfig.safeBlockHorizontal * 5
                       ),
                       suffixIcon: IconButton(
@@ -115,7 +115,7 @@ class _NewPasswordState extends State<NewPassword> {
                             _obscureText = !_obscureText;
                           });
                         },
-                        icon: Icon(Icons.remove_red_eye_rounded, color: Colors.black),
+                        icon: Icon(Icons.remove_red_eye_rounded, color: CustomColors().secondaryColor),
                       ),
                     ),
                   ),
@@ -169,18 +169,18 @@ class _NewPasswordState extends State<NewPassword> {
                     child: Text(
                       'Change Password',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors().buttonTextColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5,
                       ),
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all(Colors.black),
+                      MaterialStateProperty.all(CustomColors().secondaryColor),
                       shape: MaterialStateProperty.all<
                           RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
-                          side: BorderSide(color: Colors.black),
+                          side: BorderSide(color: CustomColors().secondaryColor),
                         ),
                       ),
                     ),

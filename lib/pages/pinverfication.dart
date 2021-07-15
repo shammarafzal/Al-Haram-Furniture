@@ -38,7 +38,7 @@ class _PinVerifyState extends State<PinVerify> {
               Center(
                 child: Text(
                   'HEY AL-Haram!',
-                  style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                  style: TextStyle(color: CustomColors().secondaryColor, fontSize: SizeConfig.safeBlockHorizontal * 8,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -58,9 +58,9 @@ class _PinVerifyState extends State<PinVerify> {
                     controller: controller,
                     hideCharacter: true,
                     highlight: true,
-                    highlightColor: Colors.black,
-                    defaultBorderColor: Colors.black,
-                    hasTextBorderColor: Colors.black,
+                    highlightColor: CustomColors().secondaryColor,
+                    defaultBorderColor: CustomColors().secondaryColor,
+                    hasTextBorderColor: CustomColors().secondaryColor,
                     // highlightPinBoxColor: Colors.orange,
                     maxLength: pinLength,
                     hasError: hasError,
@@ -80,15 +80,15 @@ class _PinVerifyState extends State<PinVerify> {
                     wrapAlignment: WrapAlignment.spaceAround,
                     pinBoxDecoration:
                     ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                    pinTextStyle: TextStyle(fontSize: 22.0, color: Colors.black),
+                    pinTextStyle: TextStyle(fontSize: 22.0, color: CustomColors().secondaryColor),
                     pinTextAnimatedSwitcherTransition:
                     ProvidedPinBoxTextAnimation.scalingTransition,
 //                    pinBoxColor: Colors.green[100],
                     pinTextAnimatedSwitcherDuration:
                     Duration(milliseconds: 300),
 //                    highlightAnimation: true,
-                    highlightAnimationBeginColor: Colors.black,
-                    highlightAnimationEndColor: Colors.black,
+                    highlightAnimationBeginColor: CustomColors().secondaryColor,
+                    highlightAnimationEndColor: CustomColors().secondaryColor,
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -128,18 +128,18 @@ class _PinVerifyState extends State<PinVerify> {
                     child: Text(
                       'Verify Pin',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors().black45,
                         fontSize: SizeConfig.safeBlockHorizontal * 5,
                       ),
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all(Colors.black),
+                      MaterialStateProperty.all(CustomColors().secondaryColor),
                       shape: MaterialStateProperty.all<
                           RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
-                          side: BorderSide(color: Colors.black),
+                          side: BorderSide(color: CustomColors().secondaryColor),
                         ),
                       ),
                     ),
@@ -155,11 +155,11 @@ class _PinVerifyState extends State<PinVerify> {
                   text: TextSpan(
                       style: new TextStyle(
                         fontSize: SizeConfig.safeBlockHorizontal * 4,
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                       ),
                       children:[
-                        TextSpan(text: 'Remember Password? ',style: TextStyle(color: Colors.black45)),
-                        TextSpan(text: 'SIGN IN',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
+                        TextSpan(text: 'Remember Password? ',style: TextStyle(color: CustomColors().black45)),
+                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
                           context,
                           new MaterialPageRoute(
                             builder: (context) => new Signin(),

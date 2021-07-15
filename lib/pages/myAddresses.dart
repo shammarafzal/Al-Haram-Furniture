@@ -35,7 +35,7 @@ class _MyAddressesState extends State<MyAddresses> {
             onTap: (){
               Navigator.of(context).pop();
             },
-            child: Icon(Icons.arrow_back, color: Colors.black,)),
+            child: Icon(Icons.arrow_back, color: CustomColors().secondaryColor,)),
         backgroundColor: Color(CustomColors().getColorHexFromStr('#FEDF62')),
         elevation: 0,
       ),
@@ -48,7 +48,7 @@ class _MyAddressesState extends State<MyAddresses> {
               child: Center(
                 child: Text(
                   'Address',
-                  style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                  style: TextStyle(color: CustomColors().secondaryColor, fontSize: SizeConfig.safeBlockHorizontal * 8,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -58,11 +58,11 @@ class _MyAddressesState extends State<MyAddresses> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyStree1 = false;
@@ -72,7 +72,7 @@ class _MyAddressesState extends State<MyAddresses> {
                   maxLines: 2,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -83,14 +83,14 @@ class _MyAddressesState extends State<MyAddresses> {
                     ),
                     labelText: 'Street 1',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyStree1
                         ? null
                         :IconButton(
                       onPressed: () => _street1.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
                     ),
                   ),
                 ),
@@ -102,11 +102,11 @@ class _MyAddressesState extends State<MyAddresses> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyStree2 = false;
@@ -116,7 +116,7 @@ class _MyAddressesState extends State<MyAddresses> {
                   maxLines: 2,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -127,14 +127,14 @@ class _MyAddressesState extends State<MyAddresses> {
                     ),
                     labelText: 'Street 2',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyStree2
                         ? null
                         :IconButton(
                       onPressed: () => _street2.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
                     ),
                   ),
                 ),
@@ -146,11 +146,11 @@ class _MyAddressesState extends State<MyAddresses> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyCity = false;
@@ -159,7 +159,7 @@ class _MyAddressesState extends State<MyAddresses> {
                   controller: _city,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -170,14 +170,14 @@ class _MyAddressesState extends State<MyAddresses> {
                     ),
                     labelText: 'City',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyCity
                         ? null
                         :IconButton(
                       onPressed: () => _city.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
                     ),
                   ),
                 ),
@@ -189,11 +189,11 @@ class _MyAddressesState extends State<MyAddresses> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyState = false;
@@ -202,7 +202,7 @@ class _MyAddressesState extends State<MyAddresses> {
                   controller: _state,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -213,14 +213,14 @@ class _MyAddressesState extends State<MyAddresses> {
                     ),
                     labelText: 'State',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyState
                         ? null
                         :IconButton(
                       onPressed: () => _state.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                     ),
                   ),
                 ),
@@ -231,11 +231,11 @@ class _MyAddressesState extends State<MyAddresses> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: Colors.black,
-                  primaryColorDark: Colors.black,
+                  primaryColor: CustomColors().secondaryColor,
+                  primaryColorDark: CustomColors().secondaryColor,
                 ),
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: CustomColors().secondaryColor,
                   onChanged: (text) {
                     setState(() {
                       isEmptyPostalCode = false;
@@ -244,7 +244,7 @@ class _MyAddressesState extends State<MyAddresses> {
                   controller: _postalCode,
                   decoration: InputDecoration(
                     focusedBorder:OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide:  BorderSide(color: CustomColors().secondaryColor),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     border: OutlineInputBorder(
@@ -255,14 +255,14 @@ class _MyAddressesState extends State<MyAddresses> {
                     ),
                     labelText: 'Postal Code',
                     labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5
                     ),
                     suffixIcon:  isEmptyPostalCode
                         ? null
                         :IconButton(
                       onPressed: () => _postalCode.clear(),
-                      icon: Icon(Icons.clear,color: Colors.black,),
+                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                     ),
                   ),
                 ),
@@ -310,18 +310,18 @@ class _MyAddressesState extends State<MyAddresses> {
                   child: Text(
                     'Save',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: CustomColors().buttonTextColor,
                       fontSize: SizeConfig.safeBlockHorizontal * 5,
                     ),
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all(Colors.black),
+                    MaterialStateProperty.all(CustomColors().secondaryColor),
                     shape: MaterialStateProperty.all<
                         RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16.0),
-                        side: BorderSide(color: Colors.black),
+                        side: BorderSide(color: CustomColors().secondaryColor),
                       ),
                     ),
                   ),

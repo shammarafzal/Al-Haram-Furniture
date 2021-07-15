@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/pages/pinverfication.dart';
 import 'package:al_haram_furnitures/pages/signin.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,10 @@ class alertScreen{
         builder: (BuildContext context) => Theme(
           data: ThemeData.dark(),
           child: CupertinoAlertDialog(
-            title: new Text("AL-HARAM",style: TextStyle(fontSize: 20,color: Color.fromRGBO(216, 56, 48, 1),),),
+            title: new Text("AL-HARAM",style: TextStyle(fontSize: 20,color:CustomColors().redicon,),),
             content: Padding(
               padding: const EdgeInsets.only(top: 5),
-              child: Text(msg,style: TextStyle(fontSize: 14,color: Colors.white,),textAlign: TextAlign.center,),
+              child: Text(msg,style: TextStyle(fontSize: 14,color: CustomColors().buttonTextColor,),textAlign: TextAlign.center,),
             ),
           ),
         )
@@ -42,10 +43,10 @@ class alertScreen{
         builder: (BuildContext context) => Theme(
           data: ThemeData.dark(),
           child: CupertinoAlertDialog(
-            title: new Text("Al-Haram",style: TextStyle(fontSize: 20,color: Color.fromRGBO(216, 56, 48, 1),),),
+            title: new Text("Al-Haram",style: TextStyle(fontSize: 20,color: CustomColors().redicon,),),
             content: Padding(
               padding: const EdgeInsets.only(top: 5),
-              child: Text(msg,style: TextStyle(fontSize: 14,color: Colors.white,),textAlign: TextAlign.center,),
+              child: Text(msg,style: TextStyle(fontSize: 14,color: CustomColors().buttonTextColor,),textAlign: TextAlign.center,),
             ),
           ),
         )
@@ -68,10 +69,10 @@ class alertScreen{
         builder: (BuildContext context) => Theme(
           data: ThemeData.dark(),
           child: CupertinoAlertDialog(
-            title: new Text("AL-Haram",style: TextStyle(fontSize: 20,color: Color.fromRGBO(216, 56, 48, 1),),),
+            title: new Text("AL-Haram",style: TextStyle(fontSize: 20,color: CustomColors().redicon,),),
             content: Padding(
               padding: const EdgeInsets.only(top: 5),
-              child: Text(msg,style: TextStyle(fontSize: 14,color: Colors.white,),textAlign: TextAlign.center,),
+              child: Text(msg,style: TextStyle(fontSize: 14,color: CustomColors().buttonTextColor,),textAlign: TextAlign.center,),
             ),
           ),
         )
@@ -94,10 +95,10 @@ class alertScreen{
         builder: (BuildContext context) => Theme(
           data: ThemeData.dark(),
           child: CupertinoAlertDialog(
-            title: new Text("AL-Haram",style: TextStyle(fontSize: 20,color: Color.fromRGBO(216, 56, 48, 1),),),
+            title: new Text("AL-Haram",style: TextStyle(fontSize: 20,color: CustomColors().redicon,),),
             content: Padding(
               padding: const EdgeInsets.only(top: 5),
-              child: Text(msg,style: TextStyle(fontSize: 14,color: Colors.white,),textAlign: TextAlign.center,),
+              child: Text(msg,style: TextStyle(fontSize: 14,color:CustomColors().buttonTextColor,),textAlign: TextAlign.center,),
             ),
           ),
         )

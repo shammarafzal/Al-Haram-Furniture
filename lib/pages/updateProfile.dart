@@ -1,4 +1,5 @@
 import 'package:al_haram_furnitures/API/utils.dart';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'alertDialog.dart';
@@ -23,27 +24,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
   final _phone = TextEditingController();
-  int getColorHexFromStr(String colorStr) {
-    colorStr = "FF" + colorStr;
-    colorStr = colorStr.replaceAll("#", "");
-    int val = 0;
-    int len = colorStr.length;
-    for (int i = 0; i < len; i++) {
-      int hexDigit = colorStr.codeUnitAt(i);
-      if (hexDigit >= 48 && hexDigit <= 57) {
-        val += (hexDigit - 48) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 65 && hexDigit <= 70) {
-        // A..F
-        val += (hexDigit - 55) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 97 && hexDigit <= 102) {
-        // a..f
-        val += (hexDigit - 87) * (1 << (4 * (len - 1 - i)));
-      } else {
-        throw new FormatException("An error occurred when converting a color");
-      }
-    }
-    return val;
-  }
+
   getMe() async {
     user = await Utils().getMe();
     return user;
@@ -58,12 +39,12 @@ class _UpdateProfileState extends State<UpdateProfile> {
             onTap: (){
               Navigator.of(context).pop();
             },
-            child: Icon(Icons.arrow_back, color: Colors.black,)),
-        backgroundColor: Color(getColorHexFromStr('#FEDF62')),
+            child: Icon(Icons.arrow_back, color: CustomColors().secondaryColor,)),
+        backgroundColor: Color(CustomColors().getColorHexFromStr('#FEDF62')),
         elevation: 0,
       ),
       body: Container(
-        color: Color(getColorHexFromStr('#FEDF62')),
+        color: Color(CustomColors().getColorHexFromStr('#FEDF62')),
         child: FutureBuilder(
           future: getMe(),
           builder: (context, snapshot) {
@@ -88,7 +69,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             alignment: Alignment.center,
                             child:  Text(
                               'Update Profile',
-                              style: TextStyle(color: Colors.black, fontSize: SizeConfig.safeBlockHorizontal * 8,
+                              style: TextStyle(color: CustomColors().secondaryColor, fontSize: SizeConfig.safeBlockHorizontal * 8,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -98,7 +79,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               //  alignment: Alignment.centerRight,
                               child: InkWell(
                                 child: Icon(Icons.edit_outlined,
-                                    color: Colors.black),
+                                    color: CustomColors().secondaryColor),
                                 onTap: () {
                                   _fitstName.text = user['first_name'];
                                   _lastName.text = user['last_name'];
@@ -125,11 +106,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Theme(
                           data: new ThemeData(
-                            primaryColor: Colors.black,
-                            primaryColorDark: Colors.black,
+                            primaryColor: CustomColors().secondaryColor,
+                            primaryColorDark: CustomColors().secondaryColor,
                           ),
                           child: TextField(
-                            cursorColor: Colors.black,
+                            cursorColor: CustomColors().secondaryColor,
                             onChanged: (text) {
                               setState(() {
                                 isEmptyfirstName = false;
@@ -139,7 +120,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             controller: _fitstName,
                             decoration: InputDecoration(
                               focusedBorder:OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.black),
+                                borderSide:  BorderSide(color: CustomColors().secondaryColor),
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                               border: OutlineInputBorder(
@@ -151,14 +132,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               labelText: 'First Name',
                               enabled: enabled,
                               labelStyle: TextStyle(
-                                  color: Colors.black,
+                                  color: CustomColors().secondaryColor,
                                   fontSize: SizeConfig.safeBlockHorizontal * 5
                               ),
                               suffixIcon:  isEmptyfirstName
                                   ? null
                                   :IconButton(
                                 onPressed: () => _fitstName.clear(),
-                                icon: Icon(Icons.clear,color: Colors.black,),
+                                icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                               ),
                             ),
                           ),
@@ -169,11 +150,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Theme(
                           data: new ThemeData(
-                            primaryColor: Colors.black,
-                            primaryColorDark: Colors.black,
+                            primaryColor: CustomColors().secondaryColor,
+                            primaryColorDark: CustomColors().secondaryColor,
                           ),
                           child: TextField(
-                            cursorColor: Colors.black,
+                            cursorColor: CustomColors().secondaryColor,
                             onChanged: (text) {
                               setState(() {
                                 isEmptylastName = false;
@@ -183,7 +164,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             enabled: enabled,
                             decoration: InputDecoration(
                               focusedBorder:OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: CustomColors().secondaryColor),
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
 
@@ -195,14 +176,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               ),
                               labelText: 'Last Name',
                               labelStyle: TextStyle(
-                                  color: Colors.black,
+                                  color: CustomColors().secondaryColor,
                                   fontSize: SizeConfig.safeBlockHorizontal * 5
                               ),
                               suffixIcon:  isEmptylastName
                                   ? null
                                   :IconButton(
                                 onPressed: () => _lastName.clear(),
-                                icon: Icon(Icons.clear,color: Colors.black,),
+                                icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                               ),
                             ),
                           ),
@@ -213,11 +194,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Theme(
                           data: new ThemeData(
-                            primaryColor: Colors.black,
-                            primaryColorDark: Colors.black,
+                            primaryColor: CustomColors().secondaryColor,
+                            primaryColorDark: CustomColors().secondaryColor,
                           ),
                           child: TextField(
-                            cursorColor: Colors.black,
+                            cursorColor: CustomColors().secondaryColor,
                             onChanged: (text) {
                               setState(() {
                                 isEmptyEmail = false;
@@ -227,7 +208,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             controller: _email,
                             decoration: InputDecoration(
                               focusedBorder:OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: CustomColors().secondaryColor),
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                               border: OutlineInputBorder(
@@ -238,14 +219,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               ),
                               labelText: 'Email',
                               labelStyle: TextStyle(
-                                  color: Colors.black,
+                                  color: CustomColors().secondaryColor,
                                   fontSize: SizeConfig.safeBlockHorizontal * 5
                               ),
                               suffixIcon:  isEmptyEmail
                                   ? null
                                   :IconButton(
                                 onPressed: () => _email.clear(),
-                                icon: Icon(Icons.clear,color: Colors.black,),
+                                icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                               ),
                             ),
                             keyboardType: TextInputType.emailAddress,
@@ -258,11 +239,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Theme(
                           data: new ThemeData(
-                            primaryColor: Colors.black,
-                            primaryColorDark: Colors.black,
+                            primaryColor: CustomColors().secondaryColor,
+                            primaryColorDark: CustomColors().secondaryColor,
                           ),
                           child: TextField(
-                            cursorColor: Colors.black,
+                            cursorColor: CustomColors().secondaryColor,
                             onChanged: (text) {
                               setState(() {
                                 isEmptyPhone = false;
@@ -271,7 +252,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             controller: _phone,
                             decoration: InputDecoration(
                               focusedBorder:OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.black),
+                                borderSide:  BorderSide(color: CustomColors().secondaryColor),
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                               border: OutlineInputBorder(
@@ -283,14 +264,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               labelText: 'Phone',
                               enabled: enabled,
                               labelStyle: TextStyle(
-                                  color: Colors.black,
+                                  color: CustomColors().secondaryColor,
                                   fontSize: SizeConfig.safeBlockHorizontal * 5
                               ),
                               suffixIcon:  isEmptyPhone
                                   ? null
                                   :IconButton(
                                 onPressed: () => _phone.clear(),
-                                icon: Icon(Icons.clear,color: Colors.black,),
+                                icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
                               ),
                             ),
                             keyboardType: TextInputType.number,
@@ -329,18 +310,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                 child: Text(
                                   'Update Profile',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: CustomColors().buttonTextColor,
                                     fontSize: SizeConfig.safeBlockHorizontal * 5,
                                   ),
                                 ),
                                 style: ButtonStyle(
                                   backgroundColor:
-                                  MaterialStateProperty.all(Colors.black),
+                                  MaterialStateProperty.all(CustomColors().secondaryColor),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16.0),
-                                      side: BorderSide(color: Colors.black),
+                                      side: BorderSide(color: CustomColors().secondaryColor),
                                     ),
                                   ),
                                 ),
@@ -359,7 +340,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
             }
             return Center(
               child: CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(Color.fromRGBO(216, 56, 48, 1)),
+                valueColor: new AlwaysStoppedAnimation<Color>(CustomColors().redicon),
               ),
             );
           },

@@ -1,4 +1,5 @@
 import 'package:al_haram_furnitures/API/utils.dart';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,27 +20,6 @@ class _UserPageState extends State<UserPage>
 
   var user;
 
-  int getColorHexFromStr(String colorStr) {
-    colorStr = "FF" + colorStr;
-    colorStr = colorStr.replaceAll("#", "");
-    int val = 0;
-    int len = colorStr.length;
-    for (int i = 0; i < len; i++) {
-      int hexDigit = colorStr.codeUnitAt(i);
-      if (hexDigit >= 48 && hexDigit <= 57) {
-        val += (hexDigit - 48) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 65 && hexDigit <= 70) {
-        // A..F
-        val += (hexDigit - 55) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 97 && hexDigit <= 102) {
-        // a..f
-        val += (hexDigit - 87) * (1 << (4 * (len - 1 - i)));
-      } else {
-        throw new FormatException("An error occurred when converting a color");
-      }
-    }
-    return val;
-  }
   getMe() async {
     user = await Utils().getMe();
     return user;
@@ -53,7 +33,7 @@ class _UserPageState extends State<UserPage>
           Container(
             height: 250.0,
             width: double.infinity,
-            color: Color(getColorHexFromStr('#FDD148')),
+            color: Color(CustomColors().getColorHexFromStr('#FDD148')),
           ),
           Positioned(
             bottom: 250.0,
@@ -63,7 +43,7 @@ class _UserPageState extends State<UserPage>
               width: 400.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(200.0),
-                  color: Color(getColorHexFromStr('#FEE16D')).withOpacity(0.4)),
+                  color: Color(CustomColors().getColorHexFromStr('#FEE16D')).withOpacity(0.4)),
             ),
           ),
           Positioned(
@@ -75,7 +55,7 @@ class _UserPageState extends State<UserPage>
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(150.0),
                     color:
-                        Color(getColorHexFromStr('#FEE16D')).withOpacity(0.5))),
+                        Color(CustomColors().getColorHexFromStr('#FEE16D')).withOpacity(0.5))),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +68,7 @@ class _UserPageState extends State<UserPage>
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
                       border: Border.all(
-                          color: Colors.white,
+                          color: CustomColors().buttonTextColor,
                           style: BorderStyle.solid,
                           width: 3.0),
                       image: DecorationImage(
@@ -126,67 +106,10 @@ class _UserPageState extends State<UserPage>
                       ),
                     );
                   },
-                  color: Colors.white,
+                  color: CustomColors().buttonTextColor,
                   iconSize: 30.0,
                 ),
               ),
-              //           Row(
-              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //
-              //             children: <Widget>[
-              //              Row(
-              //
-              //                children: [
-              //               SizedBox(width: 5.0),
-              //               Container(
-              //                 alignment: Alignment.topLeft,
-              //                 height: 75.0,
-              //                 width: 75.0,
-              //                 decoration: BoxDecoration(
-              //                     borderRadius: BorderRadius.circular(37.5),
-              //                     border: Border.all(
-              //                         color: Colors.white,
-              //                         style: BorderStyle.solid,
-              //                         width: 3.0),
-              //                     image: DecorationImage(
-              //                         image: AssetImage('assets/images/chair.jpg'))),
-              //               ),
-              //               SizedBox(width: 10.0),
-              //               Column(
-              //                 crossAxisAlignment: CrossAxisAlignment.start,
-              //                 children: <Widget>[
-              //                   Text(
-              //                     'ARUM',
-              //                     style: TextStyle(
-              //                         fontFamily: 'Quicksand',
-              //                         fontSize: 25.0,
-              //                         fontWeight: FontWeight.bold),
-              //                   ),
-              //
-              //                 ],
-              //               ),
-              //   ]
-              // ),
-              //              // SizedBox(width: SizeConfig.screenWidth * 0.2,),
-              //               Container(
-              //                 alignment: Alignment.topRight,
-              //                 child: IconButton(
-              //                   icon: Icon(Icons.settings),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                       context,
-              //                       new MaterialPageRoute(
-              //                         builder: (context) => new UpdateProfile(),
-              //                       ),
-              //                     );
-              //                   },
-              //                   color: Colors.white,
-              //                   iconSize: 30.0,
-              //                 ),
-              //               ),
-              //               SizedBox(height: 15.0)
-              //             ],
-              //           ),
               SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -196,7 +119,7 @@ class _UserPageState extends State<UserPage>
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.folder_shared),
-                          color: Colors.white,
+                          color: CustomColors().buttonTextColor,
                           iconSize: 40.0,
                           onPressed: () {
                             Navigator.push(
@@ -212,7 +135,7 @@ class _UserPageState extends State<UserPage>
                           style: TextStyle(
                               fontFamily: 'Quicksand',
                               fontSize: 15.0,
-                              color: Colors.white,
+                              color: CustomColors().buttonTextColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -223,7 +146,7 @@ class _UserPageState extends State<UserPage>
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.mail_sharp),
-                          color: Colors.white,
+                          color: CustomColors().buttonTextColor,
                           iconSize: 40.0,
                           onPressed: () {
                             Navigator.push(
@@ -239,7 +162,7 @@ class _UserPageState extends State<UserPage>
                           style: TextStyle(
                               fontFamily: 'Quicksand',
                               fontSize: 15.0,
-                              color: Colors.white,
+                              color: CustomColors().buttonTextColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -276,16 +199,6 @@ class _UserPageState extends State<UserPage>
           )
         ]),
         SizedBox(height: 15.0),
-        // InkWell(
-        //     onTap: () {
-        //       Navigator.push(
-        //         context,
-        //         new MaterialPageRoute(
-        //           builder: (context) => new ContactUs(),
-        //         ),
-        //       );
-        //     },
-        //     child: listItem('About Us', Colors.red, Icons.account_box)),
         InkWell(
             onTap: () {
               Navigator.push(
@@ -295,7 +208,7 @@ class _UserPageState extends State<UserPage>
                 ),
               );
             },
-            child: listItem('Contact Us', Colors.red, Icons.contact_support)),
+            child: listItem('Contact Us', CustomColors().redicon, Icons.contact_support)),
         InkWell(
           onTap: () async {
             final SharedPreferences prefs =
@@ -309,7 +222,7 @@ class _UserPageState extends State<UserPage>
             );
           },
           child: listItem(
-              'Logout', Color(getColorHexFromStr('#E89300')), Icons.logout),
+              'Logout', Color(CustomColors().getColorHexFromStr('#E89300')), Icons.logout),
         )
       ]),
     );
@@ -323,12 +236,12 @@ class _UserPageState extends State<UserPage>
         title: Text(
           title,
           style: TextStyle(
-              color: Color.fromRGBO(216, 56, 48, 1),
+              color: CustomColors().redicon,
               fontSize: SizeConfig.safeBlockHorizontal * 5),
         ),
         trailing: Icon(
           Icons.arrow_forward_ios,
-          color: Color.fromRGBO(216, 56, 48, 1),
+          color: CustomColors().redicon,
         ),
       ),
     );
@@ -342,7 +255,7 @@ class _UserPageState extends State<UserPage>
         height: 125.0,
         width: SizeConfig.screenWidth * 0.37,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7.0), color: Colors.white),
+            borderRadius: BorderRadius.circular(7.0), color: CustomColors().buttonTextColor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -364,22 +277,10 @@ class _UserPageState extends State<UserPage>
                 style: TextStyle(
                   fontFamily: 'Quicksand',
                   fontSize: 15.0,
-                  color: Colors.black,
+                  color: CustomColors().secondaryColor,
                 ),
               ),
             ),
-            // SizedBox(height: 3.0),
-            // Padding(
-            //   padding: EdgeInsets.only(left: 15.0),
-            //   child: Text(
-            //     valueCount,
-            //     style: TextStyle(
-            //         fontFamily: 'Quicksand',
-            //         fontSize: 15.0,
-            //         color: Colors.red,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
           ],
         ),
       ),

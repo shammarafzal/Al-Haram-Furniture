@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/messages_list.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +25,13 @@ class _InboxState extends State<Inbox> {
                 },
                 child: Icon(
                   Icons.arrow_back,
-                  color: Colors.black,
+                  color: CustomColors().secondaryColor,
                 )),
             title: Text(
               'Messages',
               style: TextStyle(
                   fontFamily: 'Montserrat',
-                  color: Colors.black,
+                  color: CustomColors().secondaryColor,
                   fontWeight: FontWeight.bold),
             ),
 

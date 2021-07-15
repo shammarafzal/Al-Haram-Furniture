@@ -43,7 +43,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         title: Text('Al-Haram Furniture'),
         actions: <Widget>[
           new IconButton(
-              icon: Icon(Icons.shopping_cart, color: Colors.white), onPressed: () {
+              icon: Icon(Icons.shopping_cart, color: CustomColors().buttonTextColor), onPressed: () {
             Navigator.push(
               context,
               new MaterialPageRoute(
@@ -61,11 +61,11 @@ class _ProductDetailsState extends State<ProductDetails> {
             height: 300.0,
             child: GridTile(
               child: Container(
-                color: Colors.white,
+                color: CustomColors().buttonTextColor,
                 child: Image.network(widget.product_detail_picture),
               ),
               footer: new Container(
-                color: Colors.white70,
+                color: CustomColors().offwhite,
                 child: ListTile(
                   leading: new Text(widget.product_detail_name,
                       style: TextStyle(
@@ -75,7 +75,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     child: new Text(
                       "\$${widget.product_detail_new_price}",
                       style: TextStyle(
-                          color: Colors.red,
+                          color: CustomColors().redicon,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           ),
@@ -105,8 +105,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                           );
                         });
                   },
-                  color: Colors.white,
-                  textColor: Colors.grey,
+                  color: CustomColors().buttonTextColor,
+                  textColor: CustomColors().grey,
                   elevation: 0.2,
                   child: Row(
                     children: [
@@ -134,8 +134,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                           );
                         });
                   },
-                  color: Colors.white,
-                  textColor: Colors.grey,
+                  color: CustomColors().buttonTextColor,
+                  textColor: CustomColors().grey,
                   elevation: 0.2,
                   child: Row(
                     children: [
@@ -161,35 +161,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   });
                 },
               ),
-              // Expanded(
-              //   child: MaterialButton(
-              //     onPressed: () {
-              //       showDialog(context: context,
-              //           builder: (context){
-              //             return new AlertDialog(
-              //                 title: new Text('Quantity'),
-              //                 content: new Text('Choose the Quantity'),
-              //                 actions: <Widget>[
-              //                   new MaterialButton(onPressed: (){
-              //                     Navigator.of(context).pop(context);
-              //                   },
-              //                     child: new Text('Close'),
-              //                   )
-              //                 ]
-              //             );
-              //           });
-              //     },
-              //     color: Colors.white,
-              //     textColor: Colors.grey,
-              //     elevation: 0.2,
-              //     child: Row(
-              //       children: [
-              //         Expanded(child: new Text("Qty")),
-              //         Expanded(child: new Icon(Icons.arrow_drop_down)),
-              //       ],
-              //     ),
-              //   ),
-              // ),
             ],
           ),
           Row(
@@ -206,14 +177,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                         await alertScreen().showAlertDialog(context, response['message']);
                       }
                     },
-                    color: Colors.red,
-                    textColor: Colors.white,
+                    color: CustomColors().redicon,
+                    textColor: CustomColors().buttonTextColor,
                     elevation: 0.2,
                     child: new Text("Add to Cart")
                 ),
               ),
 
-              new IconButton(icon: Icon(Icons.favorite_border,color:Colors.red),onPressed:() async {
+              new IconButton(icon: Icon(Icons.favorite_border,color:CustomColors().redicon),onPressed:() async {
                 final SharedPreferences prefs =
                     await SharedPreferences.getInstance();
                 if(isFavorite == false){
@@ -255,140 +226,30 @@ class _ProductDetailsState extends State<ProductDetails> {
           Row(
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Name', style: TextStyle(color: Colors.grey)),),
+                child: new Text('Product Name', style: TextStyle(color: CustomColors().grey)),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: new Text(widget.product_detail_name, style: TextStyle(color: Colors.black),), )
+                child: new Text(widget.product_detail_name, style: TextStyle(color: CustomColors().secondaryColor),), )
 
             ],
           ),
           Row(
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Brand', style: TextStyle(color: Colors.grey)),),
+                child: new Text('Product Brand', style: TextStyle(color: CustomColors().grey)),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: new Text(widget.productBrand, style: TextStyle(color: Colors.black),), )
+                child: new Text(widget.productBrand, style: TextStyle(color:CustomColors().secondaryColor),), )
             ],
           ),
           Row(
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text('Product Condition:', style: TextStyle(color: Colors.grey)),),
+                child: new Text('Product Condition:', style: TextStyle(color: CustomColors().grey)),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: new Text("Brand New", style: TextStyle(color: Colors.black),), )
+                child: new Text("Brand New", style: TextStyle(color: CustomColors().secondaryColor),), )
             ],
           ),
-         // Divider(),
-          // Padding(
-          //     padding: const EdgeInsets.all(8.0),
-          //     child: new Text('Similar Products')),
-          // // Similar Products Section
-          // new Container(
-          //   height: 360.0,
-          //   child: Similar_Products(),
-          // )
         ],
       ),
     );
   }
 }
-//
-// class Similar_Products extends StatefulWidget {
-//   @override
-//   _Similar_ProductsState createState() => _Similar_ProductsState();
-// }
-//
-// class _Similar_ProductsState extends State<Similar_Products> {
-//   var product_list = [
-//     {
-//       "name": "Table",
-//       "picture": "images/products/table.png",
-//       "old_price": 120.0,
-//       "price": 85.0
-//     },
-//     {
-//       "name": "Chair",
-//       "picture": "images/products/chair.png",
-//       "old_price": 120.0,
-//       "price": 85.0
-//     },
-//     {
-//       "name": "Bed",
-//       "picture": "images/products/bed.png",
-//       "old_price": 180.0,
-//       "price": 105.0
-//     },
-//     {
-//       "name": "Almirah",
-//       "picture": "images/products/almirah.png",
-//       "old_price": 180.0,
-//       "price": 105.0
-//     },
-//
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return GridView.builder(
-//         itemCount: product_list.length,
-//         gridDelegate:
-//         new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-//         itemBuilder: (BuildContext context, int index) {
-//           return Similar_Single_prod(
-//             product_name: product_list[index]['name'],
-//             product_picture: product_list[index]['picture'],
-//             product_old_price: product_list[index]['old_price'],
-//             product_price: product_list[index]['price'],
-//           );
-//         });
-//   }
-// }
-//
-// class Similar_Single_prod extends StatelessWidget {
-//   final product_name;
-//   final product_picture;
-//   final product_old_price;
-//   final product_price;
-//
-//   Similar_Single_prod(
-//       {this.product_name,
-//         this.product_picture,
-//         this.product_old_price,
-//         this.product_price});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       child: Hero(
-//         tag: product_name,
-//         child: Material(
-//           child: InkWell(
-//             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-//               // passing values to next page
-//                 builder: (context) => new ProductDetails(
-//                   product_detail_name: product_name,
-//                   product_detail_new_price: product_price,
-//                   product_detail_old_price: product_old_price,
-//                   product_detail_picture: product_picture,
-//                 ))),
-//             child: GridTile(
-//                 footer: Container(
-//                   color: Colors.white,
-//                   child: new Row(
-//                     children: [
-//                       Expanded(
-//                         child: new Text(product_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0)),
-//                       ),
-//                       Text('\$${product_price}',style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),)
-//                     ],
-//                   ),
-//                 ),
-//                 child: Image.asset(
-//                   product_picture,
-//                   fit: BoxFit.cover,
-//                 )),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -5,10 +5,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'alertDialog.dart';
-import 'bottonNavBar.dart';
 import 'forgotpassword.dart';
 import 'signup.dart';
-import 'package:flutter/services.dart';
+
 class Signin extends StatefulWidget {
   @override
   _SigninState createState() => _SigninState();
@@ -21,7 +20,6 @@ class _SigninState extends State<Signin> {
   bool isLoading = false;
   final _email = TextEditingController();
   final _password = TextEditingController();
-
 
 
   @override
@@ -38,7 +36,7 @@ class _SigninState extends State<Signin> {
                 child: Text(
                   'HEY AL-Haram!',
                   style: TextStyle(
-                      color: Colors.black,
+                      color: CustomColors().secondaryColor,
                       fontSize: SizeConfig.safeBlockHorizontal * 8,
                       fontWeight: FontWeight.bold),
                 ),
@@ -56,11 +54,11 @@ class _SigninState extends State<Signin> {
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Theme(
                     data: new ThemeData(
-                      primaryColor: Colors.black,
-                      primaryColorDark: Colors.black,
+                      primaryColor: CustomColors().secondaryColor,
+                      primaryColorDark: CustomColors().secondaryColor,
                     ),
                     child: TextField(
-                      cursorColor: Colors.black,
+                      cursorColor: CustomColors().secondaryColor,
                       onChanged: (text) {
                         setState(() {
                           isEmpty = false;
@@ -69,7 +67,7 @@ class _SigninState extends State<Signin> {
                       controller: _email,
                       decoration: InputDecoration(
                         focusedBorder:OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
+                          borderSide:  BorderSide(color: CustomColors().secondaryColor),
                           borderRadius: BorderRadius.circular(25.0),
                         ),
                         border: OutlineInputBorder(
@@ -79,14 +77,14 @@ class _SigninState extends State<Signin> {
                         ),
                         labelText: 'Email',
                         labelStyle: TextStyle(
-                            color: Colors.black,
+                            color: CustomColors().secondaryColor,
                             fontSize: SizeConfig.safeBlockHorizontal * 5
                         ),
                         suffixIcon: isEmpty
                             ? null
                             : IconButton(
                                 onPressed: () => _email.clear(),
-                                icon: Icon(Icons.clear,color: Colors.black,),
+                                icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
                               ),
                       ),
                     ),
@@ -98,16 +96,16 @@ class _SigninState extends State<Signin> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Theme(
                   data: new ThemeData(
-                    primaryColor: Colors.black,
-                    primaryColorDark: Colors.black,
+                    primaryColor: CustomColors().secondaryColor,
+                    primaryColorDark: CustomColors().secondaryColor,
                   ),
                   child: TextField(
-                    cursorColor: Colors.black,
+                    cursorColor: CustomColors().secondaryColor,
                     controller: _password,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide:  BorderSide(color: CustomColors().secondaryColor,),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       border: OutlineInputBorder(
@@ -117,7 +115,7 @@ class _SigninState extends State<Signin> {
                       ),
                       labelText: 'Password',
                       labelStyle: TextStyle(
-                          color: Colors.black,
+                          color: CustomColors().secondaryColor,
                           fontSize: SizeConfig.safeBlockHorizontal * 5
                       ),
                       suffixIcon: IconButton(
@@ -126,7 +124,7 @@ class _SigninState extends State<Signin> {
                             _obscureText = !_obscureText;
                           });
                         },
-                        icon: Icon(Icons.remove_red_eye_rounded,color: Colors.black,),
+                        icon: Icon(Icons.remove_red_eye_rounded,color: CustomColors().secondaryColor,),
                       ),
                     ),
                   ),
@@ -139,7 +137,7 @@ class _SigninState extends State<Signin> {
                   title: Text(
                     "Remember Me",
                     style: TextStyle(
-                      color: Colors.black45,
+                      color: CustomColors().black45,
                     ),
                   ),
                   value: checkedValue,
@@ -148,8 +146,8 @@ class _SigninState extends State<Signin> {
                       checkedValue = newValue!;
                     });
                   },
-                  activeColor: Colors.black45,
-                  checkColor: Colors.white,
+                  activeColor: CustomColors().black45,
+                  checkColor: CustomColors().buttonTextColor,
                   controlAffinity: ListTileControlAffinity
                       .leading, //  <-- leading Checkbox
                 ),
@@ -180,7 +178,7 @@ class _SigninState extends State<Signin> {
                       } else {
                         isLoading = true;
                         var response = await Utils().login(_email.text, _password.text);
-                        if(response['status'] == false){
+                        if(response['status'] == false ){
                           setState(() {
                             isLoading = false;
                           });
@@ -204,18 +202,18 @@ class _SigninState extends State<Signin> {
                         : Text(
                             'Sign IN',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: CustomColors().buttonTextColor,
                               fontSize: SizeConfig.safeBlockHorizontal * 5,
                             ),
                           ),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.black),
+                          MaterialStateProperty.all(CustomColors().secondaryColor,),
                       shape:
                           MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
-                          side: BorderSide(color: Colors.black),
+                          side: BorderSide(color: CustomColors().secondaryColor,),
                         ),
                       ),
                     ),
@@ -242,18 +240,18 @@ class _SigninState extends State<Signin> {
                     child: Text(
                       'Forgot my password',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors().buttonTextColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5,
                       ),
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.black45),
+                          MaterialStateProperty.all(CustomColors().black45),
                       shape:
                           MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
-                          side: BorderSide(color: Colors.black45),
+                          side: BorderSide(color: CustomColors().black45,),
                         ),
                       ),
                     ),
@@ -269,16 +267,16 @@ class _SigninState extends State<Signin> {
                   text: TextSpan(
                       style: new TextStyle(
                         fontSize: SizeConfig.safeBlockHorizontal * 4,
-                        color: Colors.black,
+                        color: CustomColors().secondaryColor,
                       ),
                       children: [
                         TextSpan(
                             text: 'Do not have an account yet? ',
-                            style: TextStyle(color: Colors.black45)),
+                            style: TextStyle(color: CustomColors().black45,)),
                         TextSpan(
                             text: 'SIGN UP',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: CustomColors().secondaryColor,
                                 fontWeight: FontWeight.bold),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () => Navigator.push(
