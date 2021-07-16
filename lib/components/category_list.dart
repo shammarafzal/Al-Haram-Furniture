@@ -1,8 +1,8 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Models/getCategories.dart';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/CategorySelection.dart';
-import 'package:al_haram_furnitures/pages/alertDialog.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalList extends StatelessWidget {
@@ -32,7 +32,7 @@ class HorizontalList extends StatelessWidget {
         }
         return Center(
           child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Color.fromRGBO(216, 56, 48, 1)),
+            valueColor: new AlwaysStoppedAnimation<Color>(CustomColors().redicon),
           ),
         );
       },

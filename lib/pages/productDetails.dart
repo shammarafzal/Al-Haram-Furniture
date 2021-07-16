@@ -3,7 +3,6 @@ import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/pages/shoppingcart.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'alertDialog.dart';
 
 class ProductDetails extends StatefulWidget {

@@ -28,4 +28,6 @@ class CustomColors{
    var redicon = Color.fromRGBO(216, 56, 48, 1);
    var grey = Colors.grey;
    var offwhite = Colors.white70;
+   var yellow = Colors.yellow;
+   var blue = Colors.blue;
 }

@@ -1,3 +1,4 @@
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 class CartProductsList extends StatelessWidget {
@@ -50,7 +51,7 @@ class CartProducts extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 20.0,
             height: 150.0,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
+                color: CustomColors().buttonTextColor, borderRadius: BorderRadius.circular(10.0)),
             child: Row(
               children: <Widget>[
 
@@ -81,7 +82,7 @@ class CartProducts extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
-                              color: Colors.grey),
+                              color: CustomColors().grey),
                         )
                       ],
                     ),
@@ -92,7 +93,7 @@ class CartProducts extends StatelessWidget {
                           fontFamily: 'Quicksand',
                           fontWeight: FontWeight.bold,
                           fontSize: 14.0,
-                          color: Colors.grey),
+                          color: CustomColors().grey),
                     ),
                     SizedBox(height: 7.0),
                     Row(
@@ -104,7 +105,7 @@ class CartProducts extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                               fontSize: 20.0,
-                              color: Color(0xFFFDD34A)),
+                              color: CustomColors().yellow),
                         ),
                         Padding(padding: EdgeInsets.only(left: 35)),
                         Row(
@@ -114,12 +115,12 @@ class CartProducts extends StatelessWidget {
                                 width: 40.0,
                                 height: 40.0,
                                 child: new RawMaterialButton(
-                                  fillColor: Colors.yellow,
+                                  fillColor: CustomColors().yellow,
                                   shape: new CircleBorder(),
                                   elevation: 0.0,
                                   child: Icon(
                                     Icons.add,
-                                    color: Colors.blue,
+                                    color: CustomColors().blue,
                                   ),
                                   onPressed: (){
                                     quantity = quantity + 1;
@@ -133,19 +134,19 @@ class CartProducts extends StatelessWidget {
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14.0,
-                                  color: Colors.grey),
+                                  color: CustomColors().grey),
                             ),
                             SizedBox(width: 7.0),
                             Container(
                               width: 40.0,
                               height: 40.0,
                               child: new RawMaterialButton(
-                                fillColor: Colors.yellow,
+                                fillColor: CustomColors().yellow,
                                 shape: new CircleBorder(),
                                 elevation: 0.0,
                                 child: Icon(
                                   Icons.minimize,
-                                  color: Colors.blue,
+                                  color: CustomColors().blue,
                                 ),
                                 onPressed: (){
                                   quantity = quantity - 1;

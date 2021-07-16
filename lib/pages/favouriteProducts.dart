@@ -1,8 +1,5 @@
 import 'package:al_haram_furnitures/Settings/customColors.dart';
-import 'package:al_haram_furnitures/components/cart_products.dart';
 import 'package:al_haram_furnitures/components/favourite_products.dart';
-import 'package:al_haram_furnitures/components/product_list.dart';
-import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteProducts extends StatefulWidget {

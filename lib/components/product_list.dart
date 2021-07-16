@@ -1,5 +1,6 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Models/getProducts.dart';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/alertDialog.dart';
 import 'package:al_haram_furnitures/pages/productDetails.dart';
@@ -34,7 +35,7 @@ class ProductListView extends StatelessWidget {
             }
             return Center(
               child: CircularProgressIndicator(
-               valueColor: new AlwaysStoppedAnimation(Colors.red),
+               valueColor: new AlwaysStoppedAnimation(CustomColors().redicon),
               ),
             );
           },
@@ -106,7 +107,7 @@ class _ProductState extends State<Product> {
                         textAlign: TextAlign.right,
                         style: TextStyle(
                             fontFamily: 'Quicksand',
-                            color: Colors.black,
+                            color: CustomColors().secondaryColor,
                             fontSize: SizeConfig.safeBlockHorizontal * 3.5,
                             fontWeight: FontWeight.bold),
                       ),
@@ -155,10 +156,10 @@ class _ProductState extends State<Product> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),
                                 color: isFavorite
-                                    ? Colors.grey.withOpacity(0.2)
-                                    : Colors.white),
+                                    ? CustomColors().grey.withOpacity(0.2)
+                                    : CustomColors().buttonTextColor),
                             child: Center(
-                              child: isFavorite == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: Colors.red),
+                              child: isFavorite == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: CustomColors().redicon),
                             ),
                           ),
                         ),
@@ -176,7 +177,7 @@ class _ProductState extends State<Product> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontFamily: 'Quicksand',
-                          color: Colors.grey,
+                          color: CustomColors().grey,
                         fontSize: SizeConfig.safeBlockHorizontal * 4),
                     ),
                   ),
@@ -194,7 +195,7 @@ class _ProductState extends State<Product> {
                         child: Text(
                           '\$ ${widget.price}',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: CustomColors().buttonTextColor,
                               fontFamily: 'Quicksand',
                               fontWeight: FontWeight.bold),
                         ),
@@ -212,7 +213,7 @@ class _ProductState extends State<Product> {
                           child: Text(
                             'Add to cart',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: CustomColors().buttonTextColor,
                                 fontFamily: 'Quicksand',
                                 fontWeight: FontWeight.bold),
                           ),

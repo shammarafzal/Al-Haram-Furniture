@@ -1,5 +1,6 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Models/getMessages.dart';
+import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 class MessagesListView extends StatelessWidget {
@@ -26,7 +27,7 @@ class MessagesListView extends StatelessWidget {
             }
             return Center(
               child: CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation(Colors.red),
+                valueColor: new AlwaysStoppedAnimation(CustomColors().redicon),
               ),
             );
           },
@@ -65,7 +66,7 @@ class Messages extends StatelessWidget {
                   child: Text(
                     messageTitle,
                     style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors().buttonTextColor,
                         fontSize:
                         SizeConfig.safeBlockHorizontal * 6,
                         fontWeight: FontWeight.bold),
@@ -78,7 +79,7 @@ class Messages extends StatelessWidget {
                     child: Text(
                      'Received $receivedDate',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: CustomColors().buttonTextColor,
                           fontSize:
                           SizeConfig.safeBlockHorizontal * 5),
                     ),
@@ -92,7 +93,7 @@ class Messages extends StatelessWidget {
                     child: Text(
                       description,
                       style: TextStyle(
-                          color: Colors.white,
+                          color: CustomColors().buttonTextColor,
                           fontSize:
                           SizeConfig.safeBlockHorizontal * 5),
                     ),
