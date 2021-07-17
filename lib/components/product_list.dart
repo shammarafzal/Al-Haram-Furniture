@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductListView extends StatelessWidget {
-  var image_base_url = 'http://alharam.codingoverflow.com/storage/';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +27,7 @@ class ProductListView extends StatelessWidget {
                         productName: snapshot.data?.data?[index].modelName ?? "",
                         description: snapshot.data?.data?[index].description ?? "",
                         price:  snapshot.data?.data?[index].salePrice ?? "",
-                        image_location: image_base_url+'${snapshot.data?.data?[index].productGalleries[0].productImage}',
+                        image_location: Utils().image_base_url+'${snapshot.data?.data?[index].productGalleries[0].productImage}',
                         productBrand: snapshot.data?.data?[index].company.companyName ?? "",
                       );
                 },

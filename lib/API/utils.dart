@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:al_haram_furnitures/Models/GetCartProducts.dart';
 import 'package:al_haram_furnitures/Models/getCategories.dart';
 import 'package:al_haram_furnitures/Models/getDeals.dart';
 import 'package:al_haram_furnitures/Models/getMessages.dart';
@@ -10,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils{
   final String baseUrl = 'alharam.codingoverflow.com';
+  var image_base_url = 'http://alharam.codingoverflow.com/storage/';
   register(String first_name, String last_name, String email, String password,String confirm_password) async {
     var url = Uri.http(baseUrl,
         '/api/register', {"q": "dart"});
@@ -371,17 +373,59 @@ class Utils{
       return jsonDecode(responseString);
     }
   }
-  addToCart(String product_id, String qty) async {
+  addToCart(String product_id, String qty, String size, String color) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var id = prefs.getInt('id');
     var token = prefs.getString('token');
     var url = Uri.http(baseUrl,
-        '/api/orders', {"q": "dart"});
+        '/api/addToCart', {"q": "dart"});
     final response = await http.post(url, body: {
-      "user_id": id.toString(),
-      "payment_method": 'Cash on delivery',
       "product_id": product_id,
       "qty": qty,
+      "size": size,
+      "color": color
+    },headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else if (response.statusCode == 500) {
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+    else{
+      final String responseString = response.body;
+      return jsonDecode(responseString);
+    }
+  }
+  Future<GetCartProducts> fetchCartProducts() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var url = Uri.http(baseUrl, '/api/viewCart', {"q": "dart"});
+    final response = await http.get(url,headers: {
+      'Authorization': 'Bearer $token',
+    });
+    return GetCartProducts.fromJson(jsonDecode(response.body));
+  }
+  Future<GetCartProducts> removeFromCart(String product_id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var url = Uri.http(baseUrl, '/api/removeFromCart', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "product_id": product_id,
+    },headers: {
+      'Authorization': 'Bearer $token',
+    });
+    return GetCartProducts.fromJson(jsonDecode(response.body));
+  }
+  rmFromCart(String product_id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var url = Uri.http(baseUrl,
+        '/api/removeFromCart', {"q": "dart"});
+    final response = await http.post(url, body: {
+      "product_id": product_id,
     },headers: {
       'Authorization': 'Bearer $token',
     });

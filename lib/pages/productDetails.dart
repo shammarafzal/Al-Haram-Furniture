@@ -1,5 +1,6 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Settings/customColors.dart';
+import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/shoppingcart.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,9 +28,12 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  String dropdownvalue = '1';
-  var items =  ['1','2','3','4','5'];
-
+  String quantity = 'Select Quantity';
+  var items_quantity =  ['Select Quantity','1','2','3','4','5'];
+  String size = 'Select Size';
+  var items_size =  ['Select Size','Small','Medium','Large'];
+  String color = 'Select Color';
+  var items_color =  ['Select Color','Black','Red','Grey','White','Blue', 'Green'];
   bool isFavorite = false;
 
   @override
@@ -86,79 +90,71 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
           Row(
             children: [
-              Expanded(
-                child: MaterialButton(
-                  onPressed: () {
-                    showDialog(context: context,
-                        builder: (context){
-                          return new AlertDialog(
-                              title: new Text('Size'),
-                              content: new Text('Choose the size'),
-                              actions: <Widget>[
-                                new MaterialButton(onPressed: (){
-                                  Navigator.of(context).pop(context);
-                                },
-                                  child: new Text('Close'),
-                                )
-                              ]
-                          );
-                        });
-                  },
-                  color: CustomColors().buttonTextColor,
-                  textColor: CustomColors().grey,
-                  elevation: 0.2,
-                  child: Row(
-                    children: [
-                      Expanded(child: new Text("Size")),
-                      Expanded(child: new Icon(Icons.arrow_drop_down)),
-                    ],
+              Container(
+                width: SizeConfig.screenWidth * 0.33,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton(
+                    value: quantity,
+                    icon: Icon(Icons.keyboard_arrow_down),
+                    items:items_quantity.map((String items) {
+                      return DropdownMenuItem(
+                          value: items,
+                          child: Center(child: Text(items, style: TextStyle(fontSize: 12,),textAlign: TextAlign.center,))
+                      );
+                    }
+                    ).toList(),
+                    onChanged: (String? newValue){
+                      setState(() {
+                        quantity = newValue!;
+                      });
+                    },
                   ),
                 ),
               ),
-              Expanded(
-                child: MaterialButton(
-                  onPressed: () {
-                    showDialog(context: context,
-                        builder: (context){
-                          return new AlertDialog(
-                              title: new Text('Color'),
-                              content: new Text('Choose the Color'),
-                              actions: <Widget>[
-                                new MaterialButton(onPressed: (){
-                                  Navigator.of(context).pop(context);
-                                },
-                                  child: new Text('Close'),
-                                )
-                              ]
-                          );
-                        });
-                  },
-                  color: CustomColors().buttonTextColor,
-                  textColor: CustomColors().grey,
-                  elevation: 0.2,
-                  child: Row(
-                    children: [
-                      Expanded(child: new Text("Color")),
-                      Expanded(child: new Icon(Icons.arrow_drop_down)),
-                    ],
+              Container(
+                width: SizeConfig.screenWidth * 0.33,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton(
+                    value: size,
+                    icon: Icon(Icons.keyboard_arrow_down),
+                    items:items_size.map((String items) {
+                      return DropdownMenuItem(
+                          value: items,
+                          child: Center(child: Text(items, style: TextStyle(fontSize: 12,),textAlign: TextAlign.center,))
+                      );
+                    }
+                    ).toList(),
+                    onChanged: (String? newValue){
+                      setState(() {
+                        size = newValue!;
+                      });
+                    },
                   ),
                 ),
               ),
-              DropdownButton(
-                value: dropdownvalue,
-                icon: Icon(Icons.keyboard_arrow_down),
-                items:items.map((String items) {
-                  return DropdownMenuItem(
-                      value: items,
-                      child: Text(items)
-                  );
-                }
-                ).toList(),
-                onChanged: (String? newValue){
-                  setState(() {
-                    dropdownvalue = newValue!;
-                  });
-                },
+              Container(
+                width: SizeConfig.screenWidth * 0.33,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton(
+                    value: color,
+                    icon: Icon(Icons.keyboard_arrow_down),
+                    items:items_color.map((String items) {
+                      return DropdownMenuItem(
+                          value: items,
+                          child:  Center(child: Text(items, style: TextStyle(fontSize: 12,),textAlign: TextAlign.center,))
+                      );
+                    }
+                    ).toList(),
+                    onChanged: (String? newValue){
+                      setState(() {
+                        color = newValue!;
+                      });
+                    },
+                  ),
+                ),
               ),
             ],
           ),
@@ -167,9 +163,8 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                     onPressed: () async {
-                      print("$dropdownvalue");
-                      var response = await Utils().addToCart(widget.productId.toString(), dropdownvalue);
-                      if(response['status'] == false && response['message'] == 'Invalid Password'){
+                      var response = await Utils().addToCart(widget.productId.toString(), quantity, size, color);
+                      if(response['status'] == false){
                         alertScreen().showAlertDialog(context, response['message']);
                       }
                       else{

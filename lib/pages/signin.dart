@@ -1,5 +1,6 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Settings/customColors.dart';
+import 'package:al_haram_furnitures/components/customTextField.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -49,88 +50,9 @@ class _SigninState extends State<Signin> {
                   height: SizeConfig.blockSizeVertical * 15,
                 ),
               ),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Theme(
-                    data: new ThemeData(
-                      primaryColor: CustomColors().secondaryColor,
-                      primaryColorDark: CustomColors().secondaryColor,
-                    ),
-                    child: TextField(
-                      cursorColor: CustomColors().secondaryColor,
-                      onChanged: (text) {
-                        setState(() {
-                          isEmpty = false;
-                        });
-                      },
-                      controller: _email,
-                      decoration: InputDecoration(
-                        focusedBorder:OutlineInputBorder(
-                          borderSide:  BorderSide(color: CustomColors().secondaryColor),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(25.0),
-                          ),
-                        ),
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                            color: CustomColors().secondaryColor,
-                            fontSize: SizeConfig.safeBlockHorizontal * 5
-                        ),
-                        suffixIcon: isEmpty
-                            ? null
-                            : IconButton(
-                                onPressed: () => _email.clear(),
-                                icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
-                              ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              CustomTextField(title: 'Email', controller: _email),
               SizedBox(height: 15.0),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Theme(
-                  data: new ThemeData(
-                    primaryColor: CustomColors().secondaryColor,
-                    primaryColorDark: CustomColors().secondaryColor,
-                  ),
-                  child: TextField(
-                    cursorColor: CustomColors().secondaryColor,
-                    controller: _password,
-                    obscureText: _obscureText,
-                    decoration: InputDecoration(
-                      focusedBorder:OutlineInputBorder(
-                        borderSide:  BorderSide(color: CustomColors().secondaryColor,),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          const Radius.circular(25.0),
-                        ),
-                      ),
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                          color: CustomColors().secondaryColor,
-                          fontSize: SizeConfig.safeBlockHorizontal * 5
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                        icon: Icon(Icons.remove_red_eye_rounded,color: CustomColors().secondaryColor,),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
+              CustomTextField(title: 'Password', controller: _password, isPassword: true),
               Align(
                 alignment: Alignment.centerRight,
                 child: CheckboxListTile(

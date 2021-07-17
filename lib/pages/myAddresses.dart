@@ -1,5 +1,6 @@
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Settings/customColors.dart';
+import 'package:al_haram_furnitures/components/customTextField.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,6 @@ class _MyAddressesState extends State<MyAddresses> {
   final _city = TextEditingController();
   final _state = TextEditingController();
   final _postalCode = TextEditingController();
-  final _country = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,220 +53,15 @@ class _MyAddressesState extends State<MyAddresses> {
               ),
             ),
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: CustomColors().secondaryColor,
-                  primaryColorDark: CustomColors().secondaryColor,
-                ),
-                child: TextField(
-                  cursorColor: CustomColors().secondaryColor,
-                  onChanged: (text) {
-                    setState(() {
-                      isEmptyStree1 = false;
-                    });
-                  },
-                  controller: _street1,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                    focusedBorder:OutlineInputBorder(
-                      borderSide: BorderSide(color: CustomColors().secondaryColor),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(25.0),
-                      ),
-
-                    ),
-                    labelText: 'Street 1',
-                    labelStyle: TextStyle(
-                        color: CustomColors().secondaryColor,
-                        fontSize: SizeConfig.safeBlockHorizontal * 5
-                    ),
-                    suffixIcon:  isEmptyStree1
-                        ? null
-                        :IconButton(
-                      onPressed: () => _street1.clear(),
-                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomTextField(title: 'Street 1', controller: _street1),
             SizedBox(height: 15.0),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: CustomColors().secondaryColor,
-                  primaryColorDark: CustomColors().secondaryColor,
-                ),
-                child: TextField(
-                  cursorColor: CustomColors().secondaryColor,
-                  onChanged: (text) {
-                    setState(() {
-                      isEmptyStree2 = false;
-                    });
-                  },
-                  controller: _street2,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                    focusedBorder:OutlineInputBorder(
-                      borderSide: BorderSide(color: CustomColors().secondaryColor),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(25.0),
-                      ),
-
-                    ),
-                    labelText: 'Street 2',
-                    labelStyle: TextStyle(
-                        color: CustomColors().secondaryColor,
-                        fontSize: SizeConfig.safeBlockHorizontal * 5
-                    ),
-                    suffixIcon:  isEmptyStree2
-                        ? null
-                        :IconButton(
-                      onPressed: () => _street2.clear(),
-                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomTextField(title: 'Street 2', controller: _street2),
             SizedBox(height: 15.0),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: CustomColors().secondaryColor,
-                  primaryColorDark: CustomColors().secondaryColor,
-                ),
-                child: TextField(
-                  cursorColor: CustomColors().secondaryColor,
-                  onChanged: (text) {
-                    setState(() {
-                      isEmptyCity = false;
-                    });
-                  },
-                  controller: _city,
-                  decoration: InputDecoration(
-                    focusedBorder:OutlineInputBorder(
-                      borderSide: BorderSide(color: CustomColors().secondaryColor),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(25.0),
-                      ),
-
-                    ),
-                    labelText: 'City',
-                    labelStyle: TextStyle(
-                        color: CustomColors().secondaryColor,
-                        fontSize: SizeConfig.safeBlockHorizontal * 5
-                    ),
-                    suffixIcon:  isEmptyCity
-                        ? null
-                        :IconButton(
-                      onPressed: () => _city.clear(),
-                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor,),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomTextField(title: 'City', controller: _city),
             SizedBox(height: 15.0),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: CustomColors().secondaryColor,
-                  primaryColorDark: CustomColors().secondaryColor,
-                ),
-                child: TextField(
-                  cursorColor: CustomColors().secondaryColor,
-                  onChanged: (text) {
-                    setState(() {
-                      isEmptyState = false;
-                    });
-                  },
-                  controller: _state,
-                  decoration: InputDecoration(
-                    focusedBorder:OutlineInputBorder(
-                      borderSide: BorderSide(color: CustomColors().secondaryColor),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(25.0),
-                      ),
-
-                    ),
-                    labelText: 'State',
-                    labelStyle: TextStyle(
-                        color: CustomColors().secondaryColor,
-                        fontSize: SizeConfig.safeBlockHorizontal * 5
-                    ),
-                    suffixIcon:  isEmptyState
-                        ? null
-                        :IconButton(
-                      onPressed: () => _state.clear(),
-                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomTextField(title: 'State', controller: _state),
             SizedBox(height: 15.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: CustomColors().secondaryColor,
-                  primaryColorDark: CustomColors().secondaryColor,
-                ),
-                child: TextField(
-                  cursorColor: CustomColors().secondaryColor,
-                  onChanged: (text) {
-                    setState(() {
-                      isEmptyPostalCode = false;
-                    });
-                  },
-                  controller: _postalCode,
-                  decoration: InputDecoration(
-                    focusedBorder:OutlineInputBorder(
-                      borderSide:  BorderSide(color: CustomColors().secondaryColor),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(25.0),
-                      ),
-
-                    ),
-                    labelText: 'Postal Code',
-                    labelStyle: TextStyle(
-                        color: CustomColors().secondaryColor,
-                        fontSize: SizeConfig.safeBlockHorizontal * 5
-                    ),
-                    suffixIcon:  isEmptyPostalCode
-                        ? null
-                        :IconButton(
-                      onPressed: () => _postalCode.clear(),
-                      icon: Icon(Icons.clear,color: CustomColors().secondaryColor),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomTextField(title: 'Postal Code', controller: _postalCode),
 
             SizedBox(height: 15.0),
             Padding(

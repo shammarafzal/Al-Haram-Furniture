@@ -65,7 +65,6 @@ class _ProductSearchState extends State<ProductSearch> {
                       onSubmitted: (value) async {
                         isLoading = true;
                         response = await Utils().fetchProductsBySearch(_searchProduct.text);
-                        print(response.data);
                       },
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
