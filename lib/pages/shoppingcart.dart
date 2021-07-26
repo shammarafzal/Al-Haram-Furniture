@@ -1,6 +1,8 @@
 import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/cart_products.dart';
 import 'package:flutter/material.dart';
+import 'alertDialog.dart';
+import 'package:al_haram_furnitures/API/utils.dart';
 
 class ShoppingCart extends StatefulWidget {
   @override
@@ -42,14 +44,25 @@ class _ShoppingCartState extends State<ShoppingCart> {
             width: double.infinity,
             color: CustomColors().buttonTextColor,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Total: \$'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Total: 1', style: TextStyle(color: Colors.black),),
+                ),
                 SizedBox(width: 10.0),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () async{
+                      var response = await Utils().checkout();
+                      if(response['status'] == false){
+                        alertScreen().showAlertDialog(context, response['message']);
+                      }
+                      else{
+                        alertScreen().showAlertDialog(context, response['message']);
+                      }
+                    },
                     elevation: 0.5,
                     color: CustomColors().redicon,
                     child: Center(

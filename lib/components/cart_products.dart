@@ -1,10 +1,31 @@
+import 'dart:async';
+
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Models/GetCartProducts.dart';
 import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:al_haram_furnitures/pages/alertDialog.dart';
 import 'package:flutter/material.dart';
-class CartProductsList extends StatelessWidget {
+class CartProductsList extends StatefulWidget {
+
+  @override
+  _CartProductsListState createState() => _CartProductsListState();
+}
+
+class _CartProductsListState extends State<CartProductsList> {
+  getCart() async {
+    var res = await Utils().fetchCartProducts();
+    print(res.data);
+  }
+
+  void initState() {
+    super.initState();
+    getCart();
+    const fiveSec = const Duration(seconds: 5);
+    new Timer.periodic(fiveSec, (Timer t) {
+      getCart();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +137,7 @@ class CartProducts extends StatelessWidget {
                             alertScreen().showAlertDialog(context, response['message']);
                           }
                           else{
+                             Utils().fetchCartProducts();
                             alertScreen().showAlertDialog(context, response['message']);
                           }
                         },
@@ -193,7 +215,6 @@ class CartProducts extends StatelessWidget {
                         )
                       ],
                     )
-
                   ],
                 )
               ],
