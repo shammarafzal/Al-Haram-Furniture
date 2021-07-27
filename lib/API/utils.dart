@@ -9,12 +9,12 @@ import 'package:al_haram_furnitures/Models/getProductsByCategories.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Utils{
+class Utils {
   final String baseUrl = 'alharam.codingoverflow.com';
   var image_base_url = 'http://alharam.codingoverflow.com/storage/';
-  register(String first_name, String last_name, String email, String password,String confirm_password) async {
-    var url = Uri.http(baseUrl,
-        '/api/register', {"q": "dart"});
+  register(String first_name, String last_name, String email, String password,
+      String confirm_password) async {
+    var url = Uri.http(baseUrl, '/api/register', {"q": "dart"});
     final response = await http.post(url, body: {
       "first_name": first_name,
       "last_name": last_name,
@@ -25,19 +25,17 @@ class Utils{
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   login(String email, String password) async {
-    var url = Uri.http(baseUrl,
-        '/api/login', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/login', {"q": "dart"});
     final response = await http.post(url, body: {
       "email": email,
       "password": password,
@@ -45,77 +43,66 @@ class Utils{
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 401) {
+    } else if (response.statusCode == 401) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   forgot(String email) async {
-    var url = Uri.http(baseUrl,
-        '/api/forgot', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/forgot', {"q": "dart"});
     final response = await http.post(url, body: {
       "email": email,
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 400) {
+    } else if (response.statusCode == 400) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 404) {
+    } else if (response.statusCode == 404) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   checkForgotToken(String token) async {
-    var url = Uri.http(baseUrl,
-        '/api/checkToken', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/checkToken', {"q": "dart"});
     final response = await http.post(url, body: {
       "token": token,
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 400) {
+    } else if (response.statusCode == 400) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 404) {
+    } else if (response.statusCode == 404) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   resetPassword(String token, String password, String password_confirm) async {
-    var url = Uri.http(baseUrl,
-        '/api/reset', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/reset', {"q": "dart"});
     final response = await http.post(url, body: {
       "token": token,
       "password": password,
@@ -124,41 +111,32 @@ class Utils{
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 400) {
+    } else if (response.statusCode == 400) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 404) {
+    } else if (response.statusCode == 404) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   contactUs(String name, String email, String message) async {
-    var url = Uri.http(baseUrl,
-        '/api/contactus', {"q": "dart"});
-    final response = await http.post(url, body: {
-      "name": name,
-      "email": email,
-      "message": message
-    });
+    var url = Uri.http(baseUrl, '/api/contactus', {"q": "dart"});
+    final response = await http
+        .post(url, body: {"name": name, "email": email, "message": message});
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
@@ -169,25 +147,29 @@ class Utils{
     final response = await http.get(url);
     return GetProducts.fromJson(jsonDecode(response.body));
   }
+
   Future<GetCategories> fetchCategories() async {
     var url = Uri.http(baseUrl, '/api/categories', {"q": "dart"});
     final response = await http.get(url);
     return GetCategories.fromJson(jsonDecode(response.body));
   }
+
   Future<GetDeals> fetchDeals() async {
     var url = Uri.http(baseUrl, '/api/deals', {"q": "dart"});
     final response = await http.get(url);
     return GetDeals.fromJson(jsonDecode(response.body));
   }
+
   Future<GetProducts> fetchisFavourite() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     var url = Uri.http(baseUrl, '/api/getFavourite', {"q": "dart"});
-    final response = await http.get(url,headers: {
+    final response = await http.get(url, headers: {
       'Authorization': 'Bearer $token',
     });
     return GetProducts.fromJson(jsonDecode(response.body));
   }
+
   Future<GetMessages> fetchMessages() async {
     var url = Uri.http(baseUrl, '/api/notifications', {"q": "dart"});
     final response = await http.get(url);
@@ -197,9 +179,8 @@ class Utils{
   getMe() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-    var url = Uri.http(baseUrl,
-        '/api/user', {"q": "dart"});
-    final response = await http.get(url,headers: {
+    var url = Uri.http(baseUrl, '/api/user', {"q": "dart"});
+    final response = await http.get(url, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
@@ -208,144 +189,137 @@ class Utils{
     }
   }
 
-  updateProfile(String first_name, String last_name, String email, String password, String confirm_password, String phone) async {
+  updateProfile(String first_name, String last_name, String email,
+      String password, String confirm_password, String phone) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var id = prefs.getInt('id');
     var token = prefs.getString('token');
-    var url = Uri.http(baseUrl,
-        '/api/update/$id', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/update/$id', {"q": "dart"});
     final response = await http.post(url, body: {
       "first_name": first_name,
       "last_name": last_name,
-      "email" : email,
+      "email": email,
       "password": password,
       "password_confirmation": confirm_password,
       "phone": phone,
-    },headers: {
-    'Authorization': 'Bearer $token',
+    }, headers: {
+      'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
-  address(String street1, String street2, String city,String state, String postalcode) async {
+
+  address(String street1, String street2, String city, String state,
+      String postalcode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     print(token);
-    var url = Uri.http(baseUrl,
-        '/api/address', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/address', {"q": "dart"});
     final response = await http.post(url, body: {
       "address": street1,
       "area": street2,
       "city": city,
       "province": state,
       "postal_code": postalcode,
-    },headers: {
+    }, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       print(responseString);
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       print(responseString);
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   addToFavourite(int prodId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     print(prodId.toString());
-    var url = Uri.http(baseUrl,
-        '/api/addToFavourite', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/addToFavourite', {"q": "dart"});
     final response = await http.post(url, body: {
       "product_id": prodId.toString(),
-    },headers: {
+    }, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       print(responseString);
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       print(responseString);
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   removeFromFavourite(int prodId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     print(prodId.toString());
-    var url = Uri.http(baseUrl,
-        '/api/removeFromFavourite', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/removeFromFavourite', {"q": "dart"});
     final response = await http.post(url, body: {
       "product_id": prodId.toString(),
-    },headers: {
+    }, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       print(responseString);
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       print(responseString);
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
 
   productsByCategories(String category_name) async {
-    var url = Uri.http(baseUrl,
-        '/api/productsByCategory', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/productsByCategory', {"q": "dart"});
     final response = await http.post(url, body: {
       "category_name": category_name,
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
-  Future<GetproductsByCategories> fetchProductsByCategory(String category_name) async {
+
+  Future<GetproductsByCategories> fetchProductsByCategory(
+      String category_name) async {
     var url = Uri.http(baseUrl, '/api/productsByCategory', {"q": "dart"});
     final response = await http.post(url, body: {
       "category_name": category_name,
     });
     return GetproductsByCategories.fromJson(jsonDecode(response.body));
   }
+
   Future<GetProducts> fetchProductsBySearch(String searchItem) async {
     var url = Uri.http(baseUrl, '/api/filterProducts', {"q": "dart"});
     final response = await http.post(url, body: {
@@ -353,9 +327,9 @@ class Utils{
     });
     return GetProducts.fromJson(jsonDecode(response.body));
   }
+
   search(String searchItem) async {
-    var url = Uri.http(baseUrl,
-        '/api/filterProducts', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/filterProducts', {"q": "dart"});
     final response = await http.post(url, body: {
       "search": searchItem,
     });
@@ -363,109 +337,109 @@ class Utils{
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   addToCart(String product_id, String qty, String size, String color) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-    var url = Uri.http(baseUrl,
-        '/api/addToCart', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/addToCart', {"q": "dart"});
     final response = await http.post(url, body: {
       "product_id": product_id,
       "qty": qty,
       "size": size,
       "color": color
-    },headers: {
+    }, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   Future<GetCartProducts> fetchCartProducts() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     var url = Uri.http(baseUrl, '/api/viewCart', {"q": "dart"});
-    final response = await http.get(url,headers: {
+    final response = await http.get(url, headers: {
       'Authorization': 'Bearer $token',
     });
     return GetCartProducts.fromJson(jsonDecode(response.body));
   }
+
   Future<GetCartProducts> removeFromCart(String product_id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     var url = Uri.http(baseUrl, '/api/removeFromCart', {"q": "dart"});
     final response = await http.post(url, body: {
       "product_id": product_id,
-    },headers: {
+    }, headers: {
       'Authorization': 'Bearer $token',
     });
     return GetCartProducts.fromJson(jsonDecode(response.body));
   }
+
   rmFromCart(String product_id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-    var url = Uri.http(baseUrl,
-        '/api/removeFromCart', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/removeFromCart', {"q": "dart"});
     final response = await http.post(url, body: {
       "product_id": product_id,
-    },headers: {
+    }, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
+
   checkout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-    var url = Uri.http(baseUrl,
-        '/api/checkout', {"q": "dart"});
+    var url = Uri.http(baseUrl, '/api/checkout', {"q": "dart"});
     final response = await http.post(url, headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else if (response.statusCode == 500) {
+    } else if (response.statusCode == 500) {
       final String responseString = response.body;
       return jsonDecode(responseString);
-    }
-    else{
+    } else {
       final String responseString = response.body;
       return jsonDecode(responseString);
     }
   }
 
-  updateProfilewithImage(String first_name, String last_name, String email, File image,
-      String password, String confirm_password, String phone) async {
+  updateProfilewithImage(
+      String first_name,
+      String last_name,
+      String email,
+      File image,
+      String password,
+      String confirm_password,
+      String phone) async {
     // FormData form = new FormData();
     // form.append("image", image);
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -475,7 +449,7 @@ class Utils{
     var request = http.MultipartRequest(
         "POST",
         Uri.parse(
-          "http://alharm.codingoverflow.com/api/update/$id",
+          "http://alharam.codingoverflow.com/api/update/$id",
         ));
     request.headers.addAll(headers);
     request.fields["first_name"] = first_name;
@@ -487,7 +461,9 @@ class Utils{
     var pic = await http.MultipartFile.fromPath("image", image.path);
     request.files.add(pic);
     var response = await request.send();
-    print(response);
+    var responseData = await response.stream.toBytes();
+    var decode = String.fromCharCodes(responseData);
+    print(jsonDecode(decode));
+    return jsonDecode(decode);
   }
-
 }
