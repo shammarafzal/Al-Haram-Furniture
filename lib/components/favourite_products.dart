@@ -22,11 +22,13 @@ class FavoutiteProductListView extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
                   return Product(
-                    productId:  snapshot.data?.data?[index].id ?? 1,
+                    productId:  snapshot.data!.data![index].id ,
                     productName: snapshot.data?.data?[index].modelName ?? "",
                     description: snapshot.data?.data?[index].description ?? "",
                     price:  snapshot.data?.data?[index].salePrice ?? "",
                     image_location: image_base_url+'${snapshot.data?.data?[index].productGalleries[0].productImage}',
+                    product_brand: snapshot.data?.data?[index].company.companyName ?? "",
+
                   );
                 },
               );
@@ -49,12 +51,14 @@ class Product extends StatefulWidget {
   final String description;
   final String price;
   final String image_location;
+  final String product_brand;
   Product({
     required this.productId,
     required this.productName,
     required this.description,
     required this.price,
     required this.image_location,
+    required this.product_brand,
   });
 
   @override
@@ -75,6 +79,8 @@ class _ProductState extends State<Product> {
                 product_detail_new_price: widget.price,
                 product_detail_old_price: widget.price,
                 product_detail_picture: widget.image_location,
+                productBrand: widget.product_brand,
+                productId: widget.productId,
               )));
         },
         child: Row(

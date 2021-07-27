@@ -56,7 +56,7 @@ class _SignupState extends State<Signup> {
               SizedBox(height: 15.0),
               CustomTextField(title: 'Password', controller: _password, isPassword: true),
               SizedBox(height: 15.0),
-              CustomTextField(title: 'Password', controller: _confirmPassword, isPassword: true),
+              CustomTextField(title: 'Confirm Password', controller: _confirmPassword, isPassword: true),
               SizedBox(height: 15.0),
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -146,12 +146,9 @@ class _SignupState extends State<Signup> {
                       ),
                       children:[
                         TextSpan(text: 'Have an account? ',style: TextStyle(color: CustomColors().black45)),
-                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                            builder: (context) => new Signin(),
-                          ),
-                        )),
+                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>
+                            Navigator.pop(context)
+                        ),
                       ]),
                 ),
               ),

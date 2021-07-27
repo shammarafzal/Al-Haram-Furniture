@@ -5,11 +5,16 @@ import 'alertDialog.dart';
 import 'package:al_haram_furnitures/API/utils.dart';
 
 class ShoppingCart extends StatefulWidget {
+  final pp;
+  ShoppingCart({
+    this.pp
+});
   @override
   _ShoppingCartState createState() => _ShoppingCartState();
 }
 
 class _ShoppingCartState extends State<ShoppingCart> {
+  var tt = [];
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +23,15 @@ class _ShoppingCartState extends State<ShoppingCart> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Color(0xFFFDD148),
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: CustomColors().secondaryColor,
-            )),
+        // leading: InkWell(
+        //     onTap: () {
+        //       Navigator.popAndPushNamed(context, 'bottomNavBar');
+        //     },
+        //     child: Icon(
+        //       Icons.arrow_back,
+        //       color: CustomColors().secondaryColor,
+        //     )),
+        automaticallyImplyLeading: false,
         title: Text(
           'Shopping Cart',
           style: TextStyle(

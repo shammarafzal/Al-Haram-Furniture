@@ -13,19 +13,6 @@ class CartProductsList extends StatefulWidget {
 }
 
 class _CartProductsListState extends State<CartProductsList> {
-  getCart() async {
-    var res = await Utils().fetchCartProducts();
-    print(res.data);
-  }
-
-  void initState() {
-    super.initState();
-    getCart();
-    const fiveSec = const Duration(seconds: 5);
-    new Timer.periodic(fiveSec, (Timer t) {
-      getCart();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +27,7 @@ class _CartProductsListState extends State<CartProductsList> {
                 itemCount: snapshot.data?.data?.products?.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
+                  print(snapshot.data?.data?.products[index].pivot.total);
                 return CartProducts(
                   productName: snapshot.data?.data?.products[index].modelName ?? "",
                   color: snapshot.data?.data?.products[index].pivot.color ?? "",
@@ -63,7 +51,7 @@ class _CartProductsListState extends State<CartProductsList> {
   }
 }
 
-class CartProducts extends StatelessWidget {
+class CartProducts extends StatefulWidget {
   final String productName;
   final String color;
   final String price;
@@ -80,11 +68,28 @@ class CartProducts extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
+  _CartProductsState createState() => _CartProductsState();
+}
 
-      },
+class _CartProductsState extends State<CartProducts> {
+  @override
+  Widget build(BuildContext context) {
+    return Dismissible(
+          key: UniqueKey(),
+          direction: DismissDirection.endToStart,
+          onDismissed: (direction) async{
+            await Utils().removeFromCart(widget.productId);
+          },
+          background: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(15)),
+            child: Row(
+              children: [
+                Spacer(),
+                Icon(Icons.delete)
+              ],
+            ),
+          ),
       child: Padding(
         padding: EdgeInsets.all(5.0),
         child: Material(
@@ -103,7 +108,7 @@ class CartProducts extends StatelessWidget {
                   width: SizeConfig.screenWidth * 0.2,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(image_location), fit: BoxFit.contain)),
+                          image: NetworkImage(widget.image_location), fit: BoxFit.contain)),
                 ),
                 SizedBox(width: 4.0),
                 Column(
@@ -114,7 +119,7 @@ class CartProducts extends StatelessWidget {
 
                       children: <Widget>[
                         Text(
-                          '$productName',
+                          '${widget.productName}',
                           style: TextStyle(
                               color: CustomColors().secondaryColor,
                               fontFamily: 'Montserrat',
@@ -123,30 +128,18 @@ class CartProducts extends StatelessWidget {
                         ),
                         SizedBox(width: 30,),
                         Text(
-                          'x $qty',
+                          'x ${widget.qty}',
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
                               color: CustomColors().grey),
                         ),
-                        SizedBox(width: 30,),
-                        IconButton(onPressed: () async {
-                          var response = await Utils().rmFromCart(productId);
-                          if(response['status'] == false){
-                            alertScreen().showAlertDialog(context, response['message']);
-                          }
-                          else{
-                             Utils().fetchCartProducts();
-                            alertScreen().showAlertDialog(context, response['message']);
-                          }
-                        },
-                            icon: Icon(Icons.delete, color: CustomColors().redicon,))
                       ],
                     ),
                     SizedBox(height: 7.0),
                    Text(
-                      'Color: ' + color,
+                      'Color: ' + widget.color,
                       style: TextStyle(
                           fontFamily: 'Quicksand',
                           fontWeight: FontWeight.bold,
@@ -158,7 +151,7 @@ class CartProducts extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$' + price,
+                          '\$' + widget.price,
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
@@ -187,7 +180,7 @@ class CartProducts extends StatelessWidget {
                             ),
                             SizedBox(width: 7.0),
                             Text(
-                              'x $qty',
+                              'x ${widget.qty}',
                               style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.bold,
@@ -224,5 +217,4 @@ class CartProducts extends StatelessWidget {
       ),
     );
   }
-
 }

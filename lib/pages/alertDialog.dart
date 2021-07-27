@@ -31,12 +31,7 @@ class alertScreen{
   }
   showSignupAlertDialog(BuildContext context,String msg) {
     Timer timer = Timer(Duration(milliseconds: 1000), (){
-      Navigator.push(
-        context,
-        new MaterialPageRoute(
-          builder: (context) => new Signin(),
-        ),
-      );
+      Navigator.of(context).popUntil((route) => route.isFirst);
     });
     showDialog(
         context: context,
@@ -57,12 +52,8 @@ class alertScreen{
   }
   showSigninAlertDialog(BuildContext context,String msg) {
     Timer timer = Timer(Duration(milliseconds: 1000), (){
-      Navigator.push(
-        context,
-        new MaterialPageRoute(
-          builder: (context) => new BottomBar(),
-        ),
-      );
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('bottomNavBar', (Route<dynamic> route) => false);
     });
     showDialog(
         context: context,

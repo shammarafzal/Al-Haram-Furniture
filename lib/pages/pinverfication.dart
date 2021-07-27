@@ -128,7 +128,7 @@ class _PinVerifyState extends State<PinVerify> {
                     child: Text(
                       'Verify Pin',
                       style: TextStyle(
-                        color: CustomColors().black45,
+                        color: CustomColors().buttonTextColor,
                         fontSize: SizeConfig.safeBlockHorizontal * 5,
                       ),
                     ),
@@ -149,25 +149,7 @@ class _PinVerifyState extends State<PinVerify> {
                     MediaQuery.of(context).orientation == Orientation.portrait ? SizeConfig.screenHeight * 0.07 : SizeConfig.screenHeight * 0.16
                 ),
               ),
-              SizedBox(height: 15.0),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                      style: new TextStyle(
-                        fontSize: SizeConfig.safeBlockHorizontal * 4,
-                        color: CustomColors().secondaryColor,
-                      ),
-                      children:[
-                        TextSpan(text: 'Remember Password? ',style: TextStyle(color: CustomColors().black45)),
-                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                            builder: (context) => new Signin(),
-                          ),
-                        )),
-                      ]),
-                ),
-              ),
+
             ],
           ),
         ),

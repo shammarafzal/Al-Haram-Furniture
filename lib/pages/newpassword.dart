@@ -80,13 +80,8 @@ class _NewPasswordState extends State<NewPassword> {
                           setState(() {
                             isLoading = false;
                           });
-                          alertScreen().showAlertDialog(context, response['message']);
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                              builder: (context) => new Signin(),
-                            ),
-                          );
+                          alertScreen().showSignupAlertDialog(context, response['message']);
+
 
                         }
                       }

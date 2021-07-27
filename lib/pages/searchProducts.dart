@@ -27,14 +27,16 @@ class _ProductSearchState extends State<ProductSearch> {
           'Search Products',
           style: TextStyle(color: CustomColors().secondaryColor),
         ),
-        leading: InkWell(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: CustomColors().secondaryColor,
-            )),
+        // leading: InkWell(
+        //     onTap: () {
+        //       Navigator.popAndPushNamed(context, 'bottomNavBar');
+        //     },
+        //     child: Icon(
+        //       Icons.arrow_back,
+        //       color: CustomColors().secondaryColor,
+        //     )),
+
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.yellow,
         elevation: 0,
       ),

@@ -32,7 +32,7 @@ class _MyAddressesState extends State<MyAddresses> {
       appBar: AppBar(
         leading: InkWell(
             onTap: (){
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
             child: Icon(Icons.arrow_back, color: CustomColors().secondaryColor,)),
         backgroundColor: Color(CustomColors().getColorHexFromStr('#FEDF62')),

@@ -214,12 +214,8 @@ class _UserPageState extends State<UserPage>
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
             prefs.remove("isLoggedIn");
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (context) => new Signin(),
-              ),
-            );
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
           },
           child: listItem(
               'Logout', Color(CustomColors().getColorHexFromStr('#E89300')), Icons.logout),

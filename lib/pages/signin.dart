@@ -53,27 +53,7 @@ class _SigninState extends State<Signin> {
               CustomTextField(title: 'Email', controller: _email),
               SizedBox(height: 15.0),
               CustomTextField(title: 'Password', controller: _password, isPassword: true),
-              Align(
-                alignment: Alignment.centerRight,
-                child: CheckboxListTile(
-                  title: Text(
-                    "Remember Me",
-                    style: TextStyle(
-                      color: CustomColors().black45,
-                    ),
-                  ),
-                  value: checkedValue,
-                  onChanged: (newValue) async {
-                    setState(() {
-                      checkedValue = newValue!;
-                    });
-                  },
-                  activeColor: CustomColors().black45,
-                  checkColor: CustomColors().buttonTextColor,
-                  controlAffinity: ListTileControlAffinity
-                      .leading, //  <-- leading Checkbox
-                ),
-              ),
+              SizedBox(height: 25.0),
 
               Padding(
                 padding: const EdgeInsets.all(15),

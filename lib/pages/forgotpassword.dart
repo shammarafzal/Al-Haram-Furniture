@@ -117,12 +117,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                       children:[
                         TextSpan(text: 'Remember Password? ',style: TextStyle(color: CustomColors().black45)),
-                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>  Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                            builder: (context) => new Signin(),
-                          ),
-                        )),
+                        TextSpan(text: 'SIGN IN',style: TextStyle(color: CustomColors().secondaryColor,fontWeight: FontWeight.bold),recognizer: new TapGestureRecognizer()..onTap = () =>
+                            Navigator.pop(context)
+                        ),
                       ]),
                 ),
               ),

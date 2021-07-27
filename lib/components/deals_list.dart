@@ -28,9 +28,9 @@ class DealsList extends StatelessWidget {
             );
           }
           return Center(
-            child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(CustomColors().redicon),
-            ),
+            // child: CircularProgressIndicator(
+            //   valueColor: new AlwaysStoppedAnimation<Color>(CustomColors().redicon),
+            // ),
           );
         },
       ),

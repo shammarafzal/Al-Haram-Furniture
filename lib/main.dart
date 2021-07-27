@@ -1,3 +1,7 @@
+import 'package:al_haram_furnitures/pages/bottonNavBar.dart';
+import 'package:al_haram_furnitures/pages/home.dart';
+import 'package:al_haram_furnitures/pages/newpassword.dart';
+import 'package:al_haram_furnitures/pages/pinverfication.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'layout/customColors.dart';
@@ -19,12 +23,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: 'loginroute',
+        initialRoute: 'login',
        theme: MyTheme.defaultTheme,
         routes: {
-          'loginroute': (context)=> Signin(),
+          'login': (context)=> Signin(),
           'signup_screen': (context)=>Signup(),
           'forgotPassword': (context)=>ForgotPassword(),
+          'verifyPin': (context)=>PinVerify(),
+          'changePassword': (context)=>NewPassword(),
+          'home': (context)=> HomePage(),
+          'bottomNavBar': (context)=> BottomBar(),
         } ,
     );
   }
