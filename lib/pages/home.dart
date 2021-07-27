@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: ListView(
         children: [
@@ -23,7 +24,9 @@ class _HomePageState extends State<HomePage> {
             height: SizeConfig.screenHeight * 0.25,
             child: DealsList(),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           HorizontalList(),
           ProductListView()
         ],
