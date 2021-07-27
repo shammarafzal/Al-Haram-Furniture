@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:al_haram_furnitures/API/utils.dart';
 import 'package:al_haram_furnitures/Settings/customColors.dart';
 import 'package:al_haram_furnitures/components/customTextField.dart';
 import 'package:al_haram_furnitures/layout/SizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'alertDialog.dart';
 class UpdateProfile extends StatefulWidget {
   @override
@@ -14,7 +17,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   bool isLoading = false;
   bool _visibleFirst = false;
   bool enabled = false;
-  bool _obscureText = true;
+   late File imagePath;
   bool isEmptyfirstName = true;
   bool isEmptylastName = true;
   bool isEmptyEmail = true;
@@ -110,8 +113,20 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       CustomTextField(title: 'Email', controller: _email),
                       SizedBox(height: 15.0),
                       CustomTextField(title: 'Phone', controller: _phone),
-
                       SizedBox(height: 15.0),
+                      CustomTextField(title: 'Password', controller: _password, isPassword: true),
+                      SizedBox(height: 15.0),
+                      CustomTextField(title: 'Confirm Password', controller: _confirmPassword, isPassword: true),
+                      SizedBox(height: 15.0),
+                      IconButton(onPressed: () async{
+                        final picker = ImagePicker();
+                        var image =
+                            await picker.getImage(source: ImageSource.gallery);
+                        if (image != null) {
+                          imagePath = File(image.path);
+                        }
+                      }, icon: Icon(Icons.arrow_circle_up)),
+                      SizedBox(height: 15.0,),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Visibility(
@@ -124,7 +139,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   }
                                   else{
                                     isLoading = true;
-                                    var response = await Utils().updateProfile(_fitstName.text,_lastName.text, _email.text, _password.text, _confirmPassword.text, _phone.text);
+                                    var response = await Utils().updateProfilewithImage(_fitstName.text,_lastName.text, _email.text, imagePath , _password.text, _confirmPassword.text, _phone.text, );
                                     if(response['status'] == false){
                                       setState(() {
                                         isLoading = false;

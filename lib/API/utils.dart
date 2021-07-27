@@ -463,4 +463,31 @@ class Utils{
       return jsonDecode(responseString);
     }
   }
+
+  updateProfilewithImage(String first_name, String last_name, String email, File image,
+      String password, String confirm_password, String phone) async {
+    // FormData form = new FormData();
+    // form.append("image", image);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var id = prefs.getInt('id');
+    Map<String, String> headers = {'Authorization': 'Bearer $token'};
+    var request = http.MultipartRequest(
+        "POST",
+        Uri.parse(
+          "http://alharm.codingoverflow.com/api/update/$id",
+        ));
+    request.headers.addAll(headers);
+    request.fields["first_name"] = first_name;
+    request.fields["last_name"] = last_name;
+    request.fields["email"] = email;
+    request.fields["password"] = password;
+    request.fields["password_confirmation"] = confirm_password;
+    request.fields["phone"] = phone;
+    var pic = await http.MultipartFile.fromPath("image", image.path);
+    request.files.add(pic);
+    var response = await request.send();
+    print(response);
+  }
+
 }
