@@ -91,7 +91,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Row(
             children: [
               Container(
-                width: SizeConfig.screenWidth * 0.33,
+                width: SizeConfig.screenWidth * 0.34,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButton(
