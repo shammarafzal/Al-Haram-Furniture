@@ -61,19 +61,23 @@ class _UserPageState extends State<UserPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ListTile(
-                leading: Container(
-                  alignment: Alignment.topLeft,
-                  height: 50.0,
-                  width: 50.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25.0),
-                      border: Border.all(
-                          color: CustomColors().buttonTextColor,
-                          style: BorderStyle.solid,
-                          width: 3.0),
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/chair.jpg'))),
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(Utils().image_base_url + user['image']),
                 ),
+                // leading: Container(
+                //   alignment: Alignment.topLeft,
+                //   height: 60.0,
+                //   width: 50.0,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(25.0),
+                //       border: Border.all(
+                //           color: CustomColors().buttonTextColor,
+                //           style: BorderStyle.solid,
+                //           width: 3.0),
+                //       image: DecorationImage(
+                //           fit: BoxFit.cover,
+                //           image: NetworkImage(Utils().image_base_url + user['image']))),
+                // ),
                 title: FutureBuilder(
                     future: getMe(),
                     builder: (context, snapshot) {
