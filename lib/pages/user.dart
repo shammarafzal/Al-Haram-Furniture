@@ -35,83 +35,116 @@ class _UserPageState extends State<UserPage>
             width: double.infinity,
             color: Color(CustomColors().getColorHexFromStr('#FDD148')),
           ),
-          Positioned(
-            bottom: 250.0,
-            right: 100.0,
-            child: Container(
-              height: 400.0,
-              width: 400.0,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(200.0),
-                  color: Color(CustomColors().getColorHexFromStr('#FEE16D')).withOpacity(0.4)),
-            ),
-          ),
-          Positioned(
-            bottom: 300.0,
-            left: 150.0,
-            child: Container(
-                height: 300.0,
-                width: 300.0,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(150.0),
-                    color:
-                        Color(CustomColors().getColorHexFromStr('#FEE16D')).withOpacity(0.5))),
-          ),
+          // Positioned(
+          //   bottom: 250.0,
+          //   right: 100.0,
+          //   child: Container(
+          //     height: 400.0,
+          //     width: 400.0,
+          //     decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(200.0),
+          //         color: Color(CustomColors().getColorHexFromStr('#FEE16D')).withOpacity(0.4)),
+          //   ),
+          // ),
+          // Positioned(
+          //   bottom: 300.0,
+          //   left: 150.0,
+          //   child: Container(
+          //       height: 300.0,
+          //       width: 300.0,
+          //       decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(150.0),
+          //           color:
+          //               Color(CustomColors().getColorHexFromStr('#FEE16D')).withOpacity(0.5))),
+          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(Utils().image_base_url + user['image']),
-                ),
-                // leading: Container(
-                //   alignment: Alignment.topLeft,
-                //   height: 60.0,
-                //   width: 50.0,
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(25.0),
-                //       border: Border.all(
-                //           color: CustomColors().buttonTextColor,
-                //           style: BorderStyle.solid,
-                //           width: 3.0),
-                //       image: DecorationImage(
-                //           fit: BoxFit.cover,
-                //           image: NetworkImage(Utils().image_base_url + user['image']))),
-                // ),
-                title: FutureBuilder(
-                    future: getMe(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Text(
-                          user['first_name'],
-                          style: TextStyle(
-                              fontFamily: 'Quicksand',
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.bold),
+              Container(
+                child: ListTile(
+                  leading: FutureBuilder(
+                            future: getMe(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            alignment: Alignment.topLeft,
+                            height: 60.0,
+                            width: 60.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(35.0),
+                                border: Border.all(
+                                    color: CustomColors().buttonTextColor,
+                                    style: BorderStyle.solid,
+                                    width: 3.0),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(Utils().image_base_url + user['image']))),
+                          );
+                        }
+                        return Container(
+                          alignment: Alignment.topLeft,
+                          height: 60.0,
+                          width: 60.0,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(35.0),
+                              border: Border.all(
+                                  color: CustomColors().buttonTextColor,
+                                  style: BorderStyle.solid,
+                                  width: 3.0),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('assets/images/chair.jpg'))),
                         );
-                      }
-                      return Center(
-                        child: Text(
-                          'ARUM',
-                          style: TextStyle(
-                              fontFamily: 'Quicksand',
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.bold),
+                      }),
+                  // leading: Container(
+                  //   alignment: Alignment.topLeft,
+                  //   height: 60.0,
+                  //   width: 60.0,
+                  //   decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(35.0),
+                  //       border: Border.all(
+                  //           color: CustomColors().buttonTextColor,
+                  //           style: BorderStyle.solid,
+                  //           width: 3.0),
+                  //       image: DecorationImage(
+                  //           fit: BoxFit.cover,
+                  //           image: NetworkImage(Utils().image_base_url + user['image']))),
+                  // ),
+                  title: FutureBuilder(
+                      future: getMe(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(
+                            user['first_name'],
+                            style: TextStyle(
+                                fontFamily: 'Quicksand',
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold),
+                          );
+                        }
+                        return Center(
+                          child: Text(
+                            'ARUM',
+                            style: TextStyle(
+                                fontFamily: 'Quicksand',
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }),
+                  trailing: IconButton(
+                    icon: Icon(Icons.settings),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                          builder: (context) => new UpdateProfile(),
                         ),
                       );
-                    }),
-                trailing: IconButton(
-                  icon: Icon(Icons.settings),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                        builder: (context) => new UpdateProfile(),
-                      ),
-                    );
-                  },
-                  color: CustomColors().buttonTextColor,
-                  iconSize: 30.0,
+                    },
+                    color: CustomColors().buttonTextColor,
+                    iconSize: 30.0,
+                  ),
                 ),
               ),
               SizedBox(height: 10.0),
