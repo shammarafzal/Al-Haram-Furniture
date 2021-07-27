@@ -377,6 +377,7 @@ class Utils {
     final response = await http.get(url, headers: {
       'Authorization': 'Bearer $token',
     });
+    // print(response.body);
     return GetCartProducts.fromJson(jsonDecode(response.body));
   }
 

@@ -23,11 +23,12 @@ class _CartProductsListState extends State<CartProductsList> {
           future: Utils().fetchCartProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              print(snapshot.data?.data?.total);
               return ListView.builder(
                 itemCount: snapshot.data?.data?.products?.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
-                  print(snapshot.data?.data?.products[index].pivot.total);
+
                 return CartProducts(
                   productName: snapshot.data?.data?.products[index].modelName ?? "",
                   color: snapshot.data?.data?.products[index].pivot.color ?? "",
@@ -159,57 +160,58 @@ class _CartProductsState extends State<CartProducts> {
                               color: CustomColors().yellow),
                         ),
                         Padding(padding: EdgeInsets.only(left: 35)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            new Container(
-                                width: 40.0,
-                                height: 40.0,
-                                child: new RawMaterialButton(
-                                  fillColor: CustomColors().yellow,
-                                  shape: new CircleBorder(),
-                                  elevation: 0.0,
-                                  child: Icon(
-                                    Icons.add,
-                                    color: CustomColors().blue,
-                                  ),
-                                  onPressed: (){
-
-                                  },
-                                ),
-                            ),
-                            SizedBox(width: 7.0),
-                            Text(
-                              'x ${widget.qty}',
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.0,
-                                  color: CustomColors().grey),
-                            ),
-                            SizedBox(width: 7.0),
-                            Container(
-                              width: 40.0,
-                              height: 40.0,
-                              child: new RawMaterialButton(
-                                fillColor: CustomColors().yellow,
-                                shape: new CircleBorder(),
-                                elevation: 0.0,
-                                child: Icon(
-                                  Icons.minimize,
-                                  color: CustomColors().blue,
-                                ),
-                                onPressed: (){
-
-                                },
-                              ),
-                            ),
-                          ],
-                        )
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: <Widget>[
+                        //     new Container(
+                        //         width: 40.0,
+                        //         height: 40.0,
+                        //         child: new RawMaterialButton(
+                        //           fillColor: CustomColors().yellow,
+                        //           shape: new CircleBorder(),
+                        //           elevation: 0.0,
+                        //           child: Icon(
+                        //             Icons.add,
+                        //             color: CustomColors().blue,
+                        //           ),
+                        //           onPressed: (){
+                        //
+                        //           },
+                        //         ),
+                        //     ),
+                        //     SizedBox(width: 7.0),
+                        //     Text(
+                        //       'x ${widget.qty}',
+                        //       style: TextStyle(
+                        //           fontFamily: 'Montserrat',
+                        //           fontWeight: FontWeight.bold,
+                        //           fontSize: 14.0,
+                        //           color: CustomColors().grey),
+                        //     ),
+                        //     SizedBox(width: 7.0),
+                        //     Container(
+                        //       width: 40.0,
+                        //       height: 40.0,
+                        //       child: new RawMaterialButton(
+                        //         fillColor: CustomColors().yellow,
+                        //         shape: new CircleBorder(),
+                        //         elevation: 0.0,
+                        //         child: Icon(
+                        //           Icons.minimize,
+                        //           color: CustomColors().blue,
+                        //         ),
+                        //         onPressed: (){
+                        //
+                        //         },
+                        //       ),
+                        //     ),
+                        //   ],
+                        // )
                       ],
                     )
                   ],
                 )
+
               ],
             ),
           ),

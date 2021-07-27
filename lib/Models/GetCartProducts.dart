@@ -41,6 +41,7 @@ class Data {
     required this.orderStatus,
     required this.paymentMethod,
     required this.orderType,
+    required this.total,
     required this.createdAt,
     required this.updatedAt,
     required this.products,
@@ -52,6 +53,7 @@ class Data {
   String orderStatus;
   dynamic paymentMethod;
   String orderType;
+  String total;
   DateTime createdAt;
   DateTime updatedAt;
   List<Product> products;
@@ -63,6 +65,7 @@ class Data {
     orderStatus: json["order_status"],
     paymentMethod: json["payment_method"],
     orderType: json["order_type"],
+    total: json["total"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
     products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
@@ -75,6 +78,7 @@ class Data {
     "order_status": orderStatus,
     "payment_method": paymentMethod,
     "order_type": orderType,
+    "total": total,
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
     "products": List<dynamic>.from(products.map((x) => x.toJson())),

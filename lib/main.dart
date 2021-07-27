@@ -4,7 +4,6 @@ import 'package:al_haram_furnitures/pages/newpassword.dart';
 import 'package:al_haram_furnitures/pages/pinverfication.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'layout/customColors.dart';
 import 'pages/forgotpassword.dart';
