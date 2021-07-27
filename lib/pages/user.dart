@@ -78,7 +78,7 @@ class _UserPageState extends State<UserPage>
                                     width: 3.0),
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: NetworkImage(Utils().image_base_url + user['image']))),
+                                    image: NetworkImage(Utils().image_base_url + "${user['image']}"))),
                           );
                         }
                         return Container(
@@ -115,7 +115,7 @@ class _UserPageState extends State<UserPage>
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return Text(
-                            user['first_name'],
+                            '${user['first_name']}',
                             style: TextStyle(
                                 fontFamily: 'Quicksand',
                                 fontSize: 25.0,
