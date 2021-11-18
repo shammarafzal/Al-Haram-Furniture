@@ -37,9 +37,9 @@ class MyTheme {
       backgroundColor: Background,
 
       textTheme: base.textTheme.copyWith(
-          title: base.textTheme.title!.copyWith(color: TextColor),
-          body1: base.textTheme.body1!.copyWith(color: TextColor),
-          body2: base.textTheme.body2!.copyWith(color: TextColor)
+          subtitle1: base.textTheme.subtitle1!.copyWith(color: TextColor),
+          bodyText1: base.textTheme.bodyText1!.copyWith(color: TextColor),
+          bodyText2: base.textTheme.bodyText2!.copyWith(color: TextColor)
       ),
     );
   }
