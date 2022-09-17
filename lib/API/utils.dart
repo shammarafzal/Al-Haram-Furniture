@@ -321,6 +321,7 @@ class Utils {
   }
 
   Future<GetProducts> fetchProductsBySearch(String searchItem) async {
+
     var url = Uri.http(baseUrl, '/api/filterProducts', {"q": "dart"});
     final response = await http.post(url, body: {
       "search": searchItem,
